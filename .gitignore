@@ -6,3 +6,6 @@
 /env/
 /.vscode/
 *.pyc
+
+# currently do not check in the generated doc
+/docs/
