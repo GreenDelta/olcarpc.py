@@ -1,26 +1,18 @@
 # olca-grpc.py
-This is an experiment to replace the internals of
-[olca-ipc.py](https://github.com/GreenDelta/olca-ipc.py). 
+This is an experiment to replace [olca-ipc.py](https://github.com/GreenDelta/olca-ipc.py).
+with a [gRPC](https://grpc.io/) based implementation.
+[olca-proto](https://github.com/msrocka/olca-proto) currently implements the
+corresponding server side.
 
-```batch
-rem get the project
-git clone https://github.com/msrocka/olca-grpc.py.git
-cd olca-grpc.py
+## Generating the `pb2[_grpc].py[i]` modules
+We check in the generated code into version control so this only has to be done
+when the `*.proto` files change. You need to have the following tools installed:
 
-rem create a virtual environment and activate it
-py -m venv env
-.\env\Scripts\activate.bat
+* the [Protocol Buffers Compiler](https://github.com/protocolbuffers/protobuf/releases);
+  `$ protoc --version` should say something
+* for generating type hints we use
+  [mypy-protobuf](https://github.com/dropbox/mypy-protobuf); make sure that
+  the `protoc-gen-mypy` script is in your path
+* finally, install the `grpcio-tools`: `python -m pip install grpcio-tools`
 
-rem install the requirements
-pip install -r requirements.txt
-
-rem install the project
-pip install -e .
-
-rem ... then start the Python interpreter
-python
-```
-
-python -m pip install grpcio-tools
-
-py -m grpc_tools.protoc -I. --python_out=olcarpc --grpc_python_out=olcarpc services.proto
+On Windows, you can then just run the `gen.bat` file.
