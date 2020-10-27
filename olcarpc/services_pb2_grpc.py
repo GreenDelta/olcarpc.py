@@ -30,6 +30,56 @@ class DataServiceStub(object):
                 request_serializer=olca__pb2.Actor.SerializeToString,
                 response_deserializer=olca__pb2.Ref.FromString,
                 )
+        self.categories = channel.unary_stream(
+                '/protolca.services.DataService/categories',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Category.FromString,
+                )
+        self.category = channel.unary_unary(
+                '/protolca.services.DataService/category',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.Category.FromString,
+                )
+        self.put_category = channel.unary_unary(
+                '/protolca.services.DataService/put_category',
+                request_serializer=olca__pb2.Category.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.currencies = channel.unary_stream(
+                '/protolca.services.DataService/currencies',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Currency.FromString,
+                )
+        self.currency = channel.unary_unary(
+                '/protolca.services.DataService/currency',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.Currency.FromString,
+                )
+        self.put_currency = channel.unary_unary(
+                '/protolca.services.DataService/put_currency',
+                request_serializer=olca__pb2.Currency.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.dq_systems = channel.unary_stream(
+                '/protolca.services.DataService/dq_systems',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.DqSystem.FromString,
+                )
+        self.dq_system = channel.unary_unary(
+                '/protolca.services.DataService/dq_system',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.DqSystem.FromString,
+                )
+        self.put_dq_system = channel.unary_unary(
+                '/protolca.services.DataService/put_dq_system',
+                request_serializer=olca__pb2.DqSystem.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.flows = channel.unary_stream(
+                '/protolca.services.DataService/flows',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Flow.FromString,
+                )
         self.flow = channel.unary_unary(
                 '/protolca.services.DataService/flow',
                 request_serializer=olca__pb2.Ref.SerializeToString,
@@ -40,13 +90,179 @@ class DataServiceStub(object):
                 request_serializer=olca__pb2.Flow.SerializeToString,
                 response_deserializer=olca__pb2.Ref.FromString,
                 )
+        self.flow_properties = channel.unary_stream(
+                '/protolca.services.DataService/flow_properties',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.FlowProperty.FromString,
+                )
+        self.flow_property = channel.unary_unary(
+                '/protolca.services.DataService/flow_property',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.FlowProperty.FromString,
+                )
+        self.put_flow_property = channel.unary_unary(
+                '/protolca.services.DataService/put_flow_property',
+                request_serializer=olca__pb2.FlowProperty.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.impact_categories = channel.unary_stream(
+                '/protolca.services.DataService/impact_categories',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.ImpactCategory.FromString,
+                )
+        self.impact_category = channel.unary_unary(
+                '/protolca.services.DataService/impact_category',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.ImpactCategory.FromString,
+                )
+        self.put_impact_category = channel.unary_unary(
+                '/protolca.services.DataService/put_impact_category',
+                request_serializer=olca__pb2.ImpactCategory.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.impact_methods = channel.unary_stream(
+                '/protolca.services.DataService/impact_methods',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.ImpactMethod.FromString,
+                )
+        self.impact_method = channel.unary_unary(
+                '/protolca.services.DataService/impact_method',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.ImpactMethod.FromString,
+                )
+        self.put_impact_method = channel.unary_unary(
+                '/protolca.services.DataService/put_impact_method',
+                request_serializer=olca__pb2.ImpactMethod.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.locations = channel.unary_stream(
+                '/protolca.services.DataService/locations',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Location.FromString,
+                )
+        self.location = channel.unary_unary(
+                '/protolca.services.DataService/location',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.Location.FromString,
+                )
+        self.put_location = channel.unary_unary(
+                '/protolca.services.DataService/put_location',
+                request_serializer=olca__pb2.Location.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.parameters = channel.unary_stream(
+                '/protolca.services.DataService/parameters',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Parameter.FromString,
+                )
+        self.parameter = channel.unary_unary(
+                '/protolca.services.DataService/parameter',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.Parameter.FromString,
+                )
+        self.put_parameter = channel.unary_unary(
+                '/protolca.services.DataService/put_parameter',
+                request_serializer=olca__pb2.Parameter.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.processes = channel.unary_stream(
+                '/protolca.services.DataService/processes',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Process.FromString,
+                )
+        self.process = channel.unary_unary(
+                '/protolca.services.DataService/process',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.Process.FromString,
+                )
+        self.put_process = channel.unary_unary(
+                '/protolca.services.DataService/put_process',
+                request_serializer=olca__pb2.Process.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.product_systems = channel.unary_stream(
+                '/protolca.services.DataService/product_systems',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.ProductSystem.FromString,
+                )
+        self.product_system = channel.unary_unary(
+                '/protolca.services.DataService/product_system',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.ProductSystem.FromString,
+                )
+        self.put_product_system = channel.unary_unary(
+                '/protolca.services.DataService/put_product_system',
+                request_serializer=olca__pb2.ProductSystem.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.projects = channel.unary_stream(
+                '/protolca.services.DataService/projects',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Project.FromString,
+                )
+        self.project = channel.unary_unary(
+                '/protolca.services.DataService/project',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.Project.FromString,
+                )
+        self.put_project = channel.unary_unary(
+                '/protolca.services.DataService/put_project',
+                request_serializer=olca__pb2.Project.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.social_indicators = channel.unary_stream(
+                '/protolca.services.DataService/social_indicators',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.SocialIndicator.FromString,
+                )
+        self.social_indicator = channel.unary_unary(
+                '/protolca.services.DataService/social_indicator',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.SocialIndicator.FromString,
+                )
+        self.put_social_indicator = channel.unary_unary(
+                '/protolca.services.DataService/put_social_indicator',
+                request_serializer=olca__pb2.SocialIndicator.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.sources = channel.unary_stream(
+                '/protolca.services.DataService/sources',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Source.FromString,
+                )
+        self.source = channel.unary_unary(
+                '/protolca.services.DataService/source',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.Source.FromString,
+                )
+        self.put_source = channel.unary_unary(
+                '/protolca.services.DataService/put_source',
+                request_serializer=olca__pb2.Source.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.unit_groups = channel.unary_stream(
+                '/protolca.services.DataService/unit_groups',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.UnitGroup.FromString,
+                )
+        self.unit_group = channel.unary_unary(
+                '/protolca.services.DataService/unit_group',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.UnitGroup.FromString,
+                )
+        self.put_unit_group = channel.unary_unary(
+                '/protolca.services.DataService/put_unit_group',
+                request_serializer=olca__pb2.UnitGroup.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
 
 
 class DataServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def actors(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """methods for Actor
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -63,6 +279,70 @@ class DataServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def categories(self, request, context):
+        """methods for Category
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def category(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_category(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def currencies(self, request, context):
+        """methods for Currency
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def currency(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_currency(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def dq_systems(self, request, context):
+        """methods for DQSystem
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def dq_system(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_dq_system(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def flows(self, request, context):
+        """methods for Flow
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def flow(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -70,6 +350,215 @@ class DataServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def put_flow(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def flow_properties(self, request, context):
+        """methods for FlowProperty
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def flow_property(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_flow_property(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def impact_categories(self, request, context):
+        """methods for ImpactCategory
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def impact_category(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_impact_category(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def impact_methods(self, request, context):
+        """methods for ImpactMethod
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def impact_method(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_impact_method(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def locations(self, request, context):
+        """methods for Location
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def location(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_location(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def parameters(self, request, context):
+        """methods for Parameter
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def parameter(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_parameter(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def processes(self, request, context):
+        """methods for Process
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def process(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_process(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def product_systems(self, request, context):
+        """methods for ProductSystem
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def product_system(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_product_system(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def projects(self, request, context):
+        """methods for Project
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def project(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_project(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def social_indicators(self, request, context):
+        """methods for SocialIndicator
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def social_indicator(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_social_indicator(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def sources(self, request, context):
+        """methods for Source
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def source(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_source(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def unit_groups(self, request, context):
+        """methods for UnitGroup
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def unit_group(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def put_unit_group(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -93,6 +582,56 @@ def add_DataServiceServicer_to_server(servicer, server):
                     request_deserializer=olca__pb2.Actor.FromString,
                     response_serializer=olca__pb2.Ref.SerializeToString,
             ),
+            'categories': grpc.unary_stream_rpc_method_handler(
+                    servicer.categories,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Category.SerializeToString,
+            ),
+            'category': grpc.unary_unary_rpc_method_handler(
+                    servicer.category,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.Category.SerializeToString,
+            ),
+            'put_category': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_category,
+                    request_deserializer=olca__pb2.Category.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'currencies': grpc.unary_stream_rpc_method_handler(
+                    servicer.currencies,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Currency.SerializeToString,
+            ),
+            'currency': grpc.unary_unary_rpc_method_handler(
+                    servicer.currency,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.Currency.SerializeToString,
+            ),
+            'put_currency': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_currency,
+                    request_deserializer=olca__pb2.Currency.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'dq_systems': grpc.unary_stream_rpc_method_handler(
+                    servicer.dq_systems,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.DqSystem.SerializeToString,
+            ),
+            'dq_system': grpc.unary_unary_rpc_method_handler(
+                    servicer.dq_system,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.DqSystem.SerializeToString,
+            ),
+            'put_dq_system': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_dq_system,
+                    request_deserializer=olca__pb2.DqSystem.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'flows': grpc.unary_stream_rpc_method_handler(
+                    servicer.flows,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Flow.SerializeToString,
+            ),
             'flow': grpc.unary_unary_rpc_method_handler(
                     servicer.flow,
                     request_deserializer=olca__pb2.Ref.FromString,
@@ -101,6 +640,171 @@ def add_DataServiceServicer_to_server(servicer, server):
             'put_flow': grpc.unary_unary_rpc_method_handler(
                     servicer.put_flow,
                     request_deserializer=olca__pb2.Flow.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'flow_properties': grpc.unary_stream_rpc_method_handler(
+                    servicer.flow_properties,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.FlowProperty.SerializeToString,
+            ),
+            'flow_property': grpc.unary_unary_rpc_method_handler(
+                    servicer.flow_property,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.FlowProperty.SerializeToString,
+            ),
+            'put_flow_property': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_flow_property,
+                    request_deserializer=olca__pb2.FlowProperty.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'impact_categories': grpc.unary_stream_rpc_method_handler(
+                    servicer.impact_categories,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.ImpactCategory.SerializeToString,
+            ),
+            'impact_category': grpc.unary_unary_rpc_method_handler(
+                    servicer.impact_category,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.ImpactCategory.SerializeToString,
+            ),
+            'put_impact_category': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_impact_category,
+                    request_deserializer=olca__pb2.ImpactCategory.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'impact_methods': grpc.unary_stream_rpc_method_handler(
+                    servicer.impact_methods,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.ImpactMethod.SerializeToString,
+            ),
+            'impact_method': grpc.unary_unary_rpc_method_handler(
+                    servicer.impact_method,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.ImpactMethod.SerializeToString,
+            ),
+            'put_impact_method': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_impact_method,
+                    request_deserializer=olca__pb2.ImpactMethod.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'locations': grpc.unary_stream_rpc_method_handler(
+                    servicer.locations,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Location.SerializeToString,
+            ),
+            'location': grpc.unary_unary_rpc_method_handler(
+                    servicer.location,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.Location.SerializeToString,
+            ),
+            'put_location': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_location,
+                    request_deserializer=olca__pb2.Location.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'parameters': grpc.unary_stream_rpc_method_handler(
+                    servicer.parameters,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Parameter.SerializeToString,
+            ),
+            'parameter': grpc.unary_unary_rpc_method_handler(
+                    servicer.parameter,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.Parameter.SerializeToString,
+            ),
+            'put_parameter': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_parameter,
+                    request_deserializer=olca__pb2.Parameter.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'processes': grpc.unary_stream_rpc_method_handler(
+                    servicer.processes,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Process.SerializeToString,
+            ),
+            'process': grpc.unary_unary_rpc_method_handler(
+                    servicer.process,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.Process.SerializeToString,
+            ),
+            'put_process': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_process,
+                    request_deserializer=olca__pb2.Process.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'product_systems': grpc.unary_stream_rpc_method_handler(
+                    servicer.product_systems,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.ProductSystem.SerializeToString,
+            ),
+            'product_system': grpc.unary_unary_rpc_method_handler(
+                    servicer.product_system,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.ProductSystem.SerializeToString,
+            ),
+            'put_product_system': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_product_system,
+                    request_deserializer=olca__pb2.ProductSystem.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'projects': grpc.unary_stream_rpc_method_handler(
+                    servicer.projects,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Project.SerializeToString,
+            ),
+            'project': grpc.unary_unary_rpc_method_handler(
+                    servicer.project,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.Project.SerializeToString,
+            ),
+            'put_project': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_project,
+                    request_deserializer=olca__pb2.Project.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'social_indicators': grpc.unary_stream_rpc_method_handler(
+                    servicer.social_indicators,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.SocialIndicator.SerializeToString,
+            ),
+            'social_indicator': grpc.unary_unary_rpc_method_handler(
+                    servicer.social_indicator,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.SocialIndicator.SerializeToString,
+            ),
+            'put_social_indicator': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_social_indicator,
+                    request_deserializer=olca__pb2.SocialIndicator.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'sources': grpc.unary_stream_rpc_method_handler(
+                    servicer.sources,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Source.SerializeToString,
+            ),
+            'source': grpc.unary_unary_rpc_method_handler(
+                    servicer.source,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.Source.SerializeToString,
+            ),
+            'put_source': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_source,
+                    request_deserializer=olca__pb2.Source.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'unit_groups': grpc.unary_stream_rpc_method_handler(
+                    servicer.unit_groups,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.UnitGroup.SerializeToString,
+            ),
+            'unit_group': grpc.unary_unary_rpc_method_handler(
+                    servicer.unit_group,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.UnitGroup.SerializeToString,
+            ),
+            'put_unit_group': grpc.unary_unary_rpc_method_handler(
+                    servicer.put_unit_group,
+                    request_deserializer=olca__pb2.UnitGroup.FromString,
                     response_serializer=olca__pb2.Ref.SerializeToString,
             ),
     }
@@ -165,6 +869,176 @@ class DataService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def categories(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/categories',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Category.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def category(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/category',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.Category.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_category(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_category',
+            olca__pb2.Category.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def currencies(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/currencies',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Currency.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def currency(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/currency',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.Currency.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_currency(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_currency',
+            olca__pb2.Currency.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def dq_systems(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/dq_systems',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.DqSystem.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def dq_system(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/dq_system',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.DqSystem.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_dq_system(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_dq_system',
+            olca__pb2.DqSystem.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def flows(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/flows',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Flow.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def flow(request,
             target,
             options=(),
@@ -194,6 +1068,567 @@ class DataService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_flow',
             olca__pb2.Flow.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def flow_properties(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/flow_properties',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.FlowProperty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def flow_property(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/flow_property',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.FlowProperty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_flow_property(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_flow_property',
+            olca__pb2.FlowProperty.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def impact_categories(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/impact_categories',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.ImpactCategory.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def impact_category(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/impact_category',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.ImpactCategory.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_impact_category(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_impact_category',
+            olca__pb2.ImpactCategory.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def impact_methods(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/impact_methods',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.ImpactMethod.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def impact_method(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/impact_method',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.ImpactMethod.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_impact_method(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_impact_method',
+            olca__pb2.ImpactMethod.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def locations(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/locations',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Location.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def location(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/location',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.Location.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_location(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_location',
+            olca__pb2.Location.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def parameters(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/parameters',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Parameter.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def parameter(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/parameter',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.Parameter.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_parameter(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_parameter',
+            olca__pb2.Parameter.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def processes(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/processes',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Process.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def process(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/process',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.Process.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_process(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_process',
+            olca__pb2.Process.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def product_systems(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/product_systems',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.ProductSystem.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def product_system(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/product_system',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.ProductSystem.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_product_system(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_product_system',
+            olca__pb2.ProductSystem.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def projects(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/projects',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Project.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def project(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/project',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.Project.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_project(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_project',
+            olca__pb2.Project.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def social_indicators(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/social_indicators',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.SocialIndicator.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def social_indicator(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/social_indicator',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.SocialIndicator.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_social_indicator(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_social_indicator',
+            olca__pb2.SocialIndicator.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def sources(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/sources',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Source.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def source(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/source',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.Source.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_source(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_source',
+            olca__pb2.Source.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def unit_groups(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/unit_groups',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.UnitGroup.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def unit_group(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/unit_group',
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.UnitGroup.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def put_unit_group(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_unit_group',
+            olca__pb2.UnitGroup.SerializeToString,
             olca__pb2.Ref.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
