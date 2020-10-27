@@ -15,5 +15,5 @@ if exist ..\olca-proto\proto (
 )
 
 rem generate the python modules
-protoc  --python_out=olcarpc --mypy_out=olcarpc proto\olca.proto
-py -m grpc_tools.protoc -I.\proto --python_out=olcarpc --mypy_out=olcarpc --grpc_python_out=olcarpc proto\services.proto
+protoc -I.\proto --python_out=olcarpc --mypy_out=olcarpc olca.proto
+py -m grpc_tools.protoc -I.\proto --python_out=olcarpc --mypy_out=olcarpc --grpc_python_out=olcarpc services.proto

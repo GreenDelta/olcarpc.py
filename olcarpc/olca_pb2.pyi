@@ -112,37 +112,43 @@ ModelType: _ModelType
 class _ModelType(google___protobuf___internal___enum_type_wrapper____EnumTypeWrapper[ModelTypeValue]):
     DESCRIPTOR: google___protobuf___descriptor___EnumDescriptor = ...
     UNDEFINED_MODEL_TYPE = typing___cast(ModelTypeValue, 0)
-    PROJECT = typing___cast(ModelTypeValue, 1)
-    IMPACT_METHOD = typing___cast(ModelTypeValue, 2)
-    IMPACT_CATEGORY = typing___cast(ModelTypeValue, 3)
-    PRODUCT_SYSTEM = typing___cast(ModelTypeValue, 4)
-    PROCESS = typing___cast(ModelTypeValue, 5)
-    FLOW = typing___cast(ModelTypeValue, 6)
-    FLOW_PROPERTY = typing___cast(ModelTypeValue, 7)
-    UNIT_GROUP = typing___cast(ModelTypeValue, 8)
-    UNIT = typing___cast(ModelTypeValue, 9)
-    ACTOR = typing___cast(ModelTypeValue, 10)
-    SOURCE = typing___cast(ModelTypeValue, 11)
-    CATEGORY = typing___cast(ModelTypeValue, 12)
-    LOCATION = typing___cast(ModelTypeValue, 13)
-    NW_SET = typing___cast(ModelTypeValue, 14)
+    ACTOR = typing___cast(ModelTypeValue, 1)
+    CATEGORY = typing___cast(ModelTypeValue, 2)
+    CURRENCY = typing___cast(ModelTypeValue, 3)
+    DQ_SYSTEM = typing___cast(ModelTypeValue, 4)
+    FLOW = typing___cast(ModelTypeValue, 5)
+    FLOW_PROPERTY = typing___cast(ModelTypeValue, 6)
+    IMPACT_CATEGORY = typing___cast(ModelTypeValue, 7)
+    IMPACT_METHOD = typing___cast(ModelTypeValue, 8)
+    LOCATION = typing___cast(ModelTypeValue, 9)
+    NW_SET = typing___cast(ModelTypeValue, 10)
+    PARAMETER = typing___cast(ModelTypeValue, 11)
+    PROCESS = typing___cast(ModelTypeValue, 12)
+    PRODUCT_SYSTEM = typing___cast(ModelTypeValue, 13)
+    PROJECT = typing___cast(ModelTypeValue, 14)
     SOCIAL_INDICATOR = typing___cast(ModelTypeValue, 15)
+    SOURCE = typing___cast(ModelTypeValue, 16)
+    UNIT = typing___cast(ModelTypeValue, 17)
+    UNIT_GROUP = typing___cast(ModelTypeValue, 18)
 UNDEFINED_MODEL_TYPE = typing___cast(ModelTypeValue, 0)
-PROJECT = typing___cast(ModelTypeValue, 1)
-IMPACT_METHOD = typing___cast(ModelTypeValue, 2)
-IMPACT_CATEGORY = typing___cast(ModelTypeValue, 3)
-PRODUCT_SYSTEM = typing___cast(ModelTypeValue, 4)
-PROCESS = typing___cast(ModelTypeValue, 5)
-FLOW = typing___cast(ModelTypeValue, 6)
-FLOW_PROPERTY = typing___cast(ModelTypeValue, 7)
-UNIT_GROUP = typing___cast(ModelTypeValue, 8)
-UNIT = typing___cast(ModelTypeValue, 9)
-ACTOR = typing___cast(ModelTypeValue, 10)
-SOURCE = typing___cast(ModelTypeValue, 11)
-CATEGORY = typing___cast(ModelTypeValue, 12)
-LOCATION = typing___cast(ModelTypeValue, 13)
-NW_SET = typing___cast(ModelTypeValue, 14)
+ACTOR = typing___cast(ModelTypeValue, 1)
+CATEGORY = typing___cast(ModelTypeValue, 2)
+CURRENCY = typing___cast(ModelTypeValue, 3)
+DQ_SYSTEM = typing___cast(ModelTypeValue, 4)
+FLOW = typing___cast(ModelTypeValue, 5)
+FLOW_PROPERTY = typing___cast(ModelTypeValue, 6)
+IMPACT_CATEGORY = typing___cast(ModelTypeValue, 7)
+IMPACT_METHOD = typing___cast(ModelTypeValue, 8)
+LOCATION = typing___cast(ModelTypeValue, 9)
+NW_SET = typing___cast(ModelTypeValue, 10)
+PARAMETER = typing___cast(ModelTypeValue, 11)
+PROCESS = typing___cast(ModelTypeValue, 12)
+PRODUCT_SYSTEM = typing___cast(ModelTypeValue, 13)
+PROJECT = typing___cast(ModelTypeValue, 14)
 SOCIAL_INDICATOR = typing___cast(ModelTypeValue, 15)
+SOURCE = typing___cast(ModelTypeValue, 16)
+UNIT = typing___cast(ModelTypeValue, 17)
+UNIT_GROUP = typing___cast(ModelTypeValue, 18)
 type___ModelType = ModelType
 
 ParameterScopeValue = typing___NewType('ParameterScopeValue', builtin___int)
@@ -1263,7 +1269,7 @@ class ProcessLink(google___protobuf___message___Message):
     def process(self) -> type___Ref: ...
 
     @property
-    def exchange(self) -> type___ExchangeRef: ...
+    def exchange(self) -> type___Exchange: ...
 
     def __init__(self,
         *,
@@ -1271,7 +1277,7 @@ class ProcessLink(google___protobuf___message___Message):
         provider : typing___Optional[type___Ref] = None,
         flow : typing___Optional[type___Ref] = None,
         process : typing___Optional[type___Ref] = None,
-        exchange : typing___Optional[type___ExchangeRef] = None,
+        exchange : typing___Optional[type___Exchange] = None,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions___Literal[u"exchange",b"exchange",u"flow",b"flow",u"process",b"process",u"provider",b"provider"]) -> builtin___bool: ...
     def ClearField(self, field_name: typing_extensions___Literal[u"exchange",b"exchange",u"flow",b"flow",u"process",b"process",u"provider",b"provider",u"type",b"type"]) -> None: ...
