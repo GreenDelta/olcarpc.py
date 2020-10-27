@@ -11,9 +11,9 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import olca_pb2 as olca__pb2
+import olcarpc.olca_pb2 as olca__pb2
 
-from olca_pb2 import *
+from olcarpc.olca_pb2 import *
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='services.proto',
@@ -21,14 +21,47 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\032org.openlca.proto.services',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0eservices.proto\x12\x11protolca.services\x1a\nolca.proto2\xb5\x01\n\x0b\x44\x61taService\x12\'\n\x05\x61\x63tor\x12\r.protolca.Ref\x1a\x0f.protolca.Actor\x12+\n\tput_actor\x12\x0f.protolca.Actor\x1a\r.protolca.Ref\x12%\n\x04\x66low\x12\r.protolca.Ref\x1a\x0e.protolca.Flow\x12)\n\x08put_flow\x12\x0e.protolca.Flow\x1a\r.protolca.RefB\x1c\n\x1aorg.openlca.proto.servicesP\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0eservices.proto\x12\x11protolca.services\x1a\nolca.proto\"\x07\n\x05\x45mpty2\xec\x01\n\x0b\x44\x61taService\x12\x35\n\x06\x61\x63tors\x12\x18.protolca.services.Empty\x1a\x0f.protolca.Actor0\x01\x12\'\n\x05\x61\x63tor\x12\r.protolca.Ref\x1a\x0f.protolca.Actor\x12+\n\tput_actor\x12\x0f.protolca.Actor\x1a\r.protolca.Ref\x12%\n\x04\x66low\x12\r.protolca.Ref\x1a\x0e.protolca.Flow\x12)\n\x08put_flow\x12\x0e.protolca.Flow\x1a\r.protolca.RefB\x1c\n\x1aorg.openlca.proto.servicesP\x00\x62\x06proto3'
   ,
   dependencies=[olca__pb2.DESCRIPTOR,],
   public_dependencies=[olca__pb2.DESCRIPTOR,])
 
 
 
+
+_EMPTY = _descriptor.Descriptor(
+  name='Empty',
+  full_name='protolca.services.Empty',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=49,
+  serialized_end=56,
+)
+
+DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
+  'DESCRIPTOR' : _EMPTY,
+  '__module__' : 'services_pb2'
+  # @@protoc_insertion_point(class_scope:protolca.services.Empty)
+  })
+_sym_db.RegisterMessage(Empty)
 
 
 DESCRIPTOR._options = None
@@ -40,13 +73,23 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=50,
-  serialized_end=231,
+  serialized_start=59,
+  serialized_end=295,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='actors',
+    full_name='protolca.services.DataService.actors',
+    index=0,
+    containing_service=None,
+    input_type=_EMPTY,
+    output_type=olca__pb2._ACTOR,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
   _descriptor.MethodDescriptor(
     name='actor',
     full_name='protolca.services.DataService.actor',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=olca__pb2._ACTOR,
@@ -56,7 +99,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_actor',
     full_name='protolca.services.DataService.put_actor',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=olca__pb2._ACTOR,
     output_type=olca__pb2._REF,
@@ -66,7 +109,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='flow',
     full_name='protolca.services.DataService.flow',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=olca__pb2._FLOW,
@@ -76,7 +119,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_flow',
     full_name='protolca.services.DataService.put_flow',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=olca__pb2._FLOW,
     output_type=olca__pb2._REF,

@@ -2,7 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import olca_pb2 as olca__pb2
+import olcarpc.olca_pb2 as olca__pb2
+import olcarpc.services_pb2 as services__pb2
 
 
 class DataServiceStub(object):
@@ -14,6 +15,11 @@ class DataServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.actors = channel.unary_stream(
+                '/protolca.services.DataService/actors',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=olca__pb2.Actor.FromString,
+                )
         self.actor = channel.unary_unary(
                 '/protolca.services.DataService/actor',
                 request_serializer=olca__pb2.Ref.SerializeToString,
@@ -38,6 +44,12 @@ class DataServiceStub(object):
 
 class DataServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
+
+    def actors(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def actor(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -66,6 +78,11 @@ class DataServiceServicer(object):
 
 def add_DataServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'actors': grpc.unary_stream_rpc_method_handler(
+                    servicer.actors,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=olca__pb2.Actor.SerializeToString,
+            ),
             'actor': grpc.unary_unary_rpc_method_handler(
                     servicer.actor,
                     request_deserializer=olca__pb2.Ref.FromString,
@@ -95,6 +112,23 @@ def add_DataServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class DataService(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def actors(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/actors',
+            services__pb2.Empty.SerializeToString,
+            olca__pb2.Actor.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def actor(request,

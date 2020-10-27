@@ -1,4 +1,3 @@
-from .olca_pb2 import *
 import google.protobuf.json_format as jf
 
 
