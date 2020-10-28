@@ -64,6 +64,9 @@ class Client:
     def flow(self, id='', name='') -> FlowStatus:
         return self.data.flow(Ref(id=id, name=name))
 
+    def put_flow(self, flow: Flow) -> RefStatus:
+        return self.data.put_flow(flow)
+
     @property
     def flow_properties(self) -> Iterable[FlowProperty]:
         for p in self.data.flow_properties(Empty()):
