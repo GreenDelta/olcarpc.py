@@ -5,11 +5,23 @@ from .olca_pb2 import *
 from .services_pb2 import *
 import olcarpc.services_pb2_grpc as services
 
+import inspect
 from typing import Iterable
 
 
 def to_json(entity, indent: int = 2) -> str:
     return jf.MessageToJson(entity, indent=indent)
+
+
+def ref(ref_type, ref_id: str, name='') -> Ref:
+    r = Ref()
+    if inspect.isclass(ref_type):
+        r.type = ref_type.__name__
+    else:
+        r.type = ref_type
+    r.id = ref_id
+    r.name = name
+    return r
 
 
 class Client:
@@ -35,6 +47,9 @@ class Client:
     @property
     def data(self) -> services.DataServiceStub:
         return services.DataServiceStub(self.chan)
+
+    def delete(self, ref: Ref) -> Status:
+        return self.data.delete(ref)
 
     @property
     def actors(self) -> Iterable[Actor]:

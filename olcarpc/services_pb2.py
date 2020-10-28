@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\032org.openlca.proto.services',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0eservices.proto\x12\x11protolca.services\x1a\nolca.proto\"\x07\n\x05\x45mpty\"B\n\tRefStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x1a\n\x03ref\x18\x02 \x01(\x0b\x32\r.protolca.Ref\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"H\n\x0b\x41\x63torStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x1e\n\x05\x61\x63tor\x18\x02 \x01(\x0b\x32\x0f.protolca.Actor\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"Q\n\x0e\x43\x61tegoryStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12$\n\x08\x63\x61tegory\x18\x02 \x01(\x0b\x32\x12.protolca.Category\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"Q\n\x0e\x43urrencyStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12$\n\x08\x63urrency\x18\x02 \x01(\x0b\x32\x12.protolca.Currency\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"R\n\x0e\x44qSystemStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12%\n\tdq_system\x18\x02 \x01(\x0b\x32\x12.protolca.DqSystem\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"E\n\nFlowStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x1c\n\x04\x66low\x18\x02 \x01(\x0b\x32\x0e.protolca.Flow\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"^\n\x12\x46lowPropertyStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12-\n\rflow_property\x18\x02 \x01(\x0b\x32\x16.protolca.FlowProperty\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"d\n\x14ImpactCategoryStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x31\n\x0fimpact_category\x18\x02 \x01(\x0b\x32\x18.protolca.ImpactCategory\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"^\n\x12ImpactMethodStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12-\n\rimpact_method\x18\x02 \x01(\x0b\x32\x16.protolca.ImpactMethod\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"Q\n\x0eLocationStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12$\n\x08location\x18\x02 \x01(\x0b\x32\x12.protolca.Location\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"T\n\x0fParameterStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12&\n\tparameter\x18\x02 \x01(\x0b\x32\x13.protolca.Parameter\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"N\n\rProcessStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\"\n\x07process\x18\x02 \x01(\x0b\x32\x11.protolca.Process\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"a\n\x13ProductSystemStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12/\n\x0eproduct_system\x18\x02 \x01(\x0b\x32\x17.protolca.ProductSystem\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"N\n\rProjectStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\"\n\x07project\x18\x02 \x01(\x0b\x32\x11.protolca.Project\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"g\n\x15SocialIndicatorStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x33\n\x10social_indicator\x18\x02 \x01(\x0b\x32\x19.protolca.SocialIndicator\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"K\n\x0cSourceStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12 \n\x06source\x18\x02 \x01(\x0b\x32\x10.protolca.Source\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"U\n\x0fUnitGroupStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\'\n\nunit_group\x18\x02 \x01(\x0b\x32\x13.protolca.UnitGroup\x12\r\n\x05\x65rror\x18\x03 \x01(\t2\xdd\x18\n\x0b\x44\x61taService\x12\x35\n\x06\x61\x63tors\x12\x18.protolca.services.Empty\x1a\x0f.protolca.Actor0\x01\x12\x36\n\x05\x61\x63tor\x12\r.protolca.Ref\x1a\x1e.protolca.services.ActorStatus\x12:\n\tput_actor\x12\x0f.protolca.Actor\x1a\x1c.protolca.services.RefStatus\x12<\n\ncategories\x12\x18.protolca.services.Empty\x1a\x12.protolca.Category0\x01\x12<\n\x08\x63\x61tegory\x12\r.protolca.Ref\x1a!.protolca.services.CategoryStatus\x12@\n\x0cput_category\x12\x12.protolca.Category\x1a\x1c.protolca.services.RefStatus\x12<\n\ncurrencies\x12\x18.protolca.services.Empty\x1a\x12.protolca.Currency0\x01\x12<\n\x08\x63urrency\x12\r.protolca.Ref\x1a!.protolca.services.CurrencyStatus\x12@\n\x0cput_currency\x12\x12.protolca.Currency\x1a\x1c.protolca.services.RefStatus\x12<\n\ndq_systems\x12\x18.protolca.services.Empty\x1a\x12.protolca.DqSystem0\x01\x12=\n\tdq_system\x12\r.protolca.Ref\x1a!.protolca.services.DqSystemStatus\x12\x41\n\rput_dq_system\x12\x12.protolca.DqSystem\x1a\x1c.protolca.services.RefStatus\x12\x33\n\x05\x66lows\x12\x18.protolca.services.Empty\x1a\x0e.protolca.Flow0\x01\x12\x34\n\x04\x66low\x12\r.protolca.Ref\x1a\x1d.protolca.services.FlowStatus\x12\x38\n\x08put_flow\x12\x0e.protolca.Flow\x1a\x1c.protolca.services.RefStatus\x12\x45\n\x0f\x66low_properties\x12\x18.protolca.services.Empty\x1a\x16.protolca.FlowProperty0\x01\x12\x45\n\rflow_property\x12\r.protolca.Ref\x1a%.protolca.services.FlowPropertyStatus\x12I\n\x11put_flow_property\x12\x16.protolca.FlowProperty\x1a\x1c.protolca.services.RefStatus\x12I\n\x11impact_categories\x12\x18.protolca.services.Empty\x1a\x18.protolca.ImpactCategory0\x01\x12I\n\x0fimpact_category\x12\r.protolca.Ref\x1a\'.protolca.services.ImpactCategoryStatus\x12M\n\x13put_impact_category\x12\x18.protolca.ImpactCategory\x1a\x1c.protolca.services.RefStatus\x12\x44\n\x0eimpact_methods\x12\x18.protolca.services.Empty\x1a\x16.protolca.ImpactMethod0\x01\x12\x45\n\rimpact_method\x12\r.protolca.Ref\x1a%.protolca.services.ImpactMethodStatus\x12I\n\x11put_impact_method\x12\x16.protolca.ImpactMethod\x1a\x1c.protolca.services.RefStatus\x12;\n\tlocations\x12\x18.protolca.services.Empty\x1a\x12.protolca.Location0\x01\x12<\n\x08location\x12\r.protolca.Ref\x1a!.protolca.services.LocationStatus\x12@\n\x0cput_location\x12\x12.protolca.Location\x1a\x1c.protolca.services.RefStatus\x12=\n\nparameters\x12\x18.protolca.services.Empty\x1a\x13.protolca.Parameter0\x01\x12>\n\tparameter\x12\r.protolca.Ref\x1a\".protolca.services.ParameterStatus\x12\x42\n\rput_parameter\x12\x13.protolca.Parameter\x1a\x1c.protolca.services.RefStatus\x12:\n\tprocesses\x12\x18.protolca.services.Empty\x1a\x11.protolca.Process0\x01\x12:\n\x07process\x12\r.protolca.Ref\x1a .protolca.services.ProcessStatus\x12>\n\x0bput_process\x12\x11.protolca.Process\x1a\x1c.protolca.services.RefStatus\x12\x46\n\x0fproduct_systems\x12\x18.protolca.services.Empty\x1a\x17.protolca.ProductSystem0\x01\x12G\n\x0eproduct_system\x12\r.protolca.Ref\x1a&.protolca.services.ProductSystemStatus\x12K\n\x12put_product_system\x12\x17.protolca.ProductSystem\x1a\x1c.protolca.services.RefStatus\x12\x39\n\x08projects\x12\x18.protolca.services.Empty\x1a\x11.protolca.Project0\x01\x12:\n\x07project\x12\r.protolca.Ref\x1a .protolca.services.ProjectStatus\x12>\n\x0bput_project\x12\x11.protolca.Project\x1a\x1c.protolca.services.RefStatus\x12J\n\x11social_indicators\x12\x18.protolca.services.Empty\x1a\x19.protolca.SocialIndicator0\x01\x12K\n\x10social_indicator\x12\r.protolca.Ref\x1a(.protolca.services.SocialIndicatorStatus\x12O\n\x14put_social_indicator\x12\x19.protolca.SocialIndicator\x1a\x1c.protolca.services.RefStatus\x12\x37\n\x07sources\x12\x18.protolca.services.Empty\x1a\x10.protolca.Source0\x01\x12\x38\n\x06source\x12\r.protolca.Ref\x1a\x1f.protolca.services.SourceStatus\x12<\n\nput_source\x12\x10.protolca.Source\x1a\x1c.protolca.services.RefStatus\x12>\n\x0bunit_groups\x12\x18.protolca.services.Empty\x1a\x13.protolca.UnitGroup0\x01\x12?\n\nunit_group\x12\r.protolca.Ref\x1a\".protolca.services.UnitGroupStatus\x12\x43\n\x0eput_unit_group\x12\x13.protolca.UnitGroup\x1a\x1c.protolca.services.RefStatusB\x1c\n\x1aorg.openlca.proto.servicesP\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0eservices.proto\x12\x11protolca.services\x1a\nolca.proto\"\x07\n\x05\x45mpty\"#\n\x06Status\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\r\n\x05\x65rror\x18\x02 \x01(\t\"B\n\tRefStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x1a\n\x03ref\x18\x02 \x01(\x0b\x32\r.protolca.Ref\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"H\n\x0b\x41\x63torStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x1e\n\x05\x61\x63tor\x18\x02 \x01(\x0b\x32\x0f.protolca.Actor\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"Q\n\x0e\x43\x61tegoryStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12$\n\x08\x63\x61tegory\x18\x02 \x01(\x0b\x32\x12.protolca.Category\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"Q\n\x0e\x43urrencyStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12$\n\x08\x63urrency\x18\x02 \x01(\x0b\x32\x12.protolca.Currency\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"R\n\x0e\x44qSystemStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12%\n\tdq_system\x18\x02 \x01(\x0b\x32\x12.protolca.DqSystem\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"E\n\nFlowStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x1c\n\x04\x66low\x18\x02 \x01(\x0b\x32\x0e.protolca.Flow\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"^\n\x12\x46lowPropertyStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12-\n\rflow_property\x18\x02 \x01(\x0b\x32\x16.protolca.FlowProperty\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"d\n\x14ImpactCategoryStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x31\n\x0fimpact_category\x18\x02 \x01(\x0b\x32\x18.protolca.ImpactCategory\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"^\n\x12ImpactMethodStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12-\n\rimpact_method\x18\x02 \x01(\x0b\x32\x16.protolca.ImpactMethod\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"Q\n\x0eLocationStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12$\n\x08location\x18\x02 \x01(\x0b\x32\x12.protolca.Location\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"T\n\x0fParameterStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12&\n\tparameter\x18\x02 \x01(\x0b\x32\x13.protolca.Parameter\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"N\n\rProcessStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\"\n\x07process\x18\x02 \x01(\x0b\x32\x11.protolca.Process\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"a\n\x13ProductSystemStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12/\n\x0eproduct_system\x18\x02 \x01(\x0b\x32\x17.protolca.ProductSystem\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"N\n\rProjectStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\"\n\x07project\x18\x02 \x01(\x0b\x32\x11.protolca.Project\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"g\n\x15SocialIndicatorStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\x33\n\x10social_indicator\x18\x02 \x01(\x0b\x32\x19.protolca.SocialIndicator\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"K\n\x0cSourceStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12 \n\x06source\x18\x02 \x01(\x0b\x32\x10.protolca.Source\x12\r\n\x05\x65rror\x18\x03 \x01(\t\"U\n\x0fUnitGroupStatus\x12\n\n\x02ok\x18\x01 \x01(\x08\x12\'\n\nunit_group\x18\x02 \x01(\x0b\x32\x13.protolca.UnitGroup\x12\r\n\x05\x65rror\x18\x03 \x01(\t2\x91\x19\n\x0b\x44\x61taService\x12\x32\n\x06\x64\x65lete\x12\r.protolca.Ref\x1a\x19.protolca.services.Status\x12\x35\n\x06\x61\x63tors\x12\x18.protolca.services.Empty\x1a\x0f.protolca.Actor0\x01\x12\x36\n\x05\x61\x63tor\x12\r.protolca.Ref\x1a\x1e.protolca.services.ActorStatus\x12:\n\tput_actor\x12\x0f.protolca.Actor\x1a\x1c.protolca.services.RefStatus\x12<\n\ncategories\x12\x18.protolca.services.Empty\x1a\x12.protolca.Category0\x01\x12<\n\x08\x63\x61tegory\x12\r.protolca.Ref\x1a!.protolca.services.CategoryStatus\x12@\n\x0cput_category\x12\x12.protolca.Category\x1a\x1c.protolca.services.RefStatus\x12<\n\ncurrencies\x12\x18.protolca.services.Empty\x1a\x12.protolca.Currency0\x01\x12<\n\x08\x63urrency\x12\r.protolca.Ref\x1a!.protolca.services.CurrencyStatus\x12@\n\x0cput_currency\x12\x12.protolca.Currency\x1a\x1c.protolca.services.RefStatus\x12<\n\ndq_systems\x12\x18.protolca.services.Empty\x1a\x12.protolca.DqSystem0\x01\x12=\n\tdq_system\x12\r.protolca.Ref\x1a!.protolca.services.DqSystemStatus\x12\x41\n\rput_dq_system\x12\x12.protolca.DqSystem\x1a\x1c.protolca.services.RefStatus\x12\x33\n\x05\x66lows\x12\x18.protolca.services.Empty\x1a\x0e.protolca.Flow0\x01\x12\x34\n\x04\x66low\x12\r.protolca.Ref\x1a\x1d.protolca.services.FlowStatus\x12\x38\n\x08put_flow\x12\x0e.protolca.Flow\x1a\x1c.protolca.services.RefStatus\x12\x45\n\x0f\x66low_properties\x12\x18.protolca.services.Empty\x1a\x16.protolca.FlowProperty0\x01\x12\x45\n\rflow_property\x12\r.protolca.Ref\x1a%.protolca.services.FlowPropertyStatus\x12I\n\x11put_flow_property\x12\x16.protolca.FlowProperty\x1a\x1c.protolca.services.RefStatus\x12I\n\x11impact_categories\x12\x18.protolca.services.Empty\x1a\x18.protolca.ImpactCategory0\x01\x12I\n\x0fimpact_category\x12\r.protolca.Ref\x1a\'.protolca.services.ImpactCategoryStatus\x12M\n\x13put_impact_category\x12\x18.protolca.ImpactCategory\x1a\x1c.protolca.services.RefStatus\x12\x44\n\x0eimpact_methods\x12\x18.protolca.services.Empty\x1a\x16.protolca.ImpactMethod0\x01\x12\x45\n\rimpact_method\x12\r.protolca.Ref\x1a%.protolca.services.ImpactMethodStatus\x12I\n\x11put_impact_method\x12\x16.protolca.ImpactMethod\x1a\x1c.protolca.services.RefStatus\x12;\n\tlocations\x12\x18.protolca.services.Empty\x1a\x12.protolca.Location0\x01\x12<\n\x08location\x12\r.protolca.Ref\x1a!.protolca.services.LocationStatus\x12@\n\x0cput_location\x12\x12.protolca.Location\x1a\x1c.protolca.services.RefStatus\x12=\n\nparameters\x12\x18.protolca.services.Empty\x1a\x13.protolca.Parameter0\x01\x12>\n\tparameter\x12\r.protolca.Ref\x1a\".protolca.services.ParameterStatus\x12\x42\n\rput_parameter\x12\x13.protolca.Parameter\x1a\x1c.protolca.services.RefStatus\x12:\n\tprocesses\x12\x18.protolca.services.Empty\x1a\x11.protolca.Process0\x01\x12:\n\x07process\x12\r.protolca.Ref\x1a .protolca.services.ProcessStatus\x12>\n\x0bput_process\x12\x11.protolca.Process\x1a\x1c.protolca.services.RefStatus\x12\x46\n\x0fproduct_systems\x12\x18.protolca.services.Empty\x1a\x17.protolca.ProductSystem0\x01\x12G\n\x0eproduct_system\x12\r.protolca.Ref\x1a&.protolca.services.ProductSystemStatus\x12K\n\x12put_product_system\x12\x17.protolca.ProductSystem\x1a\x1c.protolca.services.RefStatus\x12\x39\n\x08projects\x12\x18.protolca.services.Empty\x1a\x11.protolca.Project0\x01\x12:\n\x07project\x12\r.protolca.Ref\x1a .protolca.services.ProjectStatus\x12>\n\x0bput_project\x12\x11.protolca.Project\x1a\x1c.protolca.services.RefStatus\x12J\n\x11social_indicators\x12\x18.protolca.services.Empty\x1a\x19.protolca.SocialIndicator0\x01\x12K\n\x10social_indicator\x12\r.protolca.Ref\x1a(.protolca.services.SocialIndicatorStatus\x12O\n\x14put_social_indicator\x12\x19.protolca.SocialIndicator\x1a\x1c.protolca.services.RefStatus\x12\x37\n\x07sources\x12\x18.protolca.services.Empty\x1a\x10.protolca.Source0\x01\x12\x38\n\x06source\x12\r.protolca.Ref\x1a\x1f.protolca.services.SourceStatus\x12<\n\nput_source\x12\x10.protolca.Source\x1a\x1c.protolca.services.RefStatus\x12>\n\x0bunit_groups\x12\x18.protolca.services.Empty\x1a\x13.protolca.UnitGroup0\x01\x12?\n\nunit_group\x12\r.protolca.Ref\x1a\".protolca.services.UnitGroupStatus\x12\x43\n\x0eput_unit_group\x12\x13.protolca.UnitGroup\x1a\x1c.protolca.services.RefStatusB\x1c\n\x1aorg.openlca.proto.servicesP\x00\x62\x06proto3'
   ,
   dependencies=[olca__pb2.DESCRIPTOR,],
   public_dependencies=[olca__pb2.DESCRIPTOR,])
@@ -51,6 +51,45 @@ _EMPTY = _descriptor.Descriptor(
   ],
   serialized_start=49,
   serialized_end=56,
+)
+
+
+_STATUS = _descriptor.Descriptor(
+  name='Status',
+  full_name='protolca.services.Status',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ok', full_name='protolca.services.Status.ok', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='error', full_name='protolca.services.Status.error', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=58,
+  serialized_end=93,
 )
 
 
@@ -95,8 +134,8 @@ _REFSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=58,
-  serialized_end=124,
+  serialized_start=95,
+  serialized_end=161,
 )
 
 
@@ -141,8 +180,8 @@ _ACTORSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=126,
-  serialized_end=198,
+  serialized_start=163,
+  serialized_end=235,
 )
 
 
@@ -187,8 +226,8 @@ _CATEGORYSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=200,
-  serialized_end=281,
+  serialized_start=237,
+  serialized_end=318,
 )
 
 
@@ -233,8 +272,8 @@ _CURRENCYSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=283,
-  serialized_end=364,
+  serialized_start=320,
+  serialized_end=401,
 )
 
 
@@ -279,8 +318,8 @@ _DQSYSTEMSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=366,
-  serialized_end=448,
+  serialized_start=403,
+  serialized_end=485,
 )
 
 
@@ -325,8 +364,8 @@ _FLOWSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=450,
-  serialized_end=519,
+  serialized_start=487,
+  serialized_end=556,
 )
 
 
@@ -371,8 +410,8 @@ _FLOWPROPERTYSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=521,
-  serialized_end=615,
+  serialized_start=558,
+  serialized_end=652,
 )
 
 
@@ -417,8 +456,8 @@ _IMPACTCATEGORYSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=617,
-  serialized_end=717,
+  serialized_start=654,
+  serialized_end=754,
 )
 
 
@@ -463,8 +502,8 @@ _IMPACTMETHODSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=719,
-  serialized_end=813,
+  serialized_start=756,
+  serialized_end=850,
 )
 
 
@@ -509,8 +548,8 @@ _LOCATIONSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=815,
-  serialized_end=896,
+  serialized_start=852,
+  serialized_end=933,
 )
 
 
@@ -555,8 +594,8 @@ _PARAMETERSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=898,
-  serialized_end=982,
+  serialized_start=935,
+  serialized_end=1019,
 )
 
 
@@ -601,8 +640,8 @@ _PROCESSSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=984,
-  serialized_end=1062,
+  serialized_start=1021,
+  serialized_end=1099,
 )
 
 
@@ -647,8 +686,8 @@ _PRODUCTSYSTEMSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1064,
-  serialized_end=1161,
+  serialized_start=1101,
+  serialized_end=1198,
 )
 
 
@@ -693,8 +732,8 @@ _PROJECTSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1163,
-  serialized_end=1241,
+  serialized_start=1200,
+  serialized_end=1278,
 )
 
 
@@ -739,8 +778,8 @@ _SOCIALINDICATORSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1243,
-  serialized_end=1346,
+  serialized_start=1280,
+  serialized_end=1383,
 )
 
 
@@ -785,8 +824,8 @@ _SOURCESTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1348,
-  serialized_end=1423,
+  serialized_start=1385,
+  serialized_end=1460,
 )
 
 
@@ -831,8 +870,8 @@ _UNITGROUPSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1425,
-  serialized_end=1510,
+  serialized_start=1462,
+  serialized_end=1547,
 )
 
 _REFSTATUS.fields_by_name['ref'].message_type = olca__pb2._REF
@@ -853,6 +892,7 @@ _SOCIALINDICATORSTATUS.fields_by_name['social_indicator'].message_type = olca__p
 _SOURCESTATUS.fields_by_name['source'].message_type = olca__pb2._SOURCE
 _UNITGROUPSTATUS.fields_by_name['unit_group'].message_type = olca__pb2._UNITGROUP
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
+DESCRIPTOR.message_types_by_name['Status'] = _STATUS
 DESCRIPTOR.message_types_by_name['RefStatus'] = _REFSTATUS
 DESCRIPTOR.message_types_by_name['ActorStatus'] = _ACTORSTATUS
 DESCRIPTOR.message_types_by_name['CategoryStatus'] = _CATEGORYSTATUS
@@ -878,6 +918,13 @@ Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
   # @@protoc_insertion_point(class_scope:protolca.services.Empty)
   })
 _sym_db.RegisterMessage(Empty)
+
+Status = _reflection.GeneratedProtocolMessageType('Status', (_message.Message,), {
+  'DESCRIPTOR' : _STATUS,
+  '__module__' : 'services_pb2'
+  # @@protoc_insertion_point(class_scope:protolca.services.Status)
+  })
+_sym_db.RegisterMessage(Status)
 
 RefStatus = _reflection.GeneratedProtocolMessageType('RefStatus', (_message.Message,), {
   'DESCRIPTOR' : _REFSTATUS,
@@ -1008,13 +1055,23 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1513,
-  serialized_end=4678,
+  serialized_start=1550,
+  serialized_end=4767,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='delete',
+    full_name='protolca.services.DataService.delete',
+    index=0,
+    containing_service=None,
+    input_type=olca__pb2._REF,
+    output_type=_STATUS,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
   _descriptor.MethodDescriptor(
     name='actors',
     full_name='protolca.services.DataService.actors',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._ACTOR,
@@ -1024,7 +1081,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='actor',
     full_name='protolca.services.DataService.actor',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_ACTORSTATUS,
@@ -1034,7 +1091,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_actor',
     full_name='protolca.services.DataService.put_actor',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=olca__pb2._ACTOR,
     output_type=_REFSTATUS,
@@ -1044,7 +1101,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='categories',
     full_name='protolca.services.DataService.categories',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._CATEGORY,
@@ -1054,7 +1111,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='category',
     full_name='protolca.services.DataService.category',
-    index=4,
+    index=5,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_CATEGORYSTATUS,
@@ -1064,7 +1121,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_category',
     full_name='protolca.services.DataService.put_category',
-    index=5,
+    index=6,
     containing_service=None,
     input_type=olca__pb2._CATEGORY,
     output_type=_REFSTATUS,
@@ -1074,7 +1131,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='currencies',
     full_name='protolca.services.DataService.currencies',
-    index=6,
+    index=7,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._CURRENCY,
@@ -1084,7 +1141,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='currency',
     full_name='protolca.services.DataService.currency',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_CURRENCYSTATUS,
@@ -1094,7 +1151,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_currency',
     full_name='protolca.services.DataService.put_currency',
-    index=8,
+    index=9,
     containing_service=None,
     input_type=olca__pb2._CURRENCY,
     output_type=_REFSTATUS,
@@ -1104,7 +1161,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='dq_systems',
     full_name='protolca.services.DataService.dq_systems',
-    index=9,
+    index=10,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._DQSYSTEM,
@@ -1114,7 +1171,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='dq_system',
     full_name='protolca.services.DataService.dq_system',
-    index=10,
+    index=11,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_DQSYSTEMSTATUS,
@@ -1124,7 +1181,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_dq_system',
     full_name='protolca.services.DataService.put_dq_system',
-    index=11,
+    index=12,
     containing_service=None,
     input_type=olca__pb2._DQSYSTEM,
     output_type=_REFSTATUS,
@@ -1134,7 +1191,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='flows',
     full_name='protolca.services.DataService.flows',
-    index=12,
+    index=13,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._FLOW,
@@ -1144,7 +1201,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='flow',
     full_name='protolca.services.DataService.flow',
-    index=13,
+    index=14,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_FLOWSTATUS,
@@ -1154,7 +1211,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_flow',
     full_name='protolca.services.DataService.put_flow',
-    index=14,
+    index=15,
     containing_service=None,
     input_type=olca__pb2._FLOW,
     output_type=_REFSTATUS,
@@ -1164,7 +1221,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='flow_properties',
     full_name='protolca.services.DataService.flow_properties',
-    index=15,
+    index=16,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._FLOWPROPERTY,
@@ -1174,7 +1231,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='flow_property',
     full_name='protolca.services.DataService.flow_property',
-    index=16,
+    index=17,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_FLOWPROPERTYSTATUS,
@@ -1184,7 +1241,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_flow_property',
     full_name='protolca.services.DataService.put_flow_property',
-    index=17,
+    index=18,
     containing_service=None,
     input_type=olca__pb2._FLOWPROPERTY,
     output_type=_REFSTATUS,
@@ -1194,7 +1251,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='impact_categories',
     full_name='protolca.services.DataService.impact_categories',
-    index=18,
+    index=19,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._IMPACTCATEGORY,
@@ -1204,7 +1261,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='impact_category',
     full_name='protolca.services.DataService.impact_category',
-    index=19,
+    index=20,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_IMPACTCATEGORYSTATUS,
@@ -1214,7 +1271,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_impact_category',
     full_name='protolca.services.DataService.put_impact_category',
-    index=20,
+    index=21,
     containing_service=None,
     input_type=olca__pb2._IMPACTCATEGORY,
     output_type=_REFSTATUS,
@@ -1224,7 +1281,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='impact_methods',
     full_name='protolca.services.DataService.impact_methods',
-    index=21,
+    index=22,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._IMPACTMETHOD,
@@ -1234,7 +1291,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='impact_method',
     full_name='protolca.services.DataService.impact_method',
-    index=22,
+    index=23,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_IMPACTMETHODSTATUS,
@@ -1244,7 +1301,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_impact_method',
     full_name='protolca.services.DataService.put_impact_method',
-    index=23,
+    index=24,
     containing_service=None,
     input_type=olca__pb2._IMPACTMETHOD,
     output_type=_REFSTATUS,
@@ -1254,7 +1311,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='locations',
     full_name='protolca.services.DataService.locations',
-    index=24,
+    index=25,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._LOCATION,
@@ -1264,7 +1321,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='location',
     full_name='protolca.services.DataService.location',
-    index=25,
+    index=26,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_LOCATIONSTATUS,
@@ -1274,7 +1331,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_location',
     full_name='protolca.services.DataService.put_location',
-    index=26,
+    index=27,
     containing_service=None,
     input_type=olca__pb2._LOCATION,
     output_type=_REFSTATUS,
@@ -1284,7 +1341,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='parameters',
     full_name='protolca.services.DataService.parameters',
-    index=27,
+    index=28,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._PARAMETER,
@@ -1294,7 +1351,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='parameter',
     full_name='protolca.services.DataService.parameter',
-    index=28,
+    index=29,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_PARAMETERSTATUS,
@@ -1304,7 +1361,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_parameter',
     full_name='protolca.services.DataService.put_parameter',
-    index=29,
+    index=30,
     containing_service=None,
     input_type=olca__pb2._PARAMETER,
     output_type=_REFSTATUS,
@@ -1314,7 +1371,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='processes',
     full_name='protolca.services.DataService.processes',
-    index=30,
+    index=31,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._PROCESS,
@@ -1324,7 +1381,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='process',
     full_name='protolca.services.DataService.process',
-    index=31,
+    index=32,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_PROCESSSTATUS,
@@ -1334,7 +1391,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_process',
     full_name='protolca.services.DataService.put_process',
-    index=32,
+    index=33,
     containing_service=None,
     input_type=olca__pb2._PROCESS,
     output_type=_REFSTATUS,
@@ -1344,7 +1401,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='product_systems',
     full_name='protolca.services.DataService.product_systems',
-    index=33,
+    index=34,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._PRODUCTSYSTEM,
@@ -1354,7 +1411,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='product_system',
     full_name='protolca.services.DataService.product_system',
-    index=34,
+    index=35,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_PRODUCTSYSTEMSTATUS,
@@ -1364,7 +1421,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_product_system',
     full_name='protolca.services.DataService.put_product_system',
-    index=35,
+    index=36,
     containing_service=None,
     input_type=olca__pb2._PRODUCTSYSTEM,
     output_type=_REFSTATUS,
@@ -1374,7 +1431,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='projects',
     full_name='protolca.services.DataService.projects',
-    index=36,
+    index=37,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._PROJECT,
@@ -1384,7 +1441,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='project',
     full_name='protolca.services.DataService.project',
-    index=37,
+    index=38,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_PROJECTSTATUS,
@@ -1394,7 +1451,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_project',
     full_name='protolca.services.DataService.put_project',
-    index=38,
+    index=39,
     containing_service=None,
     input_type=olca__pb2._PROJECT,
     output_type=_REFSTATUS,
@@ -1404,7 +1461,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='social_indicators',
     full_name='protolca.services.DataService.social_indicators',
-    index=39,
+    index=40,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._SOCIALINDICATOR,
@@ -1414,7 +1471,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='social_indicator',
     full_name='protolca.services.DataService.social_indicator',
-    index=40,
+    index=41,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_SOCIALINDICATORSTATUS,
@@ -1424,7 +1481,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_social_indicator',
     full_name='protolca.services.DataService.put_social_indicator',
-    index=41,
+    index=42,
     containing_service=None,
     input_type=olca__pb2._SOCIALINDICATOR,
     output_type=_REFSTATUS,
@@ -1434,7 +1491,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='sources',
     full_name='protolca.services.DataService.sources',
-    index=42,
+    index=43,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._SOURCE,
@@ -1444,7 +1501,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='source',
     full_name='protolca.services.DataService.source',
-    index=43,
+    index=44,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_SOURCESTATUS,
@@ -1454,7 +1511,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_source',
     full_name='protolca.services.DataService.put_source',
-    index=44,
+    index=45,
     containing_service=None,
     input_type=olca__pb2._SOURCE,
     output_type=_REFSTATUS,
@@ -1464,7 +1521,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='unit_groups',
     full_name='protolca.services.DataService.unit_groups',
-    index=45,
+    index=46,
     containing_service=None,
     input_type=_EMPTY,
     output_type=olca__pb2._UNITGROUP,
@@ -1474,7 +1531,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='unit_group',
     full_name='protolca.services.DataService.unit_group',
-    index=46,
+    index=47,
     containing_service=None,
     input_type=olca__pb2._REF,
     output_type=_UNITGROUPSTATUS,
@@ -1484,7 +1541,7 @@ _DATASERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='put_unit_group',
     full_name='protolca.services.DataService.put_unit_group',
-    index=47,
+    index=48,
     containing_service=None,
     input_type=olca__pb2._UNITGROUP,
     output_type=_REFSTATUS,

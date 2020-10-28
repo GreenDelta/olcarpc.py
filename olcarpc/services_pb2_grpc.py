@@ -15,6 +15,11 @@ class DataServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.delete = channel.unary_unary(
+                '/protolca.services.DataService/delete',
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=services__pb2.Status.FromString,
+                )
         self.actors = channel.unary_stream(
                 '/protolca.services.DataService/actors',
                 request_serializer=services__pb2.Empty.SerializeToString,
@@ -259,6 +264,12 @@ class DataServiceStub(object):
 
 class DataServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
+
+    def delete(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def actors(self, request, context):
         """methods for Actor
@@ -567,6 +578,11 @@ class DataServiceServicer(object):
 
 def add_DataServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'delete': grpc.unary_unary_rpc_method_handler(
+                    servicer.delete,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=services__pb2.Status.SerializeToString,
+            ),
             'actors': grpc.unary_stream_rpc_method_handler(
                     servicer.actors,
                     request_deserializer=services__pb2.Empty.FromString,
@@ -816,6 +832,23 @@ def add_DataServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class DataService(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def delete(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/delete',
+            olca__pb2.Ref.SerializeToString,
+            services__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def actors(request,
