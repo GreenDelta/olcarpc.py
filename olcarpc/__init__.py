@@ -15,13 +15,22 @@ def to_json(entity, indent: int = 2) -> str:
 class Client:
 
     def __init__(self, port=8080):
+        self.port = port
         self.chan = grpc.insecure_channel('localhost:%i' % port)
 
     def __enter__(self):
+        if self.chan is None:
+            self.chan = grpc.insecure_channel('localhost:%i' % self.port)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.chan.close()
+        self.chan = None
+
+    def close(self):
+        if self.chan is not None:
+            self.chan.close()
+            self.chan = None
 
     @property
     def data(self) -> services.DataServiceStub:
@@ -51,6 +60,9 @@ class Client:
     def flows(self) -> Iterable[Flow]:
         for flow in self.data.flows(Empty()):
             yield flow
+
+    def flow(self, id='', name='') -> FlowStatus:
+        return self.data.flow(Ref(id=id, name=name))
 
     @property
     def flow_properties(self) -> Iterable[FlowProperty]:
