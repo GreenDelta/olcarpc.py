@@ -6,4 +6,9 @@ rem plugin installed: https://github.com/pseudomuto/protoc-gen-doc
 rem this script should be executed from the root folder of this project:
 rem \scripts\doc.bat
 
-protoc -I.\proto --doc_out=. --doc_opt=markdown,protocol.md proto\*.proto
+del /s /q docs\*.md
+
+protoc -I.\proto --doc_out=. --doc_opt=markdown,docs\protocol.md proto\*.proto
+
+pdoc --force --config show_source_code=False --output-dir docs olcarpc
+py scripts\docpost.py

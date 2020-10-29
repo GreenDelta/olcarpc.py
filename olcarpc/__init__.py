@@ -6,8 +6,14 @@ from .services_pb2 import *
 import olcarpc.services_pb2_grpc as services
 
 import inspect
-from typing import Iterable
+from typing import Any, Iterable, Union
 
+
+__pdoc__ = {
+    'olca_pb2': False,
+    'services_pb2': False,
+    'services_pb2_grpc': False,
+}
 
 def to_json(entity, indent: int = 2) -> str:
     return jf.MessageToJson(entity, indent=indent)
@@ -48,8 +54,40 @@ class Client:
     def data(self) -> services.DataServiceStub:
         return services.DataServiceStub(self.chan)
 
-    def delete(self, ref: Ref) -> Status:
-        return self.data.delete(ref)
+    def delete(self, ref: Union[Any, Ref]) -> Status:
+        """
+        Deletes the given object from the database.
+
+        Parameters
+        ----------
+        ref: Union[Any, Ref]
+            The (descriptor of) the object that should be deleted from the
+            database. The given object needs to be a descriptor where at least
+            the `id` and `type` fields are set (this is typically the case for
+            the objects that are returned by the openLCA gRPC service).
+
+        Example
+        -------
+        ```python
+        import olcarpc as rpc
+
+        client = rpc.Client()
+        flow_status = client.flow(name='Test flow')
+        if flow_status.ok:
+            del_status = client.delete(flow_status.flow)
+            print(del_status)
+        ```
+        """
+
+        r = ref
+        if not isinstance(ref, Ref):
+            r = Ref()
+            r.id = ref.id
+            if ref.type is None or ref.type == '':
+                r.type = ref.__class__.__name__
+            else:
+                r.type = ref.type
+        return self.data.delete(r)
 
     @property
     def actors(self) -> Iterable[Actor]:
