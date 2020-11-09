@@ -65,7 +65,7 @@ class CategoryTest(unittest.TestCase):
     def __category__(self) -> rpc.Category:
         category = rpc.Category(
             id=str(uuid.uuid4()),
-            name='Test Category',
+            name='Test Category %s' % uuid.uuid4(),
             version='10.00.000',
         )
         status = self.client.put_category(category)

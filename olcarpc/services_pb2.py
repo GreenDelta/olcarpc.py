@@ -11,9 +11,9 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import olca_pb2 as olca__pb2
+import olcarpc.olca_pb2 as olca__pb2
 
-from olca_pb2 import *
+from olcarpc.olca_pb2 import *
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='services.proto',

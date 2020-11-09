@@ -9,7 +9,7 @@ from google.protobuf.message import (
     Message as google___protobuf___message___Message,
 )
 
-from olca_pb2 import (
+from olcarpc.olca_pb2 import (
     Actor as olca_pb2___Actor,
     Category as olca_pb2___Category,
     Currency as olca_pb2___Currency,

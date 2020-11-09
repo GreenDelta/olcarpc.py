@@ -30,6 +30,10 @@ def ref(ref_type, ref_id: str, name='') -> Ref:
     return r
 
 
+def ref_of(entity) -> Ref:
+    return ref(entity.__class__, entity.id, entity.name)
+
+
 class Client:
 
     def __init__(self, port=8080):
