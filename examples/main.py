@@ -1,50 +1,31 @@
 import olcarpc as rpc
 
-with rpc.Client() as client:
-    for actor in client.actors():
-        print('Actor: %s' % actor.name)
 
-    for category in client.categories():
-        print('Category: %s' % category.name)
+def main():
+    with rpc.Client() as client:
+        kg = rpc.unit_of('kg')
+        units = rpc.unit_group_of('Units of mass', kg)
+        client.put_unit_group(units)
 
-    for currency in client.currencies():
-        print('Currency: %s' % currency.name)
+        mass = rpc.flow_property_of('Mass', units)
+        client.put_flow_property(mass)
 
-    for dqs in client.dq_systems():
-        print('DQSystem: %s' % dqs.name)
+        co2 = rpc.elementary_flow_of('CO2', mass)
+        client.put_flow(co2)
 
-    for flow in client.flows():
-        print('Flow: %s' % flow.name)
+        steel = rpc.product_flow_of('Steel', mass)
+        client.put_flow(steel)
 
-    for prop in client.flow_properties():
-        print('FlowProperty: %s' % prop.name)
+        process = rpc.process_of('Steel production')
+        steel_output = rpc.output_of(process, steel, 1.0)
+        steel_output.quantitative_reference = True
+        process.exchanges.append(steel_output)
 
-    for impact in client.impact_categories():
-        print('ImpactCategory: %s' % impact.name)
+        co2_output = rpc.output_of(process, co2, 2.0)
+        process.exchanges.append(co2_output)
 
-    for method in client.impact_methods():
-        print('ImpactMethod: %s' % method.name)
+        client.put_process(process)
 
-    for location in client.locations():
-        print('Location: %s' % location.name)
 
-    for parameter in client.parameters():
-        print('Parameter: %s' % parameter.name)
-
-    for process in client.processes():
-        print('Process: %s' % process.name)
-
-    for system in client.product_systems():
-        print('ProductSystem: %s' % system.name)
-
-    for project in client.projects():
-        print('Project: %s' % project.name)
-
-    for indicator in client.social_indicators():
-        print('SocialIndicator: %s' % indicator.name)
-
-    for source in client.sources():
-        print('Source: %s' % source.name)
-
-    for group in client.unit_groups():
-        print('UnitGroup: %s' % group.name)
+if __name__ == '__main__':
+    main()

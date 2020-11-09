@@ -3,6 +3,8 @@ import google.protobuf.json_format as jf
 
 from .olca_pb2 import *
 from .services_pb2 import *
+from .factory import *
+
 import olcarpc.services_pb2_grpc as services
 
 import inspect

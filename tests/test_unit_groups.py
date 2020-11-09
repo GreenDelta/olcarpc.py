@@ -1,6 +1,5 @@
 import olcarpc as rpc
 import unittest
-import uuid
 
 
 class UnitGroupTest(unittest.TestCase):
@@ -28,12 +27,12 @@ class UnitGroupTest(unittest.TestCase):
         # check for ID
         status = self.client.unit_group(unit_group.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.unit_group.id, unit_group.id)
+        self.assertEqual(status.unit_group.id, unit_group.id)
 
         # check for name
         status = self.client.unit_group(name=unit_group.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.unit_group.name, unit_group.name)
+        self.assertEqual(status.unit_group.name, unit_group.name)
 
         self.assertTrue(self.client.delete(unit_group).ok)
 
@@ -56,18 +55,19 @@ class UnitGroupTest(unittest.TestCase):
         self.assertEqual(orig.id, clone.id)
         self.assertEqual(orig.name, clone.name)
         self.assertEqual(orig.version, clone.version)
-        self.assertEqual(orig.last_change, clone.last_change)
+        # self.assertEqual(orig.last_change, clone.last_change)
 
-        # TODO: check specific fields
+        self.assertEqual(1, len(clone.units))
+        self.assertEqual('kg', clone.units[0].name)
+        self.assertEqual(1.0, clone.units[0].conversion_factor)
+        self.assertTrue(clone.units[0].reference_unit)
 
         self.assertTrue(self.client.delete(clone).ok)
 
     def __unit_group__(self) -> rpc.UnitGroup:
-        unit_group = rpc.UnitGroup(
-            id=str(uuid.uuid4()),
-            name='Test UnitGroup',
-            version='10.00.000',
-        )
+        unit_group = rpc.unit_group_of(
+            'Test units',
+            rpc.unit_of('kg'))
         status = self.client.put_unit_group(unit_group)
         self.assertTrue(status.ok)
         return unit_group
