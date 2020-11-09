@@ -70,4 +70,5 @@ class CategoryTest(unittest.TestCase):
         )
         status = self.client.put_category(category)
         self.assertTrue(status.ok)
+        category.id = status.ref.id
         return category

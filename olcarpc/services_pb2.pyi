@@ -13,7 +13,7 @@ from olca_pb2 import (
     Actor as olca_pb2___Actor,
     Category as olca_pb2___Category,
     Currency as olca_pb2___Currency,
-    DqSystem as olca_pb2___DqSystem,
+    DQSystem as olca_pb2___DQSystem,
     Flow as olca_pb2___Flow,
     FlowProperty as olca_pb2___FlowProperty,
     ImpactCategory as olca_pb2___ImpactCategory,
@@ -139,23 +139,23 @@ class CurrencyStatus(google___protobuf___message___Message):
     def ClearField(self, field_name: typing_extensions___Literal[u"currency",b"currency",u"error",b"error",u"ok",b"ok"]) -> None: ...
 type___CurrencyStatus = CurrencyStatus
 
-class DqSystemStatus(google___protobuf___message___Message):
+class DQSystemStatus(google___protobuf___message___Message):
     DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
     ok: builtin___bool = ...
     error: typing___Text = ...
 
     @property
-    def dq_system(self) -> olca_pb2___DqSystem: ...
+    def dq_system(self) -> olca_pb2___DQSystem: ...
 
     def __init__(self,
         *,
         ok : typing___Optional[builtin___bool] = None,
-        dq_system : typing___Optional[olca_pb2___DqSystem] = None,
+        dq_system : typing___Optional[olca_pb2___DQSystem] = None,
         error : typing___Optional[typing___Text] = None,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions___Literal[u"dq_system",b"dq_system"]) -> builtin___bool: ...
     def ClearField(self, field_name: typing_extensions___Literal[u"dq_system",b"dq_system",u"error",b"error",u"ok",b"ok"]) -> None: ...
-type___DqSystemStatus = DqSystemStatus
+type___DQSystemStatus = DQSystemStatus
 
 class FlowStatus(google___protobuf___message___Message):
     DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...

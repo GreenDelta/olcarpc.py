@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import olcarpc.olca_pb2 as olca__pb2
-import olcarpc.services_pb2 as services__pb2
+import olca_pb2 as olca__pb2
+import services_pb2 as services__pb2
 
 
 class DataServiceStub(object):
@@ -68,16 +68,16 @@ class DataServiceStub(object):
         self.dq_systems = channel.unary_stream(
                 '/protolca.services.DataService/dq_systems',
                 request_serializer=services__pb2.Empty.SerializeToString,
-                response_deserializer=olca__pb2.DqSystem.FromString,
+                response_deserializer=olca__pb2.DQSystem.FromString,
                 )
         self.dq_system = channel.unary_unary(
                 '/protolca.services.DataService/dq_system',
                 request_serializer=olca__pb2.Ref.SerializeToString,
-                response_deserializer=services__pb2.DqSystemStatus.FromString,
+                response_deserializer=services__pb2.DQSystemStatus.FromString,
                 )
         self.put_dq_system = channel.unary_unary(
                 '/protolca.services.DataService/put_dq_system',
-                request_serializer=olca__pb2.DqSystem.SerializeToString,
+                request_serializer=olca__pb2.DQSystem.SerializeToString,
                 response_deserializer=services__pb2.RefStatus.FromString,
                 )
         self.flows = channel.unary_stream(
@@ -266,7 +266,10 @@ class DataServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Deletes the object with the `id` and `type` of the given descriptor from
+        the database. Note that the type is a string with the name of the
+        corresponding model class, e.g. `Process` or `Flow`.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -631,16 +634,16 @@ def add_DataServiceServicer_to_server(servicer, server):
             'dq_systems': grpc.unary_stream_rpc_method_handler(
                     servicer.dq_systems,
                     request_deserializer=services__pb2.Empty.FromString,
-                    response_serializer=olca__pb2.DqSystem.SerializeToString,
+                    response_serializer=olca__pb2.DQSystem.SerializeToString,
             ),
             'dq_system': grpc.unary_unary_rpc_method_handler(
                     servicer.dq_system,
                     request_deserializer=olca__pb2.Ref.FromString,
-                    response_serializer=services__pb2.DqSystemStatus.SerializeToString,
+                    response_serializer=services__pb2.DQSystemStatus.SerializeToString,
             ),
             'put_dq_system': grpc.unary_unary_rpc_method_handler(
                     servicer.put_dq_system,
-                    request_deserializer=olca__pb2.DqSystem.FromString,
+                    request_deserializer=olca__pb2.DQSystem.FromString,
                     response_serializer=services__pb2.RefStatus.SerializeToString,
             ),
             'flows': grpc.unary_stream_rpc_method_handler(
@@ -1016,7 +1019,7 @@ class DataService(object):
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/dq_systems',
             services__pb2.Empty.SerializeToString,
-            olca__pb2.DqSystem.FromString,
+            olca__pb2.DQSystem.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1033,7 +1036,7 @@ class DataService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/dq_system',
             olca__pb2.Ref.SerializeToString,
-            services__pb2.DqSystemStatus.FromString,
+            services__pb2.DQSystemStatus.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1049,7 +1052,7 @@ class DataService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/put_dq_system',
-            olca__pb2.DqSystem.SerializeToString,
+            olca__pb2.DQSystem.SerializeToString,
             services__pb2.RefStatus.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

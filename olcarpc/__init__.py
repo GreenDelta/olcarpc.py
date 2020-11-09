@@ -119,14 +119,14 @@ class Client:
     def put_currency(self, currency: Currency) -> RefStatus:
         return self.data.put_currency(currency)
 
-    def dq_systems(self) -> Iterable[DqSystem]:
+    def dq_systems(self) -> Iterable[DQSystem]:
         for dqSystem in self.data.dq_systems(Empty()):
             yield dqSystem
 
-    def dq_system(self, id='', name='') -> DqSystemStatus:
+    def dq_system(self, id='', name='') -> DQSystemStatus:
         return self.data.dq_system(Ref(id=id, name=name))
 
-    def put_dq_system(self, dq_system: DqSystem) -> RefStatus:
+    def put_dq_system(self, dq_system: DQSystem) -> RefStatus:
         return self.data.put_dq_system(dq_system)
 
     def flows(self) -> Iterable[Flow]:
