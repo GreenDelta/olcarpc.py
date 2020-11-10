@@ -25,6 +25,7 @@ def main():
         process.exchanges.append(co2_output)
 
         client.put_process(process)
+        print(process)
 
 
 if __name__ == '__main__':

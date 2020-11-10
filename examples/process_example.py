@@ -1,7 +1,6 @@
 # this example creates a process with inputs and outputs
 
 import olcarpc as rpc
-import uuid
 
 
 def main():
@@ -20,22 +19,15 @@ def main():
             raise RuntimeError('flow property `Mass` does not exist')
         mass: rpc.FlowProperty = status.flow_property
 
-        # get the mass units
-        status = client.unit_group(mass.unit_group.id)
-        if not status.ok:
-            raise RuntimeError('unit group `Units of mass` does not exist')
-        units: rpc.UnitGroup = status.unit_group
-        kg: rpc.Unit = next(
-            filter(lambda u: u.name == 'kg', units.units), None)
-        if kg is None:
-            raise RuntimeError('unit `kg` does not exist')
+        process = rpc.process_of('Iron Process - Gas cleaning')
 
-        process = rpc.Process(
-            id=str(uuid.uuid4()),
-            name='Iron Process - Gas cleaning'
-        )
+        # set the location
+        loc = location(client, 'Global')
+        process.location.id = loc.id
+        process.location.name = loc.name
 
-        last_id = 0
+        # add inputs
+
         inputs = [
             ['Air Blast', rpc.FlowType.PRODUCT_FLOW, 245.8751543969349]
         ]
@@ -61,27 +53,29 @@ def flow(client: rpc.Client, name: str,
     Returns the flow with the given name or creates a new one if it does not
     exist yet.
     """
-
     status = client.flow(name=name)
     if status.ok:
         return status.flow
-
-    ref_quantity = rpc.FlowPropertyFactor(
-        conversion_factor=1.0,
-        flow_property=rpc.ref_of(quantity)
-    )
-
-    flow = rpc.Flow(
-        id=str(uuid.uuid4()),
-        name=name,
-        flow_type=flow_type,
-        flow_properties=[ref_quantity]
-    )
-
-    status = client.put_flow(flow)
+    f = rpc.flow_of(name, flow_type, quantity)
+    status = client.put_flow(f)
     if not status.ok:
         raise RuntimeError(status.error)
-    return flow
+    return f
+
+
+def location(client: rpc.Client, name: str) -> rpc.Location:
+    """
+    Returns the location with the given name or creates a new one
+    if it does not exist yet.
+    """
+    status = client.location(name=name)
+    if status.ok:
+        return status.location
+    loc = rpc.location_of(name)
+    status = client.put_location(loc)
+    if not status.ok:
+        raise RuntimeError(status.error)
+    return loc
 
 
 if __name__ == '__main__':

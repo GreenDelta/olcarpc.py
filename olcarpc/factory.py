@@ -4,10 +4,6 @@ import datetime
 import uuid
 
 
-def _now() -> str:
-    return datetime.datetime.utcnow().isoformat() + 'Z'
-
-
 def unit_of(name='', conversion_factor=1.0) -> Unit:
     unit = Unit()
     unit.id = str(uuid.uuid4())
@@ -19,20 +15,14 @@ def unit_of(name='', conversion_factor=1.0) -> Unit:
 def unit_group_of(name: str, unit: Unit) -> UnitGroup:
     unit.reference_unit = True
     group = UnitGroup()
-    group.id = str(uuid.uuid4())
-    group.name = name
-    group.version = '00.00.000'
-    group.last_change = _now()
+    _set_base_attributes(group, name)
     group.units.append(unit)
     return group
 
 
 def flow_property_of(name: str, unit_group: UnitGroup) -> FlowProperty:
     fp = FlowProperty()
-    fp.id = str(uuid.uuid4())
-    fp.name = name
-    fp.version = '00.00.000'
-    fp.last_change = _now()
+    _set_base_attributes(fp, name)
     fp.unit_group.type = 'UnitGroup'
     fp.unit_group.id = unit_group.id
     fp.unit_group.name = unit_group.name
@@ -41,10 +31,7 @@ def flow_property_of(name: str, unit_group: UnitGroup) -> FlowProperty:
 
 def flow_of(name: str, flow_type: FlowType, flow_property: FlowProperty) -> Flow:
     flow = Flow()
-    flow.id = str(uuid.uuid4())
-    flow.name = name
-    flow.version = '00.00.000'
-    flow.last_change = _now()
+    _set_base_attributes(flow, name)
     flow.flow_type = flow_type
 
     prop = FlowPropertyFactor()
@@ -96,9 +83,21 @@ def output_of(process: Process, flow: Flow, amount=1.0) -> Exchange:
 
 def process_of(name: str) -> Process:
     process = Process()
-    process.id = str(uuid.uuid4())
-    process.name = name
-    process.version = '00.00.000'
-    process.last_change = _now()
+    _set_base_attributes(process, name)
     process.process_type = ProcessType.UNIT_PROCESS
     return process
+
+
+def location_of(name: str, code: None) -> Location:
+    location = Location()
+    _set_base_attributes(location, name)
+    location.code = name if code is None else code
+    return location
+
+
+def _set_base_attributes(entity, name: str):
+    entity.id = str(uuid.uuid4())
+    entity.type = entity.DESCRIPTOR.name
+    entity.name = name
+    entity.version = '00.00.000'
+    entity.last_change = datetime.datetime.utcnow().isoformat() + 'Z'
