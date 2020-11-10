@@ -27,21 +27,40 @@ def main():
         process.location.name = loc.name
 
         # add inputs
-
         inputs = [
-            ['Air Blast', rpc.FlowType.PRODUCT_FLOW, 245.8751543969349]
+            ('Air Blast', rpc.FlowType.PRODUCT_FLOW, 245.8751543969349),
+            ('Combustion Air', rpc.FlowType.WASTE_FLOW, 59.764430236449158),
+            ('Hematite Pellets', rpc.FlowType.PRODUCT_FLOW, 200),
+            ('Coke', rpc.FlowType.PRODUCT_FLOW, 50),
+            ('Limestone', rpc.FlowType.PRODUCT_FLOW, 30.422441963816247),
+            ('Steel Scrap', rpc.FlowType.WASTE_FLOW, 1.8853256607049331),
+            ('Reductant', rpc.FlowType.PRODUCT_FLOW, 16),
+            ('Washing Solution', rpc.FlowType.PRODUCT_FLOW, 75),
         ]
-        for input in inputs:
-            f = flow(client, input[0], input[1], mass)
-            flow_ref = rpc.FlowRef(id=f.id)
-            last_id += 1
-            e = rpc.Exchange(
-                internal_id=last_id,
-                flow=flow_ref,
-                input=True,
-                amount=input[2]
-            )
-            process.exchanges.append(e)
+        for (name, flow_type, amount) in inputs:
+            f = flow(client, name, flow_type, mass)
+            i = rpc.input_of(process, f, amount)
+            process.exchanges.append(i)
+
+        # add outputs
+        outputs = [
+            ('Slag', rpc.FlowType.WASTE_FLOW, 33.573534216580185),
+            ('Carbon dioxide', rpc.FlowType.ELEMENTARY_FLOW, 140.44236409682583),
+            ('Water vapour', rpc.FlowType.ELEMENTARY_FLOW, 30.591043638569072),
+            ('Sulfur dioxide', rpc.FlowType.ELEMENTARY_FLOW, 0.01134867565288134),
+            ('Air', rpc.FlowType.ELEMENTARY_FLOW, 158.58576460676247),
+            ('Pig Iron', rpc.FlowType.PRODUCT_FLOW, 138.2370620852756),
+            ('Heat Loss', rpc.FlowType.WASTE_FLOW, 32727.272727272728),
+            ('Coarse Dust', rpc.FlowType.ELEMENTARY_FLOW, 1.4340290871696806),
+            ('Scrubber Sludge', rpc.FlowType.WASTE_FLOW, 56.261517810249792),
+            ('Fine Dust', rpc.FlowType.ELEMENTARY_FLOW, 0.18398927491951844),
+        ]
+        for (name, flow_type, amount) in outputs:
+            f = flow(client, name, flow_type, mass)
+            o = rpc.output_of(process, f, amount)
+            if name == 'Pig Iron':
+                o.quantitative_reference = True
+            process.exchanges.append(o)
 
         client.put_process(process)
         print(process)

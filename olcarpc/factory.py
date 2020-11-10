@@ -88,7 +88,7 @@ def process_of(name: str) -> Process:
     return process
 
 
-def location_of(name: str, code: None) -> Location:
+def location_of(name: str, code=None) -> Location:
     location = Location()
     _set_base_attributes(location, name)
     location.code = name if code is None else code
