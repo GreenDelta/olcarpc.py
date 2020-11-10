@@ -13,7 +13,7 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/GreenDelta/olca-grpc.py',
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
-    install_requires=['grpcio'],
+    install_requires=['grpcio', 'protobuf'],
     keywords=['openLCA', 'life cycle assessment', 'LCA'],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
