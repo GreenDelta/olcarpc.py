@@ -28,12 +28,12 @@ class DQSystemTest(unittest.TestCase):
         # check for ID
         status = self.client.dq_system(dq_system.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.dq_system.id, dq_system.id)
+        self.assertEqual(status.dq_system.id, dq_system.id)
 
         # check for name
         status = self.client.dq_system(name=dq_system.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.dq_system.name, dq_system.name)
+        self.assertEqual(status.dq_system.name, dq_system.name)
 
         self.assertTrue(self.client.delete(dq_system).ok)
 

@@ -28,12 +28,12 @@ class CurrencyTest(unittest.TestCase):
         # check for ID
         status = self.client.currency(currency.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.currency.id, currency.id)
+        self.assertEqual(status.currency.id, currency.id)
 
         # check for name
         status = self.client.currency(name=currency.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.currency.name, currency.name)
+        self.assertEqual(status.currency.name, currency.name)
 
         self.assertTrue(self.client.delete(currency).ok)
 

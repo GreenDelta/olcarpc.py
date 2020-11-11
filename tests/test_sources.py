@@ -28,12 +28,12 @@ class SourceTest(unittest.TestCase):
         # check for ID
         status = self.client.source(source.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.source.id, source.id)
+        self.assertEqual(status.source.id, source.id)
 
         # check for name
         status = self.client.source(name=source.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.source.name, source.name)
+        self.assertEqual(status.source.name, source.name)
 
         self.assertTrue(self.client.delete(source).ok)
 

@@ -28,12 +28,12 @@ class FlowPropertyTest(unittest.TestCase):
         # check for ID
         status = self.client.flow_property(flow_property.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.flow_property.id, flow_property.id)
+        self.assertEqual(status.flow_property.id, flow_property.id)
 
         # check for name
         status = self.client.flow_property(name=flow_property.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.flow_property.name, flow_property.name)
+        self.assertEqual(status.flow_property.name, flow_property.name)
 
         self.assertTrue(self.client.delete(flow_property).ok)
 

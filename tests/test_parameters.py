@@ -28,12 +28,12 @@ class ParameterTest(unittest.TestCase):
         # check for ID
         status = self.client.parameter(parameter.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.parameter.id, parameter.id)
+        self.assertEqual(status.parameter.id, parameter.id)
 
         # check for name
         status = self.client.parameter(name=parameter.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.parameter.name, parameter.name)
+        self.assertEqual(status.parameter.name, parameter.name)
 
         self.assertTrue(self.client.delete(parameter).ok)
 

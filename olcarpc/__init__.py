@@ -93,164 +93,164 @@ class Client:
                 r.type = ref.__class__.__name__
             else:
                 r.type = ref.type
-        return self.data.delete(r)
+        return self.data.Delete(r)
 
     def actors(self) -> Iterable[Actor]:
-        for actor in self.data.actors(Empty()):
+        for actor in self.data.GetActors(Empty()):
             yield actor
 
     def actor(self, id='', name='') -> ActorStatus:
-        return self.data.actor(Ref(id=id, name=name))
+        return self.data.GetActor(Ref(id=id, name=name))
 
     def put_actor(self, actor: Actor) -> RefStatus:
-        return self.data.put_actor(actor)
+        return self.data.PutActor(actor)
 
     def categories(self) -> Iterable[Category]:
-        for category in self.data.categories(Empty()):
+        for category in self.data.GetCategories(Empty()):
             yield category
 
     def category(self, id='', name='') -> CategoryStatus:
-        return self.data.category(Ref(id=id, name=name))
+        return self.data.GetCategory(Ref(id=id, name=name))
 
     def put_category(self, category: Category) -> RefStatus:
-        return self.data.put_category(category)
+        return self.data.PutCategory(category)
 
     def currencies(self) -> Iterable[Currency]:
-        for currency in self.data.currencies(Empty()):
+        for currency in self.data.GetCurrencies(Empty()):
             yield currency
 
     def currency(self, id='', name='') -> CurrencyStatus:
-        return self.data.currency(Ref(id=id, name=name))
+        return self.data.GetCurrency(Ref(id=id, name=name))
 
     def put_currency(self, currency: Currency) -> RefStatus:
-        return self.data.put_currency(currency)
+        return self.data.PutCurrency(currency)
 
     def dq_systems(self) -> Iterable[DQSystem]:
-        for dqSystem in self.data.dq_systems(Empty()):
+        for dqSystem in self.data.GetDQSystems(Empty()):
             yield dqSystem
 
     def dq_system(self, id='', name='') -> DQSystemStatus:
-        return self.data.dq_system(Ref(id=id, name=name))
+        return self.data.GetDQSystem(Ref(id=id, name=name))
 
     def put_dq_system(self, dq_system: DQSystem) -> RefStatus:
-        return self.data.put_dq_system(dq_system)
+        return self.data.PutDQSystem(dq_system)
 
     def flows(self) -> Iterable[Flow]:
-        for flow in self.data.flows(Empty()):
+        for flow in self.data.GetFlows(Empty()):
             yield flow
 
     def flow(self, id='', name='') -> FlowStatus:
-        return self.data.flow(Ref(id=id, name=name))
+        return self.data.GetFlow(Ref(id=id, name=name))
 
     def put_flow(self, flow: Flow) -> RefStatus:
-        return self.data.put_flow(flow)
+        return self.data.PutFlow(flow)
 
     def flow_properties(self) -> Iterable[FlowProperty]:
-        for p in self.data.flow_properties(Empty()):
+        for p in self.data.GetFlowProperties(Empty()):
             yield p
 
     def flow_property(self, id='', name='') -> FlowPropertyStatus:
-        return self.data.flow_property(Ref(id=id, name=name))
+        return self.data.GetFlowProperty(Ref(id=id, name=name))
 
     def put_flow_property(self, flow_property: FlowProperty) -> RefStatus:
-        return self.data.put_flow_property(flow_property)
+        return self.data.PutFlowProperty(flow_property)
 
     def impact_categories(self) -> Iterable[ImpactCategory]:
-        for impact in self.data.impact_categories(Empty()):
+        for impact in self.data.GetImpactCategories(Empty()):
             yield impact
 
     def impact_category(self, id='', name='') -> ImpactCategoryStatus:
-        return self.data.impact_category(Ref(id=id, name=name))
+        return self.data.GetImpactCategory(Ref(id=id, name=name))
 
     def put_impact_category(self, impact_category: ImpactCategory) -> RefStatus:
-        return self.data.put_impact_category(impact_category)
+        return self.data.PutImpactCategory(impact_category)
 
     def impact_methods(self) -> Iterable[ImpactMethod]:
-        for method in self.data.impact_methods(Empty()):
+        for method in self.data.GetImpactMethods(Empty()):
             yield method
 
     def impact_method(self, id='', name='') -> ImpactMethodStatus:
-        return self.data.impact_method(Ref(id=id, name=name))
+        return self.data.GetImpactMethod(Ref(id=id, name=name))
 
     def put_impact_method(self, impact_method: ImpactMethod) -> RefStatus:
-        return self.data.put_impact_method(impact_method)
+        return self.data.PutImpactMethod(impact_method)
 
     def locations(self) -> Iterable[Location]:
-        for location in self.data.locations(Empty()):
+        for location in self.data.GetLocations(Empty()):
             yield location
 
     def location(self, id='', name='') -> LocationStatus:
-        return self.data.location(Ref(id=id, name=name))
+        return self.data.GetLocation(Ref(id=id, name=name))
 
     def put_location(self, location: Location) -> RefStatus:
-        return self.data.put_location(location)
+        return self.data.PutLocation(location)
 
     def parameters(self) -> Iterable[Parameter]:
-        for parameter in self.data.parameters(Empty()):
+        for parameter in self.data.GetParameters(Empty()):
             yield parameter
 
     def parameter(self, id='', name='') -> ParameterStatus:
-        return self.data.parameter(Ref(id=id, name=name))
+        return self.data.GetParameter(Ref(id=id, name=name))
 
     def put_parameter(self, parameter: Parameter) -> RefStatus:
-        return self.data.put_parameter(parameter)
+        return self.data.PutParameter(parameter)
 
     def processes(self) -> Iterable[Process]:
-        for process in self.data.processes(Empty()):
+        for process in self.data.GetProcesses(Empty()):
             yield process
 
     def process(self, id='', name='') -> ProcessStatus:
-        return self.data.process(Ref(id=id, name=name))
+        return self.data.GetProcess(Ref(id=id, name=name))
 
     def put_process(self, process: Process) -> RefStatus:
-        return self.data.put_process(process)
+        return self.data.PutProcess(process)
 
     def product_systems(self) -> Iterable[ProductSystem]:
-        for system in self.data.product_systems(Empty()):
+        for system in self.data.GetProductSystems(Empty()):
             yield system
 
     def product_system(self, id='', name='') -> ProductSystemStatus:
-        return self.data.product_system(Ref(id=id, name=name))
+        return self.data.GetProductSystem(Ref(id=id, name=name))
 
     def put_product_system(self, product_system: ProductSystem) -> RefStatus:
-        return self.data.put_product_system(product_system)
+        return self.data.PutProductSystem(product_system)
 
     def projects(self) -> Iterable[Project]:
-        for project in self.data.projects(Empty()):
+        for project in self.data.GetProjects(Empty()):
             yield project
 
     def project(self, id='', name='') -> ProjectStatus:
-        return self.data.project(Ref(id=id, name=name))
+        return self.data.GetProject(Ref(id=id, name=name))
 
     def put_project(self, project: Project) -> RefStatus:
-        return self.data.put_project(project)
+        return self.data.PutProject(project)
 
     def social_indicators(self) -> Iterable[SocialIndicator]:
-        for indicator in self.data.social_indicators(Empty()):
+        for indicator in self.data.GetSocialIndicators(Empty()):
             yield indicator
 
     def social_indicator(self, id='', name='') -> SocialIndicatorStatus:
-        return self.data.social_indicator(Ref(id=id, name=name))
+        return self.data.GetSocialIndicator(Ref(id=id, name=name))
 
     def put_social_indicator(self, social_indicator: SocialIndicator) -> RefStatus:
-        return self.data.put_social_indicator(social_indicator)
+        return self.data.PutSocialIndicator(social_indicator)
 
     def sources(self) -> Iterable[Source]:
-        for source in self.data.sources(Empty()):
+        for source in self.data.GetSources(Empty()):
             yield source
 
     def source(self, id='', name='') -> SourceStatus:
-        return self.data.source(Ref(id=id, name=name))
+        return self.data.GetSource(Ref(id=id, name=name))
 
     def put_source(self, source: Source) -> RefStatus:
-        return self.data.put_source(source)
+        return self.data.PutSource(source)
 
     def unit_groups(self) -> Iterable[UnitGroup]:
-        for group in self.data.unit_groups(Empty()):
+        for group in self.data.GetUnitGroups(Empty()):
             yield group
 
     def unit_group(self, id='', name='') -> UnitGroupStatus:
-        return self.data.unit_group(Ref(id=id, name=name))
+        return self.data.GetUnitGroup(Ref(id=id, name=name))
 
     def put_unit_group(self, unit_group: UnitGroup) -> RefStatus:
-        return self.data.put_unit_group(unit_group)
+        return self.data.PutUnitGroup(unit_group)

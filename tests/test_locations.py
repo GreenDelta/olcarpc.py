@@ -28,12 +28,12 @@ class LocationTest(unittest.TestCase):
         # check for ID
         status = self.client.location(location.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.location.id, location.id)
+        self.assertEqual(status.location.id, location.id)
 
         # check for name
         status = self.client.location(name=location.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.location.name, location.name)
+        self.assertEqual(status.location.name, location.name)
 
         self.assertTrue(self.client.delete(location).ok)
 

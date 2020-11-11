@@ -28,12 +28,12 @@ class ProductSystemTest(unittest.TestCase):
         # check for ID
         status = self.client.product_system(product_system.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.product_system.id, product_system.id)
+        self.assertEqual(status.product_system.id, product_system.id)
 
         # check for name
         status = self.client.product_system(name=product_system.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.product_system.name, product_system.name)
+        self.assertEqual(status.product_system.name, product_system.name)
 
         self.assertTrue(self.client.delete(product_system).ok)
 

@@ -28,12 +28,12 @@ class ProcessTest(unittest.TestCase):
         # check for ID
         status = self.client.process(process.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.process.id, process.id)
+        self.assertEqual(status.process.id, process.id)
 
         # check for name
         status = self.client.process(name=process.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.process.name, process.name)
+        self.assertEqual(status.process.name, process.name)
 
         self.assertTrue(self.client.delete(process).ok)
 

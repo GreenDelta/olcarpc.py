@@ -28,12 +28,12 @@ class SocialIndicatorTest(unittest.TestCase):
         # check for ID
         status = self.client.social_indicator(social_indicator.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.social_indicator.id, social_indicator.id)
+        self.assertEqual(status.social_indicator.id, social_indicator.id)
 
         # check for name
         status = self.client.social_indicator(name=social_indicator.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.social_indicator.name, social_indicator.name)
+        self.assertEqual(status.social_indicator.name, social_indicator.name)
 
         self.assertTrue(self.client.delete(social_indicator).ok)
 

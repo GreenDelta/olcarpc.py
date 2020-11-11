@@ -28,12 +28,12 @@ class ImpactCategoryTest(unittest.TestCase):
         # check for ID
         status = self.client.impact_category(impact_category.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.impact_category.id, impact_category.id)
+        self.assertEqual(status.impact_category.id, impact_category.id)
 
         # check for name
         status = self.client.impact_category(name=impact_category.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.impact_category.name, impact_category.name)
+        self.assertEqual(status.impact_category.name, impact_category.name)
 
         self.assertTrue(self.client.delete(impact_category).ok)
 

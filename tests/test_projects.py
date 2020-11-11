@@ -28,12 +28,12 @@ class ProjectTest(unittest.TestCase):
         # check for ID
         status = self.client.project(project.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.project.id, project.id)
+        self.assertEqual(status.project.id, project.id)
 
         # check for name
         status = self.client.project(name=project.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.project.name, project.name)
+        self.assertEqual(status.project.name, project.name)
 
         self.assertTrue(self.client.delete(project).ok)
 

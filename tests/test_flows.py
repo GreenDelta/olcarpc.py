@@ -28,12 +28,12 @@ class FlowTest(unittest.TestCase):
         # check for ID
         status = self.client.flow(flow.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.flow.id, flow.id)
+        self.assertEqual(status.flow.id, flow.id)
 
         # check for name
         status = self.client.flow(name=flow.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.flow.name, flow.name)
+        self.assertEqual(status.flow.name, flow.name)
 
         self.assertTrue(self.client.delete(flow).ok)
 

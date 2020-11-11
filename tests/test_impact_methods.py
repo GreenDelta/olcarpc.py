@@ -28,12 +28,12 @@ class ImpactMethodTest(unittest.TestCase):
         # check for ID
         status = self.client.impact_method(impact_method.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.impact_method.id, impact_method.id)
+        self.assertEqual(status.impact_method.id, impact_method.id)
 
         # check for name
         status = self.client.impact_method(name=impact_method.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.impact_method.name, impact_method.name)
+        self.assertEqual(status.impact_method.name, impact_method.name)
 
         self.assertTrue(self.client.delete(impact_method).ok)
 

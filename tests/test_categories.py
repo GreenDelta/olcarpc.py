@@ -28,12 +28,12 @@ class CategoryTest(unittest.TestCase):
         # check for ID
         status = self.client.category(category.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.category.id, category.id)
+        self.assertEqual(status.category.id, category.id)
 
         # check for name
         status = self.client.category(name=category.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.category.name, category.name)
+        self.assertEqual(status.category.name, category.name)
 
         self.assertTrue(self.client.delete(category).ok)
 

@@ -28,12 +28,12 @@ class ActorTest(unittest.TestCase):
         # check for ID
         status = self.client.actor(actor.id)
         self.assertTrue(status.ok)
-        self.assertEquals(status.actor.id, actor.id)
+        self.assertEqual(status.actor.id, actor.id)
 
         # check for name
         status = self.client.actor(name=actor.name)
         self.assertTrue(status.ok)
-        self.assertEquals(status.actor.name, actor.name)
+        self.assertEqual(status.actor.name, actor.name)
 
         self.assertTrue(self.client.delete(actor).ok)
 
