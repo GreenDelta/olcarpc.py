@@ -8,7 +8,7 @@ from .factory import *
 import olcarpc.services_pb2_grpc as services
 
 import inspect
-from typing import Any, Iterable, Union
+from typing import Any, Iterable, Iterator, Union
 
 __pdoc__ = {
     'olca_pb2': False,
@@ -59,6 +59,10 @@ class Client:
     @property
     def data(self) -> services.DataServiceStub:
         return services.DataServiceStub(self.chan)
+
+    @property
+    def flow_maps(self) -> services.FlowMapServiceStub:
+        return services.FlowMapServiceStub(self.chan)
 
     def delete(self, ref: Union[Any, Ref]) -> Status:
         """
@@ -254,3 +258,12 @@ class Client:
 
     def put_unit_group(self, unit_group: UnitGroup) -> RefStatus:
         return self.data.PutUnitGroup(unit_group)
+
+    def get_providers_of(
+            self, flow: Union[Flow, FlowRef, Ref]) -> Iterator[ProcessRef]:
+        flow_ref = FlowRef(
+            type='Flow',
+            id=flow.id,
+            name=flow.name)
+        for provider in self.data.GetProvidersFor(flow_ref):
+            yield provider

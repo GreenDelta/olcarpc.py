@@ -9,12 +9,13 @@ from google.protobuf.message import (
     Message as google___protobuf___message___Message,
 )
 
-from olca_pb2 import (
+from olcarpc.olca_pb2 import (
     Actor as olca_pb2___Actor,
     Category as olca_pb2___Category,
     Currency as olca_pb2___Currency,
     DQSystem as olca_pb2___DQSystem,
     Flow as olca_pb2___Flow,
+    FlowMap as olca_pb2___FlowMap,
     FlowProperty as olca_pb2___FlowProperty,
     ImpactCategory as olca_pb2___ImpactCategory,
     ImpactMethod as olca_pb2___ImpactMethod,
@@ -372,3 +373,32 @@ class UnitGroupStatus(google___protobuf___message___Message):
     def HasField(self, field_name: typing_extensions___Literal[u"unit_group",b"unit_group"]) -> builtin___bool: ...
     def ClearField(self, field_name: typing_extensions___Literal[u"error",b"error",u"ok",b"ok",u"unit_group",b"unit_group"]) -> None: ...
 type___UnitGroupStatus = UnitGroupStatus
+
+class FlowMapStatus(google___protobuf___message___Message):
+    DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
+    ok: builtin___bool = ...
+    error: typing___Text = ...
+
+    @property
+    def flow_map(self) -> olca_pb2___FlowMap: ...
+
+    def __init__(self,
+        *,
+        ok : typing___Optional[builtin___bool] = None,
+        flow_map : typing___Optional[olca_pb2___FlowMap] = None,
+        error : typing___Optional[typing___Text] = None,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions___Literal[u"flow_map",b"flow_map"]) -> builtin___bool: ...
+    def ClearField(self, field_name: typing_extensions___Literal[u"error",b"error",u"flow_map",b"flow_map",u"ok",b"ok"]) -> None: ...
+type___FlowMapStatus = FlowMapStatus
+
+class FlowMapInfo(google___protobuf___message___Message):
+    DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
+    name: typing___Text = ...
+
+    def __init__(self,
+        *,
+        name : typing___Optional[typing___Text] = None,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions___Literal[u"name",b"name"]) -> None: ...
+type___FlowMapInfo = FlowMapInfo

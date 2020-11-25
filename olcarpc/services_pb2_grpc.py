@@ -260,6 +260,11 @@ class DataServiceStub(object):
                 request_serializer=olca__pb2.UnitGroup.SerializeToString,
                 response_deserializer=services__pb2.RefStatus.FromString,
                 )
+        self.GetProvidersFor = channel.unary_stream(
+                '/protolca.services.DataService/GetProvidersFor',
+                request_serializer=olca__pb2.FlowRef.SerializeToString,
+                response_deserializer=olca__pb2.ProcessRef.FromString,
+                )
 
 
 class DataServiceServicer(object):
@@ -578,6 +583,17 @@ class DataServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetProvidersFor(self, request, context):
+        """Get possible providers for the given flow. For products
+        these are processes with that product on the output side
+        and for waste flows processes with that waste flow on the
+        input side. For elementary flows, an empty stream is
+        returned.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -825,6 +841,11 @@ def add_DataServiceServicer_to_server(servicer, server):
                     servicer.PutUnitGroup,
                     request_deserializer=olca__pb2.UnitGroup.FromString,
                     response_serializer=services__pb2.RefStatus.SerializeToString,
+            ),
+            'GetProvidersFor': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetProvidersFor,
+                    request_deserializer=olca__pb2.FlowRef.FromString,
+                    response_serializer=olca__pb2.ProcessRef.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1666,5 +1687,155 @@ class DataService(object):
         return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/PutUnitGroup',
             olca__pb2.UnitGroup.SerializeToString,
             services__pb2.RefStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetProvidersFor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/GetProvidersFor',
+            olca__pb2.FlowRef.SerializeToString,
+            olca__pb2.ProcessRef.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class FlowMapServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Delete = channel.unary_unary(
+                '/protolca.services.FlowMapService/Delete',
+                request_serializer=services__pb2.FlowMapInfo.SerializeToString,
+                response_deserializer=services__pb2.Status.FromString,
+                )
+        self.GetAll = channel.unary_stream(
+                '/protolca.services.FlowMapService/GetAll',
+                request_serializer=services__pb2.Empty.SerializeToString,
+                response_deserializer=services__pb2.FlowMapInfo.FromString,
+                )
+        self.Put = channel.unary_unary(
+                '/protolca.services.FlowMapService/Put',
+                request_serializer=olca__pb2.FlowMap.SerializeToString,
+                response_deserializer=services__pb2.Status.FromString,
+                )
+
+
+class FlowMapServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def Delete(self, request, context):
+        """Delete the flow map with the given name.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAll(self, request, context):
+        """Get the information (basically just the names) of all
+        flow maps that are available in the database.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Put(self, request, context):
+        """Inserts the given flow map into the database. It overwrites
+        an existing flow map if there is a flow map with the same
+        name already available in the database.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_FlowMapServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Delete': grpc.unary_unary_rpc_method_handler(
+                    servicer.Delete,
+                    request_deserializer=services__pb2.FlowMapInfo.FromString,
+                    response_serializer=services__pb2.Status.SerializeToString,
+            ),
+            'GetAll': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetAll,
+                    request_deserializer=services__pb2.Empty.FromString,
+                    response_serializer=services__pb2.FlowMapInfo.SerializeToString,
+            ),
+            'Put': grpc.unary_unary_rpc_method_handler(
+                    servicer.Put,
+                    request_deserializer=olca__pb2.FlowMap.FromString,
+                    response_serializer=services__pb2.Status.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'protolca.services.FlowMapService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class FlowMapService(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Delete(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.FlowMapService/Delete',
+            services__pb2.FlowMapInfo.SerializeToString,
+            services__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAll(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.FlowMapService/GetAll',
+            services__pb2.Empty.SerializeToString,
+            services__pb2.FlowMapInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Put(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.FlowMapService/Put',
+            olca__pb2.FlowMap.SerializeToString,
+            services__pb2.Status.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
