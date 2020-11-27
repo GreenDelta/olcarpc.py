@@ -1722,6 +1722,11 @@ class FlowMapServiceStub(object):
                 request_serializer=services__pb2.FlowMapInfo.SerializeToString,
                 response_deserializer=services__pb2.Status.FromString,
                 )
+        self.Get = channel.unary_unary(
+                '/protolca.services.FlowMapService/Get',
+                request_serializer=services__pb2.FlowMapInfo.SerializeToString,
+                response_deserializer=services__pb2.FlowMapStatus.FromString,
+                )
         self.GetAll = channel.unary_stream(
                 '/protolca.services.FlowMapService/GetAll',
                 request_serializer=services__pb2.Empty.SerializeToString,
@@ -1739,6 +1744,14 @@ class FlowMapServiceServicer(object):
 
     def Delete(self, request, context):
         """Delete the flow map with the given name.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Get(self, request, context):
+        """Get the flow map with the given name form the
+        database.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1768,6 +1781,11 @@ def add_FlowMapServiceServicer_to_server(servicer, server):
                     servicer.Delete,
                     request_deserializer=services__pb2.FlowMapInfo.FromString,
                     response_serializer=services__pb2.Status.SerializeToString,
+            ),
+            'Get': grpc.unary_unary_rpc_method_handler(
+                    servicer.Get,
+                    request_deserializer=services__pb2.FlowMapInfo.FromString,
+                    response_serializer=services__pb2.FlowMapStatus.SerializeToString,
             ),
             'GetAll': grpc.unary_stream_rpc_method_handler(
                     servicer.GetAll,
@@ -1803,6 +1821,23 @@ class FlowMapService(object):
         return grpc.experimental.unary_unary(request, target, '/protolca.services.FlowMapService/Delete',
             services__pb2.FlowMapInfo.SerializeToString,
             services__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Get(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.FlowMapService/Get',
+            services__pb2.FlowMapInfo.SerializeToString,
+            services__pb2.FlowMapStatus.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

@@ -267,3 +267,32 @@ class Client:
             name=flow.name)
         for provider in self.data.GetProvidersFor(flow_ref):
             yield provider
+
+    def get_flow_maps(self) -> Iterator[str]:
+        """
+        Get the names of the flow maps that are stored in the database.
+        """
+        info: FlowMapInfo
+        for info in self.flow_maps.GetAll(Empty()):
+            yield info.name
+
+    def get_flow_map(self, name: str) -> FlowMapStatus:
+        """
+        Get the flow map with the given name from the database.
+        """
+        return self.flow_maps.Get(FlowMapInfo(name=name))
+
+    def put_flow_map(self, flow_map: FlowMap) -> Status:
+        """
+        Saves the given flow map into the database.
+
+        If a flow map with the same name already exists, it updates it in the
+        database.
+        """
+        return self.flow_maps.Put(flow_map)
+
+    def delete_flow_map(self, name: str) -> Status:
+        """
+        Delete the flow map with the given name from the database.
+        """
+        return self.flow_maps.Delete(FlowMapInfo(name=name))
