@@ -8,7 +8,7 @@ from .factory import *
 import olcarpc.services_pb2_grpc as services
 
 import inspect
-from typing import Any, Iterable, Iterator, Union
+from typing import Any, Iterable, Iterator, Type, Union
 
 __pdoc__ = {
     'olca_pb2': False,
@@ -18,10 +18,53 @@ __pdoc__ = {
 
 
 def to_json(entity, indent: int = 2) -> str:
+    """
+    Converts an entity to a JSON string.
+
+    Parameters
+    ----------
+    entity: Any rpc message
+        The entity you want to convert to JSON (e.g. a `Flow` or `Process`).
+    indent: int, optional
+        The number of space characters to indent the JSON output, defaults to 2.
+
+    Example
+    -------
+    ```py
+    import olcarpc as rpc
+
+    unit = rpc.unit_of('kg')
+    json = rpc.to_json(unit)
+    print(json)
+    ```
+    """
     return jf.MessageToJson(entity, indent=indent)
 
 
-def ref(ref_type, ref_id: str, name='') -> Ref:
+def ref(ref_type: Union[Type, str], ref_id: str, name='') -> Ref:
+    """
+    Creates a data set reference.
+
+    Parameters
+    ----------
+    ref_type: Union[Type, str]
+        The data set type.
+    ref_id: str
+        The reference ID (uuid) of the data set
+    name: str, optional
+        The name of the data set.
+
+    Example
+    -------
+    ```py
+    import olcarpc as rpc
+    rpc.ref(
+        'Flow',
+        '071a81fe-5e75-32ee-af1a-734a8a0f3dda',
+        'compost plant, open')
+    ```
+
+    """
     r = Ref()
     if inspect.isclass(ref_type):
         r.type = ref_type.__name__
@@ -260,7 +303,7 @@ class Client:
         return self.data.PutUnitGroup(unit_group)
 
     def get_providers_of(
-            self, flow: Union[Flow, FlowRef, Ref]) -> Iterator[ProcessRef]:
+        self, flow: Union[Flow, FlowRef, Ref]) -> Iterator[ProcessRef]:
         flow_ref = FlowRef(
             type='Flow',
             id=flow.id,

@@ -10,5 +10,5 @@ del /s /q docs\*.md
 
 protoc -I.\proto --doc_out=. --doc_opt=markdown,docs\protocol.md proto\*.proto
 
-pdoc --force --config show_source_code=False --output-dir docs olcarpc
+pdoc --html --force --config show_source_code=False --output-dir docs olcarpc
 py scripts\docpost.py
