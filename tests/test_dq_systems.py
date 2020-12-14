@@ -13,12 +13,12 @@ class DQSystemTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.dq_system('non existing DQSystem')
+        status = self.client.get_dq_system('non existing DQSystem')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.dq_system(name='non existing DQSystem')
+        status = self.client.get_dq_system(name='non existing DQSystem')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class DQSystemTest(unittest.TestCase):
         dq_system = self.__dq_system__()
 
         # check for ID
-        status = self.client.dq_system(dq_system.id)
+        status = self.client.get_dq_system(dq_system.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.dq_system.id, dq_system.id)
 
         # check for name
-        status = self.client.dq_system(name=dq_system.name)
+        status = self.client.get_dq_system(name=dq_system.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.dq_system.name, dq_system.name)
 
@@ -42,7 +42,7 @@ class DQSystemTest(unittest.TestCase):
         for _i in range(0, 10):
             dq_systems.append(self.__dq_system__())
         dq_system_ids = set()
-        for dq_system in self.client.dq_systems():
+        for dq_system in self.client.get_dq_systems():
             dq_system_ids.add(dq_system.id)
         for dq_system in dq_systems:
             self.assertTrue(dq_system.id in dq_system_ids)
@@ -50,7 +50,7 @@ class DQSystemTest(unittest.TestCase):
 
     def test_dq_system_atts(self):
         orig = self.__dq_system__()
-        clone: rpc.DQSystem = self.client.dq_system(orig.id).dq_system
+        clone: rpc.DQSystem = self.client.get_dq_system(orig.id).dq_system
 
         self.assertEqual('DQSystem', clone.type)
         self.assertEqual(orig.id, clone.id)

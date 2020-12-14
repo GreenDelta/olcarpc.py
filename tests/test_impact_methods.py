@@ -13,12 +13,12 @@ class ImpactMethodTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.impact_method('non existing ImpactMethod')
+        status = self.client.get_impact_method('non existing ImpactMethod')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.impact_method(name='non existing ImpactMethod')
+        status = self.client.get_impact_method(name='non existing ImpactMethod')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class ImpactMethodTest(unittest.TestCase):
         impact_method = self.__impact_method__()
 
         # check for ID
-        status = self.client.impact_method(impact_method.id)
+        status = self.client.get_impact_method(impact_method.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.impact_method.id, impact_method.id)
 
         # check for name
-        status = self.client.impact_method(name=impact_method.name)
+        status = self.client.get_impact_method(name=impact_method.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.impact_method.name, impact_method.name)
 
@@ -42,7 +42,7 @@ class ImpactMethodTest(unittest.TestCase):
         for _i in range(0, 10):
             impact_methods.append(self.__impact_method__())
         impact_method_ids = set()
-        for impact_method in self.client.impact_methods():
+        for impact_method in self.client.get_impact_methods():
             impact_method_ids.add(impact_method.id)
         for impact_method in impact_methods:
             self.assertTrue(impact_method.id in impact_method_ids)
@@ -50,7 +50,8 @@ class ImpactMethodTest(unittest.TestCase):
 
     def test_impact_method_atts(self):
         orig = self.__impact_method__()
-        clone: rpc.ImpactMethod = self.client.impact_method(orig.id).impact_method
+        clone: rpc.ImpactMethod = self.client.get_impact_method(orig.id)\
+            .impact_method
 
         self.assertEqual('ImpactMethod', clone.type)
         self.assertEqual(orig.id, clone.id)

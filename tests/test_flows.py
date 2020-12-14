@@ -13,12 +13,12 @@ class FlowTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.flow('non existing flow')
+        status = self.client.get_flow('non existing flow')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.flow(name='non existing flow')
+        status = self.client.get_flow(name='non existing flow')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class FlowTest(unittest.TestCase):
         flow = self.__flow__()
 
         # check for ID
-        status = self.client.flow(flow.id)
+        status = self.client.get_flow(flow.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.flow.id, flow.id)
 
         # check for name
-        status = self.client.flow(name=flow.name)
+        status = self.client.get_flow(name=flow.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.flow.name, flow.name)
 
@@ -42,7 +42,7 @@ class FlowTest(unittest.TestCase):
         for _i in range(0, 10):
             flows.append(self.__flow__())
         flow_ids = set()
-        for f in self.client.flows():
+        for f in self.client.get_flows():
             flow_ids.add(f.id)
         for f in flows:
             self.assertTrue(f.id in flow_ids)
@@ -50,7 +50,7 @@ class FlowTest(unittest.TestCase):
 
     def test_flow_atts(self):
         orig = self.__flow__()
-        clone: rpc.Flow = self.client.flow(orig.id).flow
+        clone: rpc.Flow = self.client.get_flow(orig.id).flow
 
         self.assertEqual('Flow', clone.type)
         self.assertEqual(orig.id, clone.id)

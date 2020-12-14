@@ -13,12 +13,12 @@ class SourceTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.source('non existing Source')
+        status = self.client.get_source('non existing Source')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.source(name='non existing Source')
+        status = self.client.get_source(name='non existing Source')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class SourceTest(unittest.TestCase):
         source = self.__source__()
 
         # check for ID
-        status = self.client.source(source.id)
+        status = self.client.get_source(source.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.source.id, source.id)
 
         # check for name
-        status = self.client.source(name=source.name)
+        status = self.client.get_source(name=source.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.source.name, source.name)
 
@@ -42,7 +42,7 @@ class SourceTest(unittest.TestCase):
         for _i in range(0, 10):
             sources.append(self.__source__())
         source_ids = set()
-        for source in self.client.sources():
+        for source in self.client.get_sources():
             source_ids.add(source.id)
         for source in sources:
             self.assertTrue(source.id in source_ids)
@@ -50,7 +50,7 @@ class SourceTest(unittest.TestCase):
 
     def test_source_atts(self):
         orig = self.__source__()
-        clone: rpc.Source = self.client.source(orig.id).source
+        clone: rpc.Source = self.client.get_source(orig.id).source
 
         self.assertEqual('Source', clone.type)
         self.assertEqual(orig.id, clone.id)

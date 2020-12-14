@@ -13,12 +13,13 @@ class ImpactCategoryTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.impact_category('non existing ImpactCategory')
+        status = self.client.get_impact_category('non existing ImpactCategory')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.impact_category(name='non existing ImpactCategory')
+        status = self.client.get_impact_category(
+            name='non existing ImpactCategory')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +27,12 @@ class ImpactCategoryTest(unittest.TestCase):
         impact_category = self.__impact_category__()
 
         # check for ID
-        status = self.client.impact_category(impact_category.id)
+        status = self.client.get_impact_category(impact_category.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.impact_category.id, impact_category.id)
 
         # check for name
-        status = self.client.impact_category(name=impact_category.name)
+        status = self.client.get_impact_category(name=impact_category.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.impact_category.name, impact_category.name)
 
@@ -42,7 +43,7 @@ class ImpactCategoryTest(unittest.TestCase):
         for _i in range(0, 10):
             impact_categories.append(self.__impact_category__())
         impact_category_ids = set()
-        for impact_category in self.client.impact_categories():
+        for impact_category in self.client.get_impact_categories():
             impact_category_ids.add(impact_category.id)
         for impact_category in impact_categories:
             self.assertTrue(impact_category.id in impact_category_ids)
@@ -50,7 +51,8 @@ class ImpactCategoryTest(unittest.TestCase):
 
     def test_impact_category_atts(self):
         orig = self.__impact_category__()
-        clone: rpc.ImpactCategory = self.client.impact_category(orig.id).impact_category
+        clone: rpc.ImpactCategory = self.client.get_impact_category(orig.id)\
+            .impact_category
 
         self.assertEqual('ImpactCategory', clone.type)
         self.assertEqual(orig.id, clone.id)

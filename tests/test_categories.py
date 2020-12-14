@@ -13,12 +13,12 @@ class CategoryTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.category('non existing Category')
+        status = self.client.get_category('non existing Category')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.category(name='non existing Category')
+        status = self.client.get_category(name='non existing Category')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class CategoryTest(unittest.TestCase):
         category = self.__category__()
 
         # check for ID
-        status = self.client.category(category.id)
+        status = self.client.get_category(category.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.category.id, category.id)
 
         # check for name
-        status = self.client.category(name=category.name)
+        status = self.client.get_category(name=category.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.category.name, category.name)
 
@@ -42,7 +42,7 @@ class CategoryTest(unittest.TestCase):
         for _i in range(0, 10):
             categories.append(self.__category__())
         category_ids = set()
-        for category in self.client.categories():
+        for category in self.client.get_categories():
             category_ids.add(category.id)
         for category in categories:
             self.assertTrue(category.id in category_ids)
@@ -50,7 +50,7 @@ class CategoryTest(unittest.TestCase):
 
     def test_category_atts(self):
         orig = self.__category__()
-        clone: rpc.Category = self.client.category(orig.id).category
+        clone: rpc.Category = self.client.get_category(orig.id).category
 
         self.assertEqual('Category', clone.type)
         self.assertEqual(orig.id, clone.id)

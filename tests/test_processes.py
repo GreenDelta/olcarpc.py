@@ -13,12 +13,12 @@ class ProcessTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.process('non existing Process')
+        status = self.client.get_process('non existing Process')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.process(name='non existing Process')
+        status = self.client.get_process(name='non existing Process')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class ProcessTest(unittest.TestCase):
         process = self.__process__()
 
         # check for ID
-        status = self.client.process(process.id)
+        status = self.client.get_process(process.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.process.id, process.id)
 
         # check for name
-        status = self.client.process(name=process.name)
+        status = self.client.get_process(name=process.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.process.name, process.name)
 
@@ -42,7 +42,7 @@ class ProcessTest(unittest.TestCase):
         for _i in range(0, 10):
             processes.append(self.__process__())
         process_ids = set()
-        for process in self.client.processes():
+        for process in self.client.get_processes():
             process_ids.add(process.id)
         for process in processes:
             self.assertTrue(process.id in process_ids)
@@ -50,7 +50,7 @@ class ProcessTest(unittest.TestCase):
 
     def test_process_atts(self):
         orig = self.__process__()
-        clone: rpc.Process = self.client.process(orig.id).process
+        clone: rpc.Process = self.client.get_process(orig.id).process
 
         self.assertEqual('Process', clone.type)
         self.assertEqual(orig.id, clone.id)

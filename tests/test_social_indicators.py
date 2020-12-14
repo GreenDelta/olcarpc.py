@@ -13,12 +13,13 @@ class SocialIndicatorTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.social_indicator('non existing SocialIndicator')
+        status = self.client.get_social_indicator('non existing SocialIndicator')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.social_indicator(name='non existing SocialIndicator')
+        status = self.client.get_social_indicator(
+            name='non existing SocialIndicator')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +27,12 @@ class SocialIndicatorTest(unittest.TestCase):
         social_indicator = self.__social_indicator__()
 
         # check for ID
-        status = self.client.social_indicator(social_indicator.id)
+        status = self.client.get_social_indicator(social_indicator.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.social_indicator.id, social_indicator.id)
 
         # check for name
-        status = self.client.social_indicator(name=social_indicator.name)
+        status = self.client.get_social_indicator(name=social_indicator.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.social_indicator.name, social_indicator.name)
 
@@ -42,7 +43,7 @@ class SocialIndicatorTest(unittest.TestCase):
         for _i in range(0, 10):
             social_indicators.append(self.__social_indicator__())
         social_indicator_ids = set()
-        for social_indicator in self.client.social_indicators():
+        for social_indicator in self.client.get_social_indicators():
             social_indicator_ids.add(social_indicator.id)
         for social_indicator in social_indicators:
             self.assertTrue(social_indicator.id in social_indicator_ids)
@@ -50,7 +51,8 @@ class SocialIndicatorTest(unittest.TestCase):
 
     def test_social_indicator_atts(self):
         orig = self.__social_indicator__()
-        clone: rpc.SocialIndicator = self.client.social_indicator(orig.id).social_indicator
+        clone: rpc.SocialIndicator = self.client.get_social_indicator(orig.id)\
+            .social_indicator
 
         self.assertEqual('SocialIndicator', clone.type)
         self.assertEqual(orig.id, clone.id)

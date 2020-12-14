@@ -13,12 +13,12 @@ class ParameterTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.parameter('non existing Parameter')
+        status = self.client.get_parameter('non existing Parameter')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.parameter(name='non existing Parameter')
+        status = self.client.get_parameter(name='non existing Parameter')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class ParameterTest(unittest.TestCase):
         parameter = self.__parameter__()
 
         # check for ID
-        status = self.client.parameter(parameter.id)
+        status = self.client.get_parameter(parameter.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.parameter.id, parameter.id)
 
         # check for name
-        status = self.client.parameter(name=parameter.name)
+        status = self.client.get_parameter(name=parameter.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.parameter.name, parameter.name)
 
@@ -42,7 +42,7 @@ class ParameterTest(unittest.TestCase):
         for _i in range(0, 10):
             parameters.append(self.__parameter__())
         parameter_ids = set()
-        for parameter in self.client.parameters():
+        for parameter in self.client.get_parameters():
             parameter_ids.add(parameter.id)
         for parameter in parameters:
             self.assertTrue(parameter.id in parameter_ids)
@@ -50,7 +50,7 @@ class ParameterTest(unittest.TestCase):
 
     def test_parameter_atts(self):
         orig = self.__parameter__()
-        clone: rpc.Parameter = self.client.parameter(orig.id).parameter
+        clone: rpc.Parameter = self.client.get_parameter(orig.id).parameter
 
         self.assertEqual('Parameter', clone.type)
         self.assertEqual(orig.id, clone.id)

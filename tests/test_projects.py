@@ -13,12 +13,12 @@ class ProjectTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.project('non existing Project')
+        status = self.client.get_project('non existing Project')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.project(name='non existing Project')
+        status = self.client.get_project(name='non existing Project')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class ProjectTest(unittest.TestCase):
         project = self.__project__()
 
         # check for ID
-        status = self.client.project(project.id)
+        status = self.client.get_project(project.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.project.id, project.id)
 
         # check for name
-        status = self.client.project(name=project.name)
+        status = self.client.get_project(name=project.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.project.name, project.name)
 
@@ -42,7 +42,7 @@ class ProjectTest(unittest.TestCase):
         for _i in range(0, 10):
             projects.append(self.__project__())
         project_ids = set()
-        for project in self.client.projects():
+        for project in self.client.get_projects():
             project_ids.add(project.id)
         for project in projects:
             self.assertTrue(project.id in project_ids)
@@ -50,7 +50,7 @@ class ProjectTest(unittest.TestCase):
 
     def test_project_atts(self):
         orig = self.__project__()
-        clone: rpc.Project = self.client.project(orig.id).project
+        clone: rpc.Project = self.client.get_project(orig.id).project
 
         self.assertEqual('Project', clone.type)
         self.assertEqual(orig.id, clone.id)

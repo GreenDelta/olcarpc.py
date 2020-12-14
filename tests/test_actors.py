@@ -13,12 +13,12 @@ class ActorTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.actor('non existing Actor')
+        status = self.client.get_actor('non existing Actor')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.actor(name='non existing Actor')
+        status = self.client.get_actor(name='non existing Actor')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class ActorTest(unittest.TestCase):
         actor = self.__actor__()
 
         # check for ID
-        status = self.client.actor(actor.id)
+        status = self.client.get_actor(actor.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.actor.id, actor.id)
 
         # check for name
-        status = self.client.actor(name=actor.name)
+        status = self.client.get_actor(name=actor.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.actor.name, actor.name)
 
@@ -42,7 +42,7 @@ class ActorTest(unittest.TestCase):
         for _i in range(0, 10):
             actors.append(self.__actor__())
         actor_ids = set()
-        for actor in self.client.actors():
+        for actor in self.client.get_actors():
             actor_ids.add(actor.id)
         for actor in actors:
             self.assertTrue(actor.id in actor_ids)
@@ -50,7 +50,7 @@ class ActorTest(unittest.TestCase):
 
     def test_actor_atts(self):
         orig = self.__actor__()
-        clone: rpc.Actor = self.client.actor(orig.id).actor
+        clone: rpc.Actor = self.client.get_actor(orig.id).actor
 
         self.assertEqual('Actor', clone.type)
         self.assertEqual(orig.id, clone.id)

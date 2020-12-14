@@ -13,12 +13,12 @@ class LocationTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.location('non existing Location')
+        status = self.client.get_location('non existing Location')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.location(name='non existing Location')
+        status = self.client.get_location(name='non existing Location')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class LocationTest(unittest.TestCase):
         location = self.__location__()
 
         # check for ID
-        status = self.client.location(location.id)
+        status = self.client.get_location(location.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.location.id, location.id)
 
         # check for name
-        status = self.client.location(name=location.name)
+        status = self.client.get_location(name=location.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.location.name, location.name)
 
@@ -42,7 +42,7 @@ class LocationTest(unittest.TestCase):
         for _i in range(0, 10):
             locations.append(self.__location__())
         location_ids = set()
-        for location in self.client.locations():
+        for location in self.client.get_locations():
             location_ids.add(location.id)
         for location in locations:
             self.assertTrue(location.id in location_ids)
@@ -50,7 +50,7 @@ class LocationTest(unittest.TestCase):
 
     def test_location_atts(self):
         orig = self.__location__()
-        clone: rpc.Location = self.client.location(orig.id).location
+        clone: rpc.Location = self.client.get_location(orig.id).location
 
         self.assertEqual('Location', clone.type)
         self.assertEqual(orig.id, clone.id)

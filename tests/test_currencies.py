@@ -13,12 +13,12 @@ class CurrencyTest(unittest.TestCase):
 
     def test_non_existing(self):
         # check for ID
-        status = self.client.currency('non existing Currency')
+        status = self.client.get_currency('non existing Currency')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
         # check for name
-        status = self.client.currency(name='non existing Currency')
+        status = self.client.get_currency(name='non existing Currency')
         self.assertFalse(status.ok)
         self.assertTrue(len(status.error) > 0)
 
@@ -26,12 +26,12 @@ class CurrencyTest(unittest.TestCase):
         currency = self.__currency__()
 
         # check for ID
-        status = self.client.currency(currency.id)
+        status = self.client.get_currency(currency.id)
         self.assertTrue(status.ok)
         self.assertEqual(status.currency.id, currency.id)
 
         # check for name
-        status = self.client.currency(name=currency.name)
+        status = self.client.get_currency(name=currency.name)
         self.assertTrue(status.ok)
         self.assertEqual(status.currency.name, currency.name)
 
@@ -42,7 +42,7 @@ class CurrencyTest(unittest.TestCase):
         for _i in range(0, 10):
             currencies.append(self.__currency__())
         currency_ids = set()
-        for currency in self.client.currencies():
+        for currency in self.client.get_currencies():
             currency_ids.add(currency.id)
         for currency in currencies:
             self.assertTrue(currency.id in currency_ids)
@@ -50,7 +50,7 @@ class CurrencyTest(unittest.TestCase):
 
     def test_currency_atts(self):
         orig = self.__currency__()
-        clone: rpc.Currency = self.client.currency(orig.id).currency
+        clone: rpc.Currency = self.client.get_currency(orig.id).currency
 
         self.assertEqual('Currency', clone.type)
         self.assertEqual(orig.id, clone.id)

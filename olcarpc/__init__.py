@@ -1,14 +1,13 @@
-import grpc
-import google.protobuf.json_format as jf
+import inspect
+from typing import Any, Iterator, Type, Union
 
-from .olca_pb2 import *
-from .services_pb2 import *
-from .factory import *
+import google.protobuf.json_format as jf
+import grpc
 
 import olcarpc.services_pb2_grpc as services
-
-import inspect
-from typing import Any, Iterable, Iterator, Type, Union
+from .factory import *
+from .olca_pb2 import *
+from .services_pb2 import *
 
 __pdoc__ = {
     'olca_pb2': False,
