@@ -9,9 +9,9 @@ rem * mypy-protobuf for type hints: https://github.com/dropbox/mypy-protobuf);
 rem   make sure that the `protoc-gen-mypy` script is in your path
 rem * the grpcio-tools via python -m pip install grpcio-tools
 
-rem first update the proto files if we are next to the `olca-proto` repo
-if exist ..\olca-proto\proto (
-    xcopy /y ..\olca-proto\proto .\proto
+rem first update the proto files if we are next to the `olca-modules` repo
+if exist ..\olca-modules\olca-proto\src\main\proto (
+    xcopy /y ..\olca-modules\olca-proto\src\main\proto .\proto
 )
 
 rem generate the python modules

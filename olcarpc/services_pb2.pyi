@@ -2,14 +2,19 @@
 import sys
 from google.protobuf.descriptor import (
     Descriptor as google___protobuf___descriptor___Descriptor,
+    EnumDescriptor as google___protobuf___descriptor___EnumDescriptor,
     FileDescriptor as google___protobuf___descriptor___FileDescriptor,
+)
+
+from google.protobuf.internal.enum_type_wrapper import (
+    _EnumTypeWrapper as google___protobuf___internal___enum_type_wrapper____EnumTypeWrapper,
 )
 
 from google.protobuf.message import (
     Message as google___protobuf___message___Message,
 )
 
-from olcarpc.olca_pb2 import (
+from olca_pb2 import (
     Actor as olca_pb2___Actor,
     Category as olca_pb2___Category,
     Currency as olca_pb2___Currency,
@@ -20,8 +25,10 @@ from olcarpc.olca_pb2 import (
     ImpactCategory as olca_pb2___ImpactCategory,
     ImpactMethod as olca_pb2___ImpactMethod,
     Location as olca_pb2___Location,
+    ModelTypeValue as olca_pb2___ModelTypeValue,
     Parameter as olca_pb2___Parameter,
     Process as olca_pb2___Process,
+    ProcessTypeValue as olca_pb2___ProcessTypeValue,
     ProductSystem as olca_pb2___ProductSystem,
     Project as olca_pb2___Project,
     Ref as olca_pb2___Ref,
@@ -31,8 +38,10 @@ from olcarpc.olca_pb2 import (
 )
 
 from typing import (
+    NewType as typing___NewType,
     Optional as typing___Optional,
     Text as typing___Text,
+    cast as typing___cast,
 )
 
 from typing_extensions import (
@@ -373,6 +382,65 @@ class UnitGroupStatus(google___protobuf___message___Message):
     def HasField(self, field_name: typing_extensions___Literal[u"unit_group",b"unit_group"]) -> builtin___bool: ...
     def ClearField(self, field_name: typing_extensions___Literal[u"error",b"error",u"ok",b"ok",u"unit_group",b"unit_group"]) -> None: ...
 type___UnitGroupStatus = UnitGroupStatus
+
+class DescriptorRequest(google___protobuf___message___Message):
+    DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
+    type: olca_pb2___ModelTypeValue = ...
+    id: typing___Text = ...
+    name: typing___Text = ...
+
+    def __init__(self,
+        *,
+        type : typing___Optional[olca_pb2___ModelTypeValue] = None,
+        id : typing___Optional[typing___Text] = None,
+        name : typing___Optional[typing___Text] = None,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions___Literal[u"id",b"id",u"name",b"name",u"type",b"type"]) -> None: ...
+type___DescriptorRequest = DescriptorRequest
+
+class SearchRequest(google___protobuf___message___Message):
+    DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
+    type: olca_pb2___ModelTypeValue = ...
+    query: typing___Text = ...
+
+    def __init__(self,
+        *,
+        type : typing___Optional[olca_pb2___ModelTypeValue] = None,
+        query : typing___Optional[typing___Text] = None,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions___Literal[u"query",b"query",u"type",b"type"]) -> None: ...
+type___SearchRequest = SearchRequest
+
+class CreateSystemRequest(google___protobuf___message___Message):
+    DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
+    DefaultProvidersValue = typing___NewType('DefaultProvidersValue', builtin___int)
+    type___DefaultProvidersValue = DefaultProvidersValue
+    DefaultProviders: _DefaultProviders
+    class _DefaultProviders(google___protobuf___internal___enum_type_wrapper____EnumTypeWrapper[CreateSystemRequest.DefaultProvidersValue]):
+        DESCRIPTOR: google___protobuf___descriptor___EnumDescriptor = ...
+        Prefer = typing___cast(CreateSystemRequest.DefaultProvidersValue, 0)
+        Ignore = typing___cast(CreateSystemRequest.DefaultProvidersValue, 1)
+        Only = typing___cast(CreateSystemRequest.DefaultProvidersValue, 2)
+    Prefer = typing___cast(CreateSystemRequest.DefaultProvidersValue, 0)
+    Ignore = typing___cast(CreateSystemRequest.DefaultProvidersValue, 1)
+    Only = typing___cast(CreateSystemRequest.DefaultProvidersValue, 2)
+    type___DefaultProviders = DefaultProviders
+
+    default_providers: type___CreateSystemRequest.DefaultProvidersValue = ...
+    preferred_type: olca_pb2___ProcessTypeValue = ...
+
+    @property
+    def process(self) -> olca_pb2___Ref: ...
+
+    def __init__(self,
+        *,
+        process : typing___Optional[olca_pb2___Ref] = None,
+        default_providers : typing___Optional[type___CreateSystemRequest.DefaultProvidersValue] = None,
+        preferred_type : typing___Optional[olca_pb2___ProcessTypeValue] = None,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions___Literal[u"process",b"process"]) -> builtin___bool: ...
+    def ClearField(self, field_name: typing_extensions___Literal[u"default_providers",b"default_providers",u"preferred_type",b"preferred_type",u"process",b"process"]) -> None: ...
+type___CreateSystemRequest = CreateSystemRequest
 
 class FlowMapStatus(google___protobuf___message___Message):
     DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...

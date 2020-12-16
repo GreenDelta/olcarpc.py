@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import olcarpc.olca_pb2 as olca__pb2
-import olcarpc.services_pb2 as services__pb2
+import olca_pb2 as olca__pb2
+import services_pb2 as services__pb2
 
 
 class DataServiceStub(object):
@@ -19,6 +19,26 @@ class DataServiceStub(object):
                 '/protolca.services.DataService/Delete',
                 request_serializer=olca__pb2.Ref.SerializeToString,
                 response_deserializer=services__pb2.Status.FromString,
+                )
+        self.GetDescriptors = channel.unary_stream(
+                '/protolca.services.DataService/GetDescriptors',
+                request_serializer=services__pb2.DescriptorRequest.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.GetDescriptor = channel.unary_unary(
+                '/protolca.services.DataService/GetDescriptor',
+                request_serializer=services__pb2.DescriptorRequest.SerializeToString,
+                response_deserializer=services__pb2.RefStatus.FromString,
+                )
+        self.Search = channel.unary_stream(
+                '/protolca.services.DataService/Search',
+                request_serializer=services__pb2.SearchRequest.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
+                )
+        self.CreateProductSystem = channel.unary_unary(
+                '/protolca.services.DataService/CreateProductSystem',
+                request_serializer=services__pb2.CreateSystemRequest.SerializeToString,
+                response_deserializer=services__pb2.RefStatus.FromString,
                 )
         self.GetActors = channel.unary_stream(
                 '/protolca.services.DataService/GetActors',
@@ -274,6 +294,34 @@ class DataServiceServicer(object):
         """Deletes the object with the `id` and `type` of the given descriptor from
         the database. Note that the type is a string with the name of the
         corresponding model class, e.g. `Process` or `Flow`.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDescriptors(self, request, context):
+        """Get all descriptors that match the given request.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDescriptor(self, request, context):
+        """Get the first descriptor that matches the given request.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Search(self, request, context):
+        """Search for data sets.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateProductSystem(self, request, context):
+        """Creates a new product system.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -602,6 +650,26 @@ def add_DataServiceServicer_to_server(servicer, server):
                     request_deserializer=olca__pb2.Ref.FromString,
                     response_serializer=services__pb2.Status.SerializeToString,
             ),
+            'GetDescriptors': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetDescriptors,
+                    request_deserializer=services__pb2.DescriptorRequest.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'GetDescriptor': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDescriptor,
+                    request_deserializer=services__pb2.DescriptorRequest.FromString,
+                    response_serializer=services__pb2.RefStatus.SerializeToString,
+            ),
+            'Search': grpc.unary_stream_rpc_method_handler(
+                    servicer.Search,
+                    request_deserializer=services__pb2.SearchRequest.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
+            ),
+            'CreateProductSystem': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateProductSystem,
+                    request_deserializer=services__pb2.CreateSystemRequest.FromString,
+                    response_serializer=services__pb2.RefStatus.SerializeToString,
+            ),
             'GetActors': grpc.unary_stream_rpc_method_handler(
                     servicer.GetActors,
                     request_deserializer=services__pb2.Empty.FromString,
@@ -871,6 +939,74 @@ class DataService(object):
         return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/Delete',
             olca__pb2.Ref.SerializeToString,
             services__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDescriptors(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/GetDescriptors',
+            services__pb2.DescriptorRequest.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDescriptor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/GetDescriptor',
+            services__pb2.DescriptorRequest.SerializeToString,
+            services__pb2.RefStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Search(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/Search',
+            services__pb2.SearchRequest.SerializeToString,
+            olca__pb2.Ref.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateProductSystem(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.DataService/CreateProductSystem',
+            services__pb2.CreateSystemRequest.SerializeToString,
+            services__pb2.RefStatus.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

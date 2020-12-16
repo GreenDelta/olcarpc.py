@@ -16,7 +16,7 @@ class ProviderTest(unittest.TestCase):
         i = 0
         for _ in providers:
             i += 1
-        self.assertEquals(0, i)
+        self.assertEqual(0, i)
 
     def test_find_provider(self):
 
@@ -38,7 +38,7 @@ class ProviderTest(unittest.TestCase):
         # check that we can find the process
         # as provider
         provider = next(self.client.get_providers_of(steel))
-        self.assertEquals(process.id, provider.id)
+        self.assertEqual(process.id, provider.id)
 
         # delete the model
         self.client.delete(process)
