@@ -2010,3 +2010,99 @@ class FlowMapService(object):
             services__pb2.Status.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class ResultServiceStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Calculate = channel.unary_unary(
+                '/protolca.services.ResultService/Calculate',
+                request_serializer=olca__pb2.CalculationSetup.SerializeToString,
+                response_deserializer=services__pb2.ResultStatus.FromString,
+                )
+        self.Dispose = channel.unary_unary(
+                '/protolca.services.ResultService/Dispose',
+                request_serializer=services__pb2.Result.SerializeToString,
+                response_deserializer=services__pb2.Status.FromString,
+                )
+
+
+class ResultServiceServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def Calculate(self, request, context):
+        """Calculates a result for the given calculation setup.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Dispose(self, request, context):
+        """Disposes the given result on the server side.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_ResultServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Calculate': grpc.unary_unary_rpc_method_handler(
+                    servicer.Calculate,
+                    request_deserializer=olca__pb2.CalculationSetup.FromString,
+                    response_serializer=services__pb2.ResultStatus.SerializeToString,
+            ),
+            'Dispose': grpc.unary_unary_rpc_method_handler(
+                    servicer.Dispose,
+                    request_deserializer=services__pb2.Result.FromString,
+                    response_serializer=services__pb2.Status.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'protolca.services.ResultService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class ResultService(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Calculate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.ResultService/Calculate',
+            olca__pb2.CalculationSetup.SerializeToString,
+            services__pb2.ResultStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Dispose(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/protolca.services.ResultService/Dispose',
+            services__pb2.Result.SerializeToString,
+            services__pb2.Status.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

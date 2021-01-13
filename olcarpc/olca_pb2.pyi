@@ -1363,7 +1363,7 @@ class ProductSystem(google___protobuf___message___Message):
     def reference_process(self) -> type___ProcessRef: ...
 
     @property
-    def reference_exchange(self) -> type___Exchange: ...
+    def reference_exchange(self) -> type___ExchangeRef: ...
 
     @property
     def target_unit(self) -> type___Ref: ...
@@ -1390,7 +1390,7 @@ class ProductSystem(google___protobuf___message___Message):
         library : typing___Optional[typing___Text] = None,
         processes : typing___Optional[typing___Iterable[type___ProcessRef]] = None,
         reference_process : typing___Optional[type___ProcessRef] = None,
-        reference_exchange : typing___Optional[type___Exchange] = None,
+        reference_exchange : typing___Optional[type___ExchangeRef] = None,
         target_amount : typing___Optional[builtin___float] = None,
         target_unit : typing___Optional[type___Ref] = None,
         target_flow_property : typing___Optional[type___Ref] = None,
