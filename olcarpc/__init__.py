@@ -490,17 +490,21 @@ class Client:
         """
         return self.__flow_maps.Delete(FlowMapInfo(name=name))
 
-    def get_descriptor(self, model_type: Union[str, Type],
-                       ref_id='', name=''):
-
+    def get_descriptor(self, model_type: Union[str, int, Type],
+                       ref_id='', name='') -> RefStatus:
         return self.__data.GetDescriptor(DescriptorRequest(
             type=_model_type(model_type),
             id=ref_id,
             name=name,
         ))
 
+    def get_descriptors(self, model_type: Union[str, int, Type]) -> Iterator[Ref]:
+        req = DescriptorRequest(type=_model_type(model_type))
+        for d in self.__data.GetDescriptors(req):
+            yield d
 
-def _model_type(type_info: Union[str, int, Any]) -> Union[int, ModelTypeValue]:
+
+def _model_type(type_info: Union[str, int, Any]):
     """
     Get the respective model type enumeration value for the given type
     information.
