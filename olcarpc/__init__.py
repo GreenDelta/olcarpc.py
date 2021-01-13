@@ -489,3 +489,68 @@ class Client:
         Delete the flow map with the given name from the database.
         """
         return self.__flow_maps.Delete(FlowMapInfo(name=name))
+
+    def get_descriptor(self, model_type: Union[str, Type],
+                       ref_id='', name=''):
+
+        return self.__data.GetDescriptor(DescriptorRequest(
+            type=_model_type(model_type),
+            id=ref_id,
+            name=name,
+        ))
+
+
+def _model_type(type_info: Union[str, int, Any]) -> Union[int, ModelTypeValue]:
+    """
+    Get the respective model type enumeration value for the given type
+    information.
+
+    This is an utility function for converting the given type definition to
+    a valid `ModelType` enumeration value.
+    """
+    if type_info is None:
+        return ModelType.UNDEFINED_MODEL_TYPE
+    if isinstance(type_info, int):
+        return type_info
+    info = type_info
+    if not isinstance(type_info, str):
+        info = type_info.__class__.__name__
+        if info == 'GeneratedProtocolMessageType':
+            info = type_info.DESCRIPTOR.name
+    info: str = info.strip().lower().replace('_', '')
+    if info == 'actor':
+        return ModelType.ACTOR
+    if info == 'category':
+        return ModelType.CATEGORY
+    if info == 'currency':
+        return ModelType.CURRENCY
+    if info == 'dqsystem':
+        return ModelType.DQ_SYSTEM
+    if info == 'flow':
+        return ModelType.FLOW
+    if info == 'flowproperty':
+        return ModelType.FLOW_PROPERTY
+    if info == 'impactcategory':
+        return ModelType.IMPACT_CATEGORY
+    if info == 'impactmethod':
+        return ModelType.IMPACT_METHOD
+    if info == 'location':
+        return ModelType.LOCATION
+    if info == 'nwset':
+        return ModelType.NW_SET
+    if info == 'parameter':
+        return ModelType.PARAMETER
+    if info == 'process':
+        return ModelType.PROCESS
+    if info == 'productsystem':
+        return ModelType.PRODUCT_SYSTEM
+    if info == 'project':
+        return ModelType.PROJECT
+    if info == 'socialindicator':
+        return ModelType.SOCIAL_INDICATOR
+    if info == 'source':
+        return ModelType.SOURCE
+    if info == 'unit':
+        return ModelType.UNIT
+    if info == 'unitgroup':
+        return ModelType.UNIT_GROUP
