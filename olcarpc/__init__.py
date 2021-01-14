@@ -4,6 +4,9 @@ from typing import Any, Iterator, Type, Union
 import google.protobuf.json_format as jf
 import grpc
 
+from grpc._cython.cygrpc import CompressionAlgorithm
+from grpc._cython.cygrpc import CompressionLevel
+
 import olcarpc.services_pb2_grpc as services
 from .factory import *
 from .olca_pb2 import *
@@ -98,7 +101,13 @@ class Client:
 
     def __init__(self, port=8080):
         self.__port = port
-        self.__channel = grpc.insecure_channel('localhost:%i' % port)
+        self.__channel = grpc.insecure_channel(
+            'localhost:%i' % port, options=[
+                ('grpc.max_send_message_length', 1024 * 1024 * 1024),
+                ('grpc.max_receive_message_length', 1024 * 1024 * 1024),
+                ('grpc.default_compression_algorithm', CompressionAlgorithm.gzip),
+                ('grpc.grpc.default_compression_level', CompressionLevel.high)
+            ])
         self.__data = services.DataServiceStub(self.__channel)
         self.__flow_maps = services.FlowMapServiceStub(self.__channel)
 
