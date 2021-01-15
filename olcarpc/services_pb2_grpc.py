@@ -2026,6 +2026,16 @@ class ResultServiceStub(object):
                 request_serializer=olca__pb2.CalculationSetup.SerializeToString,
                 response_deserializer=services__pb2.ResultStatus.FromString,
                 )
+        self.GetInventory = channel.unary_stream(
+                '/protolca.services.ResultService/GetInventory',
+                request_serializer=services__pb2.Result.SerializeToString,
+                response_deserializer=olca__pb2.FlowResult.FromString,
+                )
+        self.GetImpacts = channel.unary_stream(
+                '/protolca.services.ResultService/GetImpacts',
+                request_serializer=services__pb2.Result.SerializeToString,
+                response_deserializer=olca__pb2.ImpactResult.FromString,
+                )
         self.Dispose = channel.unary_unary(
                 '/protolca.services.ResultService/Dispose',
                 request_serializer=services__pb2.Result.SerializeToString,
@@ -2038,6 +2048,20 @@ class ResultServiceServicer(object):
 
     def Calculate(self, request, context):
         """Calculates a result for the given calculation setup.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetInventory(self, request, context):
+        """Get the inventory of the given result.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetImpacts(self, request, context):
+        """Get the total impact assessment result of the given result.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -2057,6 +2081,16 @@ def add_ResultServiceServicer_to_server(servicer, server):
                     servicer.Calculate,
                     request_deserializer=olca__pb2.CalculationSetup.FromString,
                     response_serializer=services__pb2.ResultStatus.SerializeToString,
+            ),
+            'GetInventory': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetInventory,
+                    request_deserializer=services__pb2.Result.FromString,
+                    response_serializer=olca__pb2.FlowResult.SerializeToString,
+            ),
+            'GetImpacts': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetImpacts,
+                    request_deserializer=services__pb2.Result.FromString,
+                    response_serializer=olca__pb2.ImpactResult.SerializeToString,
             ),
             'Dispose': grpc.unary_unary_rpc_method_handler(
                     servicer.Dispose,
@@ -2087,6 +2121,40 @@ class ResultService(object):
         return grpc.experimental.unary_unary(request, target, '/protolca.services.ResultService/Calculate',
             olca__pb2.CalculationSetup.SerializeToString,
             services__pb2.ResultStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetInventory(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.ResultService/GetInventory',
+            services__pb2.Result.SerializeToString,
+            olca__pb2.FlowResult.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetImpacts(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/protolca.services.ResultService/GetImpacts',
+            services__pb2.Result.SerializeToString,
+            olca__pb2.ImpactResult.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

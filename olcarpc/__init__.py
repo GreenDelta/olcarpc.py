@@ -527,6 +527,16 @@ class Client:
             parameter_redefs=parameters)
         return self.__results.Calculate(setup)
 
+    def get_inventory(self, result: Result) -> Iterator[FlowResult]:
+        inv = self.__results.GetInventory(result)
+        for r in inv:
+            yield r
+
+    def get_impacts(self, result: Result) -> Iterator[ImpactResult]:
+        imp = self.__results.GetImpacts(result)
+        for r in imp:
+            yield r
+
     def dispose(self, result: Result) -> Status:
         return self.__results.Dispose(result)
 
