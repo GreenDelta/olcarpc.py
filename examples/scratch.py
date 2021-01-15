@@ -3,7 +3,7 @@ import datetime
 import uuid
 
 
-if __name__ == '__main__':
+def fetch_big_system():
     client = rpc.Client()
     print('start at: %s' % datetime.datetime.now())
     sys: rpc.ProductSystem = client.get_product_system(
@@ -15,3 +15,7 @@ if __name__ == '__main__':
     print('put at: %s' % datetime.datetime.now())
     print(sys.name)
     client.close()
+
+
+if __name__ == '__main__':
+    fetch_big_system()

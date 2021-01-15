@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import olca_pb2 as olca__pb2
-import services_pb2 as services__pb2
+import olcarpc.olca_pb2 as olca__pb2
+import olcarpc.services_pb2 as services__pb2
 
 
 class DataServiceStub(object):

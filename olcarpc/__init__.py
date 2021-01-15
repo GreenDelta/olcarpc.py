@@ -1,11 +1,8 @@
 import inspect
-from typing import Any, Iterator, Type, Union
+from typing import Any, Iterator, List, Optional, Type, Union
 
 import google.protobuf.json_format as jf
 import grpc
-
-from grpc._cython.cygrpc import CompressionAlgorithm
-from grpc._cython.cygrpc import CompressionLevel
 
 import olcarpc.services_pb2_grpc as services
 from .factory import *
@@ -105,11 +102,10 @@ class Client:
             'localhost:%i' % port, options=[
                 ('grpc.max_send_message_length', 1024 * 1024 * 1024),
                 ('grpc.max_receive_message_length', 1024 * 1024 * 1024),
-                ('grpc.default_compression_algorithm', CompressionAlgorithm.gzip),
-                ('grpc.grpc.default_compression_level', CompressionLevel.high)
             ])
         self.__data = services.DataServiceStub(self.__channel)
         self.__flow_maps = services.FlowMapServiceStub(self.__channel)
+        self.__results = services.ResultServiceStub(self.__channel)
 
     def __enter__(self):
         return self
@@ -511,6 +507,28 @@ class Client:
         req = DescriptorRequest(type=_model_type(model_type))
         for d in self.__data.GetDescriptors(req):
             yield d
+
+    def calculate(self, system: Ref,
+                  method: Optional[Ref] = None,
+                  nw_set: Optional[Ref] = None,
+                  allocation=AllocationType.NO_ALLOCATION,
+                  with_costs=False,
+                  unit: Optional[Ref] = None,
+                  flow_property: Optional[Ref] = None,
+                  parameters: Optional[List[ParameterRedef]] = None) -> ResultStatus:
+        setup = CalculationSetup(
+            product_system=system,
+            impact_method=method,
+            nw_set=nw_set,
+            allocation_method=allocation,
+            with_costs=with_costs,
+            unit=unit,
+            flow_property=flow_property,
+            parameter_redefs=parameters)
+        return self.__results.Calculate(setup)
+
+    def dispose(self, result: Result) -> Status:
+        return self.__results.Dispose(result)
 
 
 def _model_type(type_info: Union[str, int, Any]):
