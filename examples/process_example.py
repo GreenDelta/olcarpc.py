@@ -14,7 +14,7 @@ def main():
         # it is safer to get things by their IDs
 
         # get flow property mass
-        status = client.flow_property(name='Mass')
+        status = client.get_flow_property(name='Mass')
         if not status.ok:
             raise RuntimeError('flow property `Mass` does not exist')
         mass: rpc.FlowProperty = status.flow_property
@@ -72,7 +72,7 @@ def flow(client: rpc.Client, name: str,
     Returns the flow with the given name or creates a new one if it does not
     exist yet.
     """
-    status = client.flow(name=name)
+    status = client.get_flow(name=name)
     if status.ok:
         return status.flow
     f = rpc.flow_of(name, flow_type, quantity)
@@ -87,7 +87,7 @@ def location(client: rpc.Client, name: str) -> rpc.Location:
     Returns the location with the given name or creates a new one
     if it does not exist yet.
     """
-    status = client.location(name=name)
+    status = client.get_location(name=name)
     if status.ok:
         return status.location
     loc = rpc.location_of(name)

@@ -457,9 +457,8 @@ class Client:
         """
         return self.__data.PutUnitGroup(unit_group)
 
-    def get_providers_of(
-        self, flow: Union[Flow, FlowRef, Ref]) -> Iterator[ProcessRef]:
-        flow_ref = FlowRef(
+    def get_providers_of(self, flow: Union[Flow, Ref]) -> Iterator[Ref]:
+        flow_ref = Ref(
             type='Flow',
             id=flow.id,
             name=flow.name)
@@ -507,6 +506,14 @@ class Client:
         req = DescriptorRequest(type=_model_type(model_type))
         for d in self.__data.GetDescriptors(req):
             yield d
+
+    def search(self, query: str,
+               model_type: Optional[Union[str, int, Type]] = None) -> Iterator[Ref]:
+        results = self.__data.Search(SearchRequest(
+            type=_model_type(model_type),
+            query=query))
+        for ref in results:
+            yield ref
 
     def calculate(self, system: Ref,
                   method: Optional[Ref] = None,

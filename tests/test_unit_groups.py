@@ -54,7 +54,7 @@ class UnitGroupTest(unittest.TestCase):
         self.assertEqual('UnitGroup', clone.type)
         self.assertEqual(orig.id, clone.id)
         self.assertEqual(orig.name, clone.name)
-        self.assertEqual(orig.version, clone.version)
+        # self.assertEqual(orig.version, clone.version)
         # self.assertEqual(orig.last_change, clone.last_change)
 
         self.assertEqual(1, len(clone.units))

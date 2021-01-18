@@ -31,12 +31,12 @@ def create():
     entry = rpc.FlowMapEntry(
         conversion_factor=1.0,
         to=rpc.FlowMapRef(
-            flow=rpc.FlowRef(
+            flow=rpc.Ref(
                 id='64cea105-f89a-4f95-ae44-84ff904a28fc',
                 name='limestone, crushed, washed',
                 ref_unit='kg',
             ),
-            provider=rpc.ProcessRef(
+            provider=rpc.Ref(
                 id='a321ecf5-907e-3d93-bcd9-2f1a9b5a1189',
                 name='limestone production, crushed, washed ...',
                 location='RoW'

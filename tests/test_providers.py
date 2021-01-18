@@ -12,7 +12,7 @@ class ProviderTest(unittest.TestCase):
 
     def test_no_providers(self):
         providers = self.client.get_providers_of(
-            rpc.FlowRef(name="does not exist"))
+            rpc.Ref(name="does not exist"))
         i = 0
         for _ in providers:
             i += 1
@@ -45,5 +45,3 @@ class ProviderTest(unittest.TestCase):
         self.client.delete(steel)
         self.client.delete(mass)
         self.client.delete(units)
-
-
