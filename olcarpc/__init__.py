@@ -520,6 +520,7 @@ class Client:
                   nw_set: Optional[Ref] = None,
                   allocation=AllocationType.NO_ALLOCATION,
                   with_costs=False,
+                  with_regionalization=False,
                   unit: Optional[Ref] = None,
                   flow_property: Optional[Ref] = None,
                   parameters: Optional[List[ParameterRedef]] = None) -> ResultStatus:
@@ -529,6 +530,7 @@ class Client:
             nw_set=nw_set,
             allocation_method=allocation,
             with_costs=with_costs,
+            with_regionalization=with_regionalization,
             unit=unit,
             flow_property=flow_property,
             parameter_redefs=parameters)
