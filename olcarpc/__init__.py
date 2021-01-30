@@ -171,7 +171,7 @@ class Client:
         return None
 
     def put_actor(self, actor: Actor) -> Optional[Ref]:
-        """Insert or update the given `Actor` in the database """
+        """Insert or update the given actor in the database."""
         status: RefStatus = self.__data.PutActor(actor)
         if status.ok:
             return status.ref
@@ -194,16 +194,16 @@ class Client:
                   s, status.error)
         return None
 
-    def put_category(self, category: Category) -> RefStatus:
-        """
-        Save or update the given `Category` instance in the database.
-        """
-        return self.__data.PutCategory(category)
+    def put_category(self, category: Category) -> Optional[Ref]:
+        """Insert or update the given category in the database."""
+        status: RefStatus = self.__data.PutCategory(category)
+        if status.ok:
+            return status.ref
+        log.error('failed to save category "%s": %s', category.id, status.error)
+        return None
 
     def get_currencies(self) -> Iterator[Currency]:
-        """
-        Get all `Currency` instances from the database.
-        """
+        """Get all `Currency` instances from the database."""
         for currency in self.__data.GetCurrencies(Empty()):
             yield currency
 
@@ -218,11 +218,13 @@ class Client:
                   s, status.error)
         return None
 
-    def put_currency(self, currency: Currency) -> RefStatus:
-        """
-        Save or update the given `Currency` instance in the database.
-        """
-        return self.__data.PutCurrency(currency)
+    def put_currency(self, currency: Currency) -> Optional[Ref]:
+        """Insert or update the given currency in the database."""
+        status: RefStatus = self.__data.PutCurrency(currency)
+        if status.ok:
+            return status.ref
+        log.error('failed to save currency "%s": %s', currency.id, status.error)
+        return None
 
     def get_dq_systems(self) -> Iterator[DQSystem]:
         """
@@ -242,11 +244,14 @@ class Client:
                   s, status.error)
         return None
 
-    def put_dq_system(self, dq_system: DQSystem) -> RefStatus:
-        """
-        Save or update the given `DQSystem` instance in the database.
-        """
-        return self.__data.PutDQSystem(dq_system)
+    def put_dq_system(self, dq_system: DQSystem) -> Optional[Ref]:
+        """Insert or update the given DQ system in the database."""
+        status: RefStatus = self.__data.PutDQSystem(dq_system)
+        if status.ok:
+            return status.ref
+        log.error('failed to save DQ system "%s": %s',
+                  dq_system.id, status.error)
+        return None
 
     def get_flows(self) -> Iterator[Flow]:
         """
@@ -265,11 +270,13 @@ class Client:
         log.error('failed to get flow "%s" from database: %s', s, status.error)
         return None
 
-    def put_flow(self, flow: Flow) -> RefStatus:
-        """
-        Save or update the given `Flow` instance in the database.
-        """
-        return self.__data.PutFlow(flow)
+    def put_flow(self, flow: Flow) -> Optional[Ref]:
+        """Insert or update the given flow in the database."""
+        status: RefStatus = self.__data.PutFlow(flow)
+        if status.ok:
+            return status.ref
+        log.error('failed to save flow "%s": %s', flow.id, status.error)
+        return None
 
     def get_flow_properties(self) -> Iterator[FlowProperty]:
         """
@@ -289,11 +296,13 @@ class Client:
                   s, status.error)
         return None
 
-    def put_flow_property(self, flow_property: FlowProperty) -> RefStatus:
-        """
-        Save or update the given `FlowProperty` instance in the database.
-        """
-        return self.__data.PutFlowProperty(flow_property)
+    def put_flow_property(self, flow_property: FlowProperty) -> Optional[Ref]:
+        """Insert or update the given flow property in the database."""
+        status: RefStatus = self.__data.PutFlowProperty(flow_property)
+        if status.ok:
+            return status.ref
+        log.error('failed to save flow property "%s": %s', flow_property.id, status.error)
+        return None
 
     def get_impact_categories(self) -> Iterator[ImpactCategory]:
         """
@@ -313,11 +322,14 @@ class Client:
                   s, status.error)
         return None
 
-    def put_impact_category(self, impact_category: ImpactCategory) -> RefStatus:
-        """
-        Save or update the given `ImpactCategory` instance in the database.
-        """
-        return self.__data.PutImpactCategory(impact_category)
+    def put_impact_category(self, impact_category: ImpactCategory) -> Optional[Ref]:
+        """Insert or update the given impact category in the database."""
+        status: RefStatus = self.__data.PutImpactCategory(impact_category)
+        if status.ok:
+            return status.ref
+        log.error('failed to save impact category "%s": %s',
+                  impact_category.id, status.error)
+        return None
 
     def get_impact_methods(self) -> Iterator[ImpactMethod]:
         """
@@ -336,11 +348,13 @@ class Client:
         log.error('failed to get impact method "%s" from database: %s', s, status.error)
         return None
 
-    def put_impact_method(self, impact_method: ImpactMethod) -> RefStatus:
-        """
-        Save or update the given `ImpactMethod` instance in the database.
-        """
-        return self.__data.PutImpactMethod(impact_method)
+    def put_impact_method(self, impact_method: ImpactMethod) -> Optional[Ref]:
+        """Insert or update the given impact method in the database."""
+        status: RefStatus = self.__data.PutImpactMethod(impact_method)
+        if status.ok:
+            return status.ref
+        log.error('failed to save impact method "%s": %s', impact_method.id, status.error)
+        return None
 
     def get_locations(self) -> Iterator[Location]:
         """
@@ -360,11 +374,13 @@ class Client:
                   s, status.error)
         return None
 
-    def put_location(self, location: Location) -> RefStatus:
-        """
-        Save or update the given `Location` instance in the database.
-        """
-        return self.__data.PutLocation(location)
+    def put_location(self, location: Location) -> Optional[Ref]:
+        """Insert or update the given location in the database."""
+        status: RefStatus = self.__data.PutLocation(location)
+        if status.ok:
+            return status.ref
+        log.error('failed to save location "%s": %s', location.id, status.error)
+        return None
 
     def get_parameters(self) -> Iterator[Parameter]:
         """
@@ -383,11 +399,13 @@ class Client:
         log.error('failed to get parameter "%s" from database: %s', s, status.error)
         return None
 
-    def put_parameter(self, parameter: Parameter) -> RefStatus:
-        """
-        Save or update the given `Parameter` instance in the database.
-        """
-        return self.__data.PutParameter(parameter)
+    def put_parameter(self, parameter: Parameter) -> Optional[Ref]:
+        """Insert or update the given parameter in the database."""
+        status: RefStatus = self.__data.PutParameter(parameter)
+        if status.ok:
+            return status.ref
+        log.error('failed to save parameter "%s": %s', parameter.id, status.error)
+        return None
 
     def get_processes(self) -> Iterator[Process]:
         """
@@ -407,11 +425,13 @@ class Client:
                   s, status.error)
         return None
 
-    def put_process(self, process: Process) -> RefStatus:
-        """
-        Save or update the given `Process` instance in the database.
-        """
-        return self.__data.PutProcess(process)
+    def put_process(self, process: Process) -> Optional[Ref]:
+        """Insert or update the given process in the database."""
+        status: RefStatus = self.__data.PutProcess(process)
+        if status.ok:
+            return status.ref
+        log.error('failed to save process "%s": %s', process.id, status.error)
+        return None
 
     def get_product_systems(self) -> Iterator[ProductSystem]:
         """
@@ -431,11 +451,13 @@ class Client:
                   s, status.error)
         return None
 
-    def put_product_system(self, product_system: ProductSystem) -> RefStatus:
-        """
-        Save or update the given `ProductSystem` instance in the database.
-        """
-        return self.__data.PutProductSystem(product_system)
+    def put_product_system(self, product_system: ProductSystem) -> Optional[Ref]:
+        """Insert or update the given product system in the database."""
+        status: RefStatus = self.__data.PutProductSystem(product_system)
+        if status.ok:
+            return status.ref
+        log.error('failed to save product system "%s": %s', product_system.id, status.error)
+        return None
 
     def get_projects(self) -> Iterator[Project]:
         """
@@ -455,11 +477,13 @@ class Client:
                   s, status.error)
         return None
 
-    def put_project(self, project: Project) -> RefStatus:
-        """
-        Save or update the given `Project` instance in the database.
-        """
-        return self.__data.PutProject(project)
+    def put_project(self, project: Project) -> Optional[Ref]:
+        """Insert or update the given project in the database."""
+        status: RefStatus = self.__data.PutProject(project)
+        if status.ok:
+            return status.ref
+        log.error('failed to save project "%s": %s', project.id, status.error)
+        return None
 
     def get_social_indicators(self) -> Iterator[SocialIndicator]:
         """
@@ -479,11 +503,14 @@ class Client:
                   s, status.error)
         return None
 
-    def put_social_indicator(self, social_indicator: SocialIndicator) -> RefStatus:
-        """
-        Save or update the given `SocialIndicator` instance in the database.
-        """
-        return self.__data.PutSocialIndicator(social_indicator)
+    def put_social_indicator(self, social_indicator: SocialIndicator) -> Optional[Ref]:
+        """Insert or update the given social indicator in the database."""
+        status: RefStatus = self.__data.PutSocialIndicator(social_indicator)
+        if status.ok:
+            return status.ref
+        log.error('failed to save social indicator "%s": %s',
+                  social_indicator.id, status.error)
+        return None
 
     def get_sources(self) -> Iterator[Source]:
         """
@@ -502,11 +529,13 @@ class Client:
         log.error('failed to get source "%s" from database: %s', s, status.error)
         return None
 
-    def put_source(self, source: Source) -> RefStatus:
-        """
-        Save or update the given `Source` instance in the database.
-        """
-        return self.__data.PutSource(source)
+    def put_source(self, source: Source) -> Optional[Ref]:
+        """Insert or update the given source in the database."""
+        status: RefStatus = self.__data.PutSource(source)
+        if status.ok:
+            return status.ref
+        log.error('failed to save source "%s": %s', source.id, status.error)
+        return None
 
     def get_unit_groups(self) -> Iterator[UnitGroup]:
         """
@@ -526,11 +555,14 @@ class Client:
                   s, status.error)
         return None
 
-    def put_unit_group(self, unit_group: UnitGroup) -> RefStatus:
-        """
-        Save or update the given `UnitGroup` instance in the database.
-        """
-        return self.__data.PutUnitGroup(unit_group)
+    def put_unit_group(self, unit_group: UnitGroup) -> Optional[Ref]:
+        """Insert or update the given unit group in the database."""
+        status: RefStatus = self.__data.PutUnitGroup(unit_group)
+        if status.ok:
+            return status.ref
+        log.error('failed to save unit group "%s": %s',
+                  unit_group.id, status.error)
+        return None
 
     def get_providers_of(
         self, flow: Union[Flow, FlowRef, Ref]) -> Iterator[ProcessRef]:
