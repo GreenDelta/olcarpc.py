@@ -9,6 +9,8 @@ from .factory import *
 from .olca_pb2 import *
 from .services_pb2 import *
 
+import logging as log
+
 __pdoc__ = {
     'olca_pb2': False,
     'services_pb2': False,
@@ -154,36 +156,43 @@ class Client:
         return self.__data.Delete(r)
 
     def get_actors(self) -> Iterator[Actor]:
-        """
-        Get all `Actor` instances from the database.
-        """
+        """Get all `Actor` instances from the database."""
         for actor in self.__data.GetActors(Empty()):
             yield actor
 
-    def get_actor(self, ref_id='', name='') -> ActorStatus:
-        """
-        Get an instance of `Actor` by ID or name from the database.
-        """
-        return self.__data.GetActor(Ref(id=ref_id, name=name))
+    def get_actor(self, ref_id='', name='') -> Optional[Actor]:
+        """Get the actor with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: ActorStatus = self.__data.GetActor(ref)
+        if status.ok:
+            return status.actor
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get actor "%s" from database: %s', s, status.error)
+        return None
 
-    def put_actor(self, actor: Actor) -> RefStatus:
-        """
-        Save or update the given `Actor` instance in the database.
-        """
-        return self.__data.PutActor(actor)
+    def put_actor(self, actor: Actor) -> Optional[Ref]:
+        """Insert or update the given `Actor` in the database """
+        status: RefStatus = self.__data.PutActor(actor)
+        if status.ok:
+            return status.ref
+        log.error('failed to save actor "%s": %s', actor.id, status.error)
+        return None
 
     def get_categories(self) -> Iterator[Category]:
-        """
-        Get all `Category` instances from the database.
-        """
+        """Get all `Category` instances from the database."""
         for category in self.__data.GetCategories(Empty()):
             yield category
 
-    def get_category(self, ref_id='', name='') -> CategoryStatus:
-        """
-        Get an instance of `Category` by ID or name from the database.
-        """
-        return self.__data.GetCategory(Ref(id=ref_id, name=name))
+    def get_category(self, ref_id='', name='') -> Optional[Category]:
+        """Get the category with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: CategoryStatus = self.__data.GetCategory(ref)
+        if status.ok:
+            return status.category
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get category "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_category(self, category: Category) -> RefStatus:
         """
@@ -198,11 +207,16 @@ class Client:
         for currency in self.__data.GetCurrencies(Empty()):
             yield currency
 
-    def get_currency(self, ref_id='', name='') -> CurrencyStatus:
-        """
-        Get an instance of `Currency` by ID or name from the database.
-        """
-        return self.__data.GetCurrency(Ref(id=ref_id, name=name))
+    def get_currency(self, ref_id='', name='') -> Optional[Currency]:
+        """Get the currency with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: CurrencyStatus = self.__data.GetCurrency(ref)
+        if status.ok:
+            return status.currency
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get currency "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_currency(self, currency: Currency) -> RefStatus:
         """
@@ -217,11 +231,16 @@ class Client:
         for dq_system in self.__data.GetDQSystems(Empty()):
             yield dq_system
 
-    def get_dq_system(self, ref_id='', name='') -> DQSystemStatus:
-        """
-        Get an instance of `DQSystem` by ID or name from the database.
-        """
-        return self.__data.GetDQSystem(Ref(id=ref_id, name=name))
+    def get_dq_system(self, ref_id='', name='') -> Optional[DQSystem]:
+        """Get the DQ system with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: DQSystemStatus = self.__data.GetDQSystem(ref)
+        if status.ok:
+            return status.dq_system
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get DQ system "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_dq_system(self, dq_system: DQSystem) -> RefStatus:
         """
@@ -236,11 +255,15 @@ class Client:
         for flow in self.__data.GetFlows(Empty()):
             yield flow
 
-    def get_flow(self, ref_id='', name='') -> FlowStatus:
-        """
-        Get an instance of `Flow` by ID or name from the database.
-        """
-        return self.__data.GetFlow(Ref(id=ref_id, name=name))
+    def get_flow(self, ref_id='', name='') -> Optional[Flow]:
+        """Get the flow with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: FlowStatus = self.__data.GetFlow(ref)
+        if status.ok:
+            return status.flow
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get flow "%s" from database: %s', s, status.error)
+        return None
 
     def put_flow(self, flow: Flow) -> RefStatus:
         """
@@ -255,11 +278,16 @@ class Client:
         for flow_property in self.__data.GetFlowProperties(Empty()):
             yield flow_property
 
-    def get_flow_property(self, ref_id='', name='') -> FlowPropertyStatus:
-        """
-        Get an instance of `FlowProperty` by ID or name from the database.
-        """
-        return self.__data.GetFlowProperty(Ref(id=ref_id, name=name))
+    def get_flow_property(self, ref_id='', name='') -> Optional[FlowProperty]:
+        """Get the flow property with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: FlowPropertyStatus = self.__data.GetFlowProperty(ref)
+        if status.ok:
+            return status.flow_property
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get flow property "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_flow_property(self, flow_property: FlowProperty) -> RefStatus:
         """
@@ -274,11 +302,16 @@ class Client:
         for impact_category in self.__data.GetImpactCategories(Empty()):
             yield impact_category
 
-    def get_impact_category(self, ref_id='', name='') -> ImpactCategoryStatus:
-        """
-        Get an instance of `ImpactCategory` by ID or name from the database.
-        """
-        return self.__data.GetImpactCategory(Ref(id=ref_id, name=name))
+    def get_impact_category(self, ref_id='', name='') -> Optional[ImpactCategory]:
+        """Get the impact category with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: ImpactCategoryStatus = self.__data.GetImpactCategory(ref)
+        if status.ok:
+            return status.impact_category
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get impact category "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_impact_category(self, impact_category: ImpactCategory) -> RefStatus:
         """
@@ -293,11 +326,15 @@ class Client:
         for impact_method in self.__data.GetImpactMethods(Empty()):
             yield impact_method
 
-    def get_impact_method(self, ref_id='', name='') -> ImpactMethodStatus:
-        """
-        Get an instance of `ImpactMethod` by ID or name from the database.
-        """
-        return self.__data.GetImpactMethod(Ref(id=ref_id, name=name))
+    def get_impact_method(self, ref_id='', name='') -> Optional[ImpactMethod]:
+        """Get the impact method with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: ImpactMethodStatus = self.__data.GetImpactMethod(ref)
+        if status.ok:
+            return status.impact_method
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get impact method "%s" from database: %s', s, status.error)
+        return None
 
     def put_impact_method(self, impact_method: ImpactMethod) -> RefStatus:
         """
@@ -312,11 +349,16 @@ class Client:
         for location in self.__data.GetLocations(Empty()):
             yield location
 
-    def get_location(self, ref_id='', name='') -> LocationStatus:
-        """
-        Get an instance of `Location` by ID or name from the database.
-        """
-        return self.__data.GetLocation(Ref(id=ref_id, name=name))
+    def get_location(self, ref_id='', name='') -> Optional[Location]:
+        """Get the location with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: LocationStatus = self.__data.GetLocation(ref)
+        if status.ok:
+            return status.location
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get location "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_location(self, location: Location) -> RefStatus:
         """
@@ -331,11 +373,15 @@ class Client:
         for parameter in self.__data.GetParameters(Empty()):
             yield parameter
 
-    def get_parameter(self, ref_id='', name='') -> ParameterStatus:
-        """
-        Get an instance of `Parameter` by ID or name from the database.
-        """
-        return self.__data.GetParameter(Ref(id=ref_id, name=name))
+    def get_parameter(self, ref_id='', name='') -> Optional[Parameter]:
+        """Get the parameter with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: ParameterStatus = self.__data.GetParameter(ref)
+        if status.ok:
+            return status.parameter
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get parameter "%s" from database: %s', s, status.error)
+        return None
 
     def put_parameter(self, parameter: Parameter) -> RefStatus:
         """
@@ -350,11 +396,16 @@ class Client:
         for process in self.__data.GetProcesses(Empty()):
             yield process
 
-    def get_process(self, ref_id='', name='') -> ProcessStatus:
-        """
-        Get an instance of `Process` by ID or name from the database.
-        """
-        return self.__data.GetProcess(Ref(id=ref_id, name=name))
+    def get_process(self, ref_id='', name='') -> Optional[Process]:
+        """Get the process with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: ProcessStatus = self.__data.GetProcess(ref)
+        if status.ok:
+            return status.process
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get process "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_process(self, process: Process) -> RefStatus:
         """
@@ -369,11 +420,16 @@ class Client:
         for product_system in self.__data.GetProductSystems(Empty()):
             yield product_system
 
-    def get_product_system(self, ref_id='', name='') -> ProductSystemStatus:
-        """
-        Get an instance of `ProductSystem` by ID or name from the database.
-        """
-        return self.__data.GetProductSystem(Ref(id=ref_id, name=name))
+    def get_product_system(self, ref_id='', name='') -> Optional[ProductSystem]:
+        """Get the product system with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: ProductSystemStatus = self.__data.GetProductSystem(ref)
+        if status.ok:
+            return status.product_system
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get product system "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_product_system(self, product_system: ProductSystem) -> RefStatus:
         """
@@ -388,11 +444,16 @@ class Client:
         for project in self.__data.GetProjects(Empty()):
             yield project
 
-    def get_project(self, ref_id='', name='') -> ProjectStatus:
-        """
-        Get an instance of `Project` by ID or name from the database.
-        """
-        return self.__data.GetProject(Ref(id=ref_id, name=name))
+    def get_project(self, ref_id='', name='') -> Optional[Project]:
+        """Get the project with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: ProjectStatus = self.__data.GetProject(ref)
+        if status.ok:
+            return status.project
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get project "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_project(self, project: Project) -> RefStatus:
         """
@@ -407,11 +468,16 @@ class Client:
         for social_indicator in self.__data.GetSocialIndicators(Empty()):
             yield social_indicator
 
-    def get_social_indicator(self, ref_id='', name='') -> SocialIndicatorStatus:
-        """
-        Get an instance of `SocialIndicator` by ID or name from the database.
-        """
-        return self.__data.GetSocialIndicator(Ref(id=ref_id, name=name))
+    def get_social_indicator(self, ref_id='', name='') -> Optional[SocialIndicator]:
+        """Get the social indicator with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: SocialIndicatorStatus = self.__data.GetSocialIndicator(ref)
+        if status.ok:
+            return status.social_indicator
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get social indicator "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_social_indicator(self, social_indicator: SocialIndicator) -> RefStatus:
         """
@@ -426,11 +492,15 @@ class Client:
         for source in self.__data.GetSources(Empty()):
             yield source
 
-    def get_source(self, ref_id='', name='') -> SourceStatus:
-        """
-        Get an instance of `Source` by ID or name from the database.
-        """
-        return self.__data.GetSource(Ref(id=ref_id, name=name))
+    def get_source(self, ref_id='', name='') -> Optional[Source]:
+        """Get the source with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: SourceStatus = self.__data.GetSource(ref)
+        if status.ok:
+            return status.source
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get source "%s" from database: %s', s, status.error)
+        return None
 
     def put_source(self, source: Source) -> RefStatus:
         """
@@ -445,11 +515,16 @@ class Client:
         for unit_group in self.__data.GetUnitGroups(Empty()):
             yield unit_group
 
-    def get_unit_group(self, ref_id='', name='') -> UnitGroupStatus:
-        """
-        Get an instance of `UnitGroup` by ID or name from the database.
-        """
-        return self.__data.GetUnitGroup(Ref(id=ref_id, name=name))
+    def get_unit_group(self, ref_id='', name='') -> Optional[UnitGroup]:
+        """Get the unit group with the given ID or name from the database."""
+        ref = Ref(id=ref_id, name=name)
+        status: UnitGroupStatus = self.__data.GetUnitGroup(ref)
+        if status.ok:
+            return status.unit_group
+        s = name if ref_id == '' else ref_id
+        log.error('failed to get unit group "%s" from database: %s',
+                  s, status.error)
+        return None
 
     def put_unit_group(self, unit_group: UnitGroup) -> RefStatus:
         """
