@@ -613,15 +613,23 @@ class Client:
         return self.__flow_maps.Delete(FlowMapInfo(name=name))
 
     def get_descriptor(self, model_type: Union[str, int, Type],
-                       ref_id='', name='') -> RefStatus:
-        return self.__data.GetDescriptor(DescriptorRequest(
+                       ref_id='', name='') -> Optional[Ref]:
+        status = self.__data.GetDescriptor(DescriptorRequest(
             type=_model_type(model_type),
             id=ref_id,
             name=name,
         ))
+        if status.ok:
+            return status.ref
+        log.error('failed to get descriptor %s', status.error)
+        return None
 
-    def get_descriptors(self, model_type: Union[str, int, Type]) -> Iterator[Ref]:
-        req = DescriptorRequest(type=_model_type(model_type))
+    def get_descriptors(self, model_type: Union[str, int, Type],
+                        name='', category='') -> Iterator[Ref]:
+        req = DescriptorRequest(
+            type=_model_type(model_type),
+            name=name,
+            category=category)
         for d in self.__data.GetDescriptors(req):
             yield d
 
