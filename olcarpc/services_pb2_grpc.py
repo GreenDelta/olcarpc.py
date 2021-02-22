@@ -282,8 +282,8 @@ class DataServiceStub(object):
                 )
         self.GetProvidersFor = channel.unary_stream(
                 '/protolca.services.DataService/GetProvidersFor',
-                request_serializer=olca__pb2.FlowRef.SerializeToString,
-                response_deserializer=olca__pb2.ProcessRef.FromString,
+                request_serializer=olca__pb2.Ref.SerializeToString,
+                response_deserializer=olca__pb2.Ref.FromString,
                 )
 
 
@@ -912,8 +912,8 @@ def add_DataServiceServicer_to_server(servicer, server):
             ),
             'GetProvidersFor': grpc.unary_stream_rpc_method_handler(
                     servicer.GetProvidersFor,
-                    request_deserializer=olca__pb2.FlowRef.FromString,
-                    response_serializer=olca__pb2.ProcessRef.SerializeToString,
+                    request_deserializer=olca__pb2.Ref.FromString,
+                    response_serializer=olca__pb2.Ref.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1838,8 +1838,8 @@ class DataService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/protolca.services.DataService/GetProvidersFor',
-            olca__pb2.FlowRef.SerializeToString,
-            olca__pb2.ProcessRef.FromString,
+            olca__pb2.Ref.SerializeToString,
+            olca__pb2.Ref.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

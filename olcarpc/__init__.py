@@ -576,9 +576,8 @@ class Client:
                   unit_group.id, status.error)
         return None
 
-    def get_providers_of(
-        self, flow: Union[Flow, FlowRef, Ref]) -> Iterator[ProcessRef]:
-        flow_ref = FlowRef(
+    def get_providers_of(self, flow: Union[Flow, Ref]) -> Iterator[Ref]:
+        flow_ref = Ref(
             type='Flow',
             id=flow.id,
             name=flow.name)
@@ -626,11 +625,20 @@ class Client:
         for d in self.__data.GetDescriptors(req):
             yield d
 
+    def search(self, query: str,
+               model_type: Optional[Union[str, int, Type]] = None) -> Iterator[Ref]:
+        results = self.__data.Search(SearchRequest(
+            type=_model_type(model_type),
+            query=query))
+        for ref in results:
+            yield ref
+
     def calculate(self, system: Ref,
                   method: Optional[Ref] = None,
                   nw_set: Optional[Ref] = None,
                   allocation=AllocationType.NO_ALLOCATION,
                   with_costs=False,
+                  with_regionalization=False,
                   unit: Optional[Ref] = None,
                   flow_property: Optional[Ref] = None,
                   parameters: Optional[List[ParameterRedef]] = None) -> ResultStatus:
@@ -640,6 +648,7 @@ class Client:
             nw_set=nw_set,
             allocation_method=allocation,
             with_costs=with_costs,
+            with_regionalization=with_regionalization,
             unit=unit,
             flow_property=flow_property,
             parameter_redefs=parameters)
