@@ -155,6 +155,42 @@ class Client:
                 r.type = ref.type
         return self.__data.Delete(r)
 
+    def put(self, o: Any) -> Any:
+        if isinstance(o, Actor):
+            return self.put_actor(o)
+        if isinstance(o, Category):
+            return self.put_category(o)
+        if isinstance(o, Currency):
+            return self.put_currency(o)
+        if isinstance(o, DQSystem):
+            return self.put_dq_system(o)
+        if isinstance(o, Flow):
+            return self.put_flow(o)
+        if isinstance(o, FlowProperty):
+            return self.put_flow_property(o)
+        if isinstance(o, ImpactCategory):
+            return self.put_impact_category(o)
+        if isinstance(o, ImpactMethod):
+            return self.put_impact_method(o)
+        if isinstance(o, Location):
+            return self.put_location(o)
+        if isinstance(o, Parameter):
+            return self.put_parameter(o)
+        if isinstance(o, Process):
+            return self.put_process(o)
+        if isinstance(o, ProductSystem):
+            return self.put_product_system(o)
+        if isinstance(o, Project):
+            return self.put_project(o)
+        if isinstance(o, SocialIndicator):
+            return self.put_social_indicator(o)
+        if isinstance(o, Source):
+            return self.put_source(o)
+        if isinstance(o, UnitGroup):
+            return self.put_unit_group(o)
+        if isinstance(o, FlowMap):
+            return self.put_flow_map(o)
+
     def get_actors(self) -> Iterator[Actor]:
         """Get all `Actor` instances from the database."""
         for actor in self.__data.GetActors(Empty()):
@@ -227,9 +263,7 @@ class Client:
         return None
 
     def get_dq_systems(self) -> Iterator[DQSystem]:
-        """
-        Get all `DQSystem` instances from the database.
-        """
+        """Get all `DQSystem` instances from the database."""
         for dq_system in self.__data.GetDQSystems(Empty()):
             yield dq_system
 
@@ -254,9 +288,7 @@ class Client:
         return None
 
     def get_flows(self) -> Iterator[Flow]:
-        """
-        Get all `Flow` instances from the database.
-        """
+        """Get all `Flow` instances from the database."""
         for flow in self.__data.GetFlows(Empty()):
             yield flow
 
@@ -279,9 +311,7 @@ class Client:
         return None
 
     def get_flow_properties(self) -> Iterator[FlowProperty]:
-        """
-        Get all `FlowProperty` instances from the database.
-        """
+        """Get all `FlowProperty` instances from the database."""
         for flow_property in self.__data.GetFlowProperties(Empty()):
             yield flow_property
 
@@ -305,9 +335,7 @@ class Client:
         return None
 
     def get_impact_categories(self) -> Iterator[ImpactCategory]:
-        """
-        Get all `ImpactCategory` instances from the database.
-        """
+        """Get all `ImpactCategory` instances from the database."""
         for impact_category in self.__data.GetImpactCategories(Empty()):
             yield impact_category
 
@@ -332,9 +360,7 @@ class Client:
         return None
 
     def get_impact_methods(self) -> Iterator[ImpactMethod]:
-        """
-        Get all `ImpactMethod` instances from the database.
-        """
+        """Get all `ImpactMethod` instances from the database."""
         for impact_method in self.__data.GetImpactMethods(Empty()):
             yield impact_method
 
@@ -357,9 +383,7 @@ class Client:
         return None
 
     def get_locations(self) -> Iterator[Location]:
-        """
-        Get all `Location` instances from the database.
-        """
+        """Get all `Location` instances from the database."""
         for location in self.__data.GetLocations(Empty()):
             yield location
 
@@ -383,9 +407,7 @@ class Client:
         return None
 
     def get_parameters(self) -> Iterator[Parameter]:
-        """
-        Get all `Parameter` instances from the database.
-        """
+        """Get all `Parameter` instances from the database."""
         for parameter in self.__data.GetParameters(Empty()):
             yield parameter
 
@@ -408,9 +430,7 @@ class Client:
         return None
 
     def get_processes(self) -> Iterator[Process]:
-        """
-        Get all `Process` instances from the database.
-        """
+        """Get all `Process` instances from the database."""
         for process in self.__data.GetProcesses(Empty()):
             yield process
 
@@ -434,9 +454,7 @@ class Client:
         return None
 
     def get_product_systems(self) -> Iterator[ProductSystem]:
-        """
-        Get all `ProductSystem` instances from the database.
-        """
+        """Get all `ProductSystem` instances from the database."""
         for product_system in self.__data.GetProductSystems(Empty()):
             yield product_system
 
@@ -460,9 +478,7 @@ class Client:
         return None
 
     def get_projects(self) -> Iterator[Project]:
-        """
-        Get all `Project` instances from the database.
-        """
+        """Get all `Project` instances from the database."""
         for project in self.__data.GetProjects(Empty()):
             yield project
 
@@ -486,9 +502,7 @@ class Client:
         return None
 
     def get_social_indicators(self) -> Iterator[SocialIndicator]:
-        """
-        Get all `SocialIndicator` instances from the database.
-        """
+        """Get all `SocialIndicator` instances from the database."""
         for social_indicator in self.__data.GetSocialIndicators(Empty()):
             yield social_indicator
 
@@ -513,9 +527,7 @@ class Client:
         return None
 
     def get_sources(self) -> Iterator[Source]:
-        """
-        Get all `Source` instances from the database.
-        """
+        """Get all `Source` instances from the database."""
         for source in self.__data.GetSources(Empty()):
             yield source
 
@@ -574,27 +586,26 @@ class Client:
             yield provider
 
     def get_flow_maps(self) -> Iterator[str]:
-        """
-        Get the names of the flow maps that are stored in the database.
-        """
+        """Get the names of the flow maps that are stored in the database."""
         info: FlowMapInfo
         for info in self.__flow_maps.GetAll(Empty()):
             yield info.name
 
-    def get_flow_map(self, name: str) -> FlowMapStatus:
-        """
-        Get the flow map with the given name from the database.
-        """
-        return self.__flow_maps.Get(FlowMapInfo(name=name))
+    def get_flow_map(self, name: str) -> Optional[FlowMap]:
+        """Get the flow map with the given name from the database."""
+        status: FlowMapStatus = self.__flow_maps.Get(FlowMapInfo(name=name))
+        if status.ok:
+            return status.flow_map
+        log.error('failed to get flow map %s: %s', status.error)
+        return None
 
-    def put_flow_map(self, flow_map: FlowMap) -> Status:
-        """
-        Saves the given flow map into the database.
-
-        If a flow map with the same name already exists, it updates it in the
-        database.
-        """
-        return self.__flow_maps.Put(flow_map)
+    def put_flow_map(self, flow_map: FlowMap):
+        """Saves or updates the given flow map (identified by name) in  the
+           database."""
+        status: Status = self.__flow_maps.Put(flow_map)
+        if not status.ok:
+            log.error('failed to save flow map %s: %s',
+                      flow_map.name, status.error)
 
     def delete_flow_map(self, name: str) -> Status:
         """
