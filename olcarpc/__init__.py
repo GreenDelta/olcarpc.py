@@ -103,6 +103,7 @@ class Client:
                 ('grpc.max_receive_message_length', 1024 * 1024 * 1024),
             ])
         self.__data = DataFetchServiceStub(self.__channel)
+        self.__update = DataUpdateServiceStub(self.__channel)
         self.__flow_maps = FlowMapServiceStub(self.__channel)
         self.__results = ResultServiceStub(self.__channel)
 
@@ -117,7 +118,7 @@ class Client:
             self.__channel.close()
             self.__channel = None
 
-    def delete(self, ref: Union[Any, ProtoRef]) -> ProtoStatus:
+    def delete(self, ref: Union[Any, ProtoRef]):
         """
         Deletes the given object from the database.
 
@@ -143,49 +144,49 @@ class Client:
         """
 
         r = ref
-        if not isinstance(ref, Ref):
+        if not isinstance(ref, ProtoRef):
             r = Ref()
             r.id = ref.id
             if ref.type is None or ref.type == '':
                 r.type = ref.__class__.__name__
             else:
                 r.type = ref.type
-        return self.__data.Delete(r)
+        return self.__update.Delete()
 
     def put(self, o: Any) -> Any:
-        if isinstance(o, Actor):
+        if isinstance(o, ProtoActor):
             return self.put_actor(o)
-        if isinstance(o, Category):
+        if isinstance(o, ProtoCategory):
             return self.put_category(o)
-        if isinstance(o, Currency):
+        if isinstance(o, ProtoCurrency):
             return self.put_currency(o)
-        if isinstance(o, DQSystem):
+        if isinstance(o, ProtoDQSystem):
             return self.put_dq_system(o)
-        if isinstance(o, Flow):
+        if isinstance(o, ProtoFlow):
             return self.put_flow(o)
-        if isinstance(o, FlowProperty):
+        if isinstance(o, ProtoFlowProperty):
             return self.put_flow_property(o)
-        if isinstance(o, ImpactCategory):
+        if isinstance(o, ProtoImpactCategory):
             return self.put_impact_category(o)
-        if isinstance(o, ImpactMethod):
+        if isinstance(o, ProtoImpactMethod):
             return self.put_impact_method(o)
-        if isinstance(o, Location):
+        if isinstance(o, ProtoLocation):
             return self.put_location(o)
-        if isinstance(o, Parameter):
+        if isinstance(o, ProtoParameter):
             return self.put_parameter(o)
-        if isinstance(o, Process):
+        if isinstance(o, ProtoProcess):
             return self.put_process(o)
-        if isinstance(o, ProductSystem):
+        if isinstance(o, ProtoProductSystem):
             return self.put_product_system(o)
-        if isinstance(o, Project):
+        if isinstance(o, ProtoProject):
             return self.put_project(o)
-        if isinstance(o, SocialIndicator):
+        if isinstance(o, ProtoSocialIndicator):
             return self.put_social_indicator(o)
-        if isinstance(o, Source):
+        if isinstance(o, ProtoSource):
             return self.put_source(o)
-        if isinstance(o, UnitGroup):
+        if isinstance(o, ProtoUnitGroup):
             return self.put_unit_group(o)
-        if isinstance(o, FlowMap):
+        if isinstance(o, ProtoFlowMap):
             return self.put_flow_map(o)
 
     def get_actors(self) -> Iterator[Actor]:
@@ -195,7 +196,7 @@ class Client:
 
     def get_actor(self, ref_id='', name='') -> Optional[Actor]:
         """Get the actor with the given ID or name from the database."""
-        ref = Ref(id=ref_id, name=name)
+        ref = ProtoRef(id=ref_id, name=name)
         status: ActorStatus = self.__data.GetActor(ref)
         if status.ok:
             return status.actor
@@ -203,9 +204,9 @@ class Client:
         log.error('failed to get actor "%s" from database: %s', s, status.error)
         return None
 
-    def put_actor(self, actor: Actor) -> Optional[ProtoRef]:
+    def put_actor(self, actor: ProtoActor) -> Optional[ProtoRef]:
         """Insert or update the given actor in the database."""
-        status: RefStatus = self.__data.PutActor(actor)
+        status: RefStatus = self.__update.Put(actor)
         if status.ok:
             return status.ref
         log.error('failed to save actor "%s": %s', actor.id, status.error)
