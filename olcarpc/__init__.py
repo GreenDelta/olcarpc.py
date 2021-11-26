@@ -6,7 +6,7 @@ import grpc
 
 import olcarpc.services_pb2_grpc as services
 from .factory import *
-from .olca_pb2 import *
+from .generated.olca_pb2 import *
 from .services_pb2 import *
 
 import logging as log

@@ -1,4 +1,4 @@
-from .olca_pb2 import *
+from .generated.olca_pb2 import *
 
 import datetime
 import uuid
