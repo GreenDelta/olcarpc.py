@@ -12,6 +12,7 @@ def main():
             'py -m grpc_tools.protoc'
             ' -I./proto'
             ' --python_out=./olcarpc/generated'
+            ' --grpc_python_out=./olcarpc/generated'
             ' --mypy_out=./olcarpc/generated'
             ' ./proto/' + proto)
         """

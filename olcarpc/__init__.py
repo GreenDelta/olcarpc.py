@@ -4,10 +4,9 @@ from typing import Any, Iterator, List, Optional, Type, Union
 import google.protobuf.json_format as jf
 import grpc
 
-import olcarpc.services_pb2_grpc as services
+import olcarpc.generated.data_fetch_service_pb2 as services
 from .factory import *
 from .generated.olca_pb2 import *
-from .services_pb2 import *
 
 import logging as log
 
@@ -42,7 +41,7 @@ def to_json(entity, indent: int = 2) -> str:
     return jf.MessageToJson(entity, indent=indent)
 
 
-def ref_of(ref_type: Union[Type, str], ref_id: str, name='') -> Ref:
+def ref_of(ref_type: Union[Type, str], ref_id: str, name='') -> ProtoRef:
     """
     Creates a data set reference.
 
@@ -66,7 +65,7 @@ def ref_of(ref_type: Union[Type, str], ref_id: str, name='') -> Ref:
     ```
 
     """
-    r = Ref()
+    r = ProtoRef()
     if inspect.isclass(ref_type):
         r.type = ref_type.__name__
     else:
@@ -76,7 +75,7 @@ def ref_of(ref_type: Union[Type, str], ref_id: str, name='') -> Ref:
     return r
 
 
-def to_ref(entity) -> Ref:
+def to_ref(entity) -> ProtoRef:
     """
     Creates a data set reference from an entity.
 
@@ -120,7 +119,7 @@ class Client:
             self.__channel.close()
             self.__channel = None
 
-    def delete(self, ref: Union[Any, Ref]) -> Status:
+    def delete(self, ref: Union[Any, ProtoRef]) -> ProtoStatus:
         """
         Deletes the given object from the database.
 
@@ -206,7 +205,7 @@ class Client:
         log.error('failed to get actor "%s" from database: %s', s, status.error)
         return None
 
-    def put_actor(self, actor: Actor) -> Optional[Ref]:
+    def put_actor(self, actor: Actor) -> Optional[ProtoRef]:
         """Insert or update the given actor in the database."""
         status: RefStatus = self.__data.PutActor(actor)
         if status.ok:
