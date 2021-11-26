@@ -2,11 +2,9 @@ import inspect
 from typing import Any, Iterator, List, Optional, Type, Union
 
 import google.protobuf.json_format as jf
-import grpc
 
-import olcarpc.generated.data_fetch_service_pb2 as services
 from .factory import *
-from .generated.olca_pb2 import *
+from .generated import *
 
 import logging as log
 
@@ -104,9 +102,9 @@ class Client:
                 ('grpc.max_send_message_length', 1024 * 1024 * 1024),
                 ('grpc.max_receive_message_length', 1024 * 1024 * 1024),
             ])
-        self.__data = services.DataServiceStub(self.__channel)
-        self.__flow_maps = services.FlowMapServiceStub(self.__channel)
-        self.__results = services.ResultServiceStub(self.__channel)
+        self.__data = DataFetchServiceStub(self.__channel)
+        self.__flow_maps = FlowMapServiceStub(self.__channel)
+        self.__results = ResultServiceStub(self.__channel)
 
     def __enter__(self):
         return self
