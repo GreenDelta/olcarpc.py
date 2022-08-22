@@ -7,6 +7,4 @@
 /.vscode/
 *.pyc
 
-# currently do not check in the generated code & doc
 olcarpc/generated/
-/docs/
