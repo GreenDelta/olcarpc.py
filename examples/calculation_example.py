@@ -3,25 +3,25 @@ import olcarpc as rpc
 if __name__ == '__main__':
     with rpc.Client() as client:
 
-        # select the product system and LCIA method and calculate the result
-        system: rpc.Ref = client.get_descriptor(
-            rpc.ProductSystem, name='compost plant, open').ref
-        method: rpc.Ref = client.get_descriptor(
-            rpc.ImpactMethod, name='TRACI [v2.1, February 2014]').ref
-        result = client.calculate(system,
-                                  method,
-                                  with_regionalization=True).result
+        # create a calculation setup
+        system = rpc.ProtoRef(id='7d1cbce0-b5b3-47ba-95b5-014ab3c7f569')
+        method = rpc.ProtoRef(id='99b9d86b-ec6f-4610-ba9f-68ebfe5691dd')
+        setup = rpc.ProtoCalculationSetup(
+            product_system=system,
+            impact_method=method)
+
+        result = client.results.Calculate(setup)
 
         # query the inventory
         i = 0
-        for r in client.get_inventory(result):
+        for r in client.results.GetTotalInventory(result):
             print(r)
             i += 1
             if i == 10:
                 break
 
         # query the impact results
-        for r in client.get_impacts(result):
+        for r in client.results.GetTotalImpacts(result):
             print(r)
 
-        print(client.dispose(result))
+        client.results.Dispose(result)

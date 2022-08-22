@@ -1,13 +1,6 @@
-import inspect
-from typing import Any, Iterator, List, Optional, Type, Union
-
 import google.protobuf.json_format as jf
 
-from .factory import *
 from .generated import *
-from google.protobuf.empty_pb2 import Empty
-
-import logging as log
 
 __pdoc__ = {
     'olca_pb2': False,
@@ -29,10 +22,10 @@ class Client:
                 ('grpc.max_send_message_length', 1024 * 1024 * 1024),
                 ('grpc.max_receive_message_length', 1024 * 1024 * 1024),
             ])
-        self.__data = DataFetchServiceStub(self.__channel)
-        self.__update = DataUpdateServiceStub(self.__channel)
-        self.__flow_maps = FlowMapServiceStub(self.__channel)
-        self.__results = ResultServiceStub(self.__channel)
+        self.fetch = DataFetchServiceStub(self.__channel)
+        self.update = DataUpdateServiceStub(self.__channel)
+        self.flow_maps = FlowMapServiceStub(self.__channel)
+        self.results = ResultServiceStub(self.__channel)
 
     def __enter__(self):
         return self

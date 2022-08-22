@@ -55,12 +55,36 @@ def generate():
             module = f.rstrip('.py')
             modules.add(module)
 
+    # fix the module imports see:
+    # https://github.com/protocolbuffers/protobuf/issues/1491
+    for f in os.listdir(target):
+        path = os.path.join(target, f)
+        lines = []
+        with open(path, 'r', encoding='utf-8') as stream:
+            for line in stream:
+                lines.append(line.rstrip())
+        with open(path, 'w', encoding='utf-8', newline='\n') as stream:
+            for line in lines:
+                stream.write(fix_import(line, modules) + '\n')
+
     # generate the init file
     init = os.path.join(target, '__init__.py')
     with open(init, 'w', encoding='utf-8') as stream:
         for mod in modules:
             stream.write(f'from .{mod} import *\n')
     print(f'  generated: __init__.py')
+
+
+def fix_import(line: str, mods: set[str]) -> str:
+    if not line.startswith('import'):
+        return line
+    for mod in mods:
+        if line == f'import {mod}':
+            return f'import olcarpc.generated.{mod} as {mod}'
+        pref = f'import {mod} as '
+        if line.startswith(pref):
+            return f'import olcarpc.generated.{mod} as {line[len(pref):]}'
+    return line
 
 
 def main():
