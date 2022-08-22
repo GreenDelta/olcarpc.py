@@ -1,100 +1,80 @@
-# this example creates a process with inputs and outputs
-
 import olcarpc as rpc
+import uuid
 
 
 def main():
-    with rpc.Client(port=8080) as client:
-        # we assume that we are connected to an openLCA
-        # database with reference data, so that `Mass`
-        # and the respective units are defined.
-        # note that you should only get things by name
-        # when you are sure that only one entity with
-        # this name exists in the database, otherwise
-        # it is safer to get things by their IDs
+    with rpc.Client() as client:
+        # create a unit group
+        units = rpc.ProtoUnitGroup(
+            id=str(uuid.uuid4()),
+            name='Units of mass',
+            units=[rpc.ProtoUnit(
+                id=str(uuid.uuid4()),
+                name='kg',
+                conversion_factor=1.0,
+                is_ref_unit=True)])
+        client.update.Put(rpc.ProtoDataSet(unit_group=units))
+        kg = units.units[0]
 
-        # get flow property mass
-        status = client.get_flow_property(name='Mass')
-        if not status.ok:
-            raise RuntimeError('flow property `Mass` does not exist')
-        mass: rpc.FlowProperty = status.flow_property
+        # create a flow property
+        mass = rpc.ProtoFlowProperty(
+            id=str(uuid.uuid4()),
+            name='Mass',
+            type=rpc.ProtoFlowPropertyType.PHYSICAL_QUANTITY,
+            unit_group=rpc.ProtoRef(id=units.id))
+        client.update.Put(rpc.ProtoDataSet(flow_property=mass))
 
-        process = rpc.process_of('Iron Process - Gas cleaning')
+        # create an elementary flow
+        co2 = rpc.ProtoFlow(
+            id=str(uuid.uuid4()),
+            name='CO2',
+            flow_type=rpc.ProtoFlowType.ELEMENTARY_FLOW,
+            flow_properties=[
+                rpc.ProtoFlowPropertyFactor(
+                    flow_property=rpc.ProtoRef(id=mass.id),
+                    conversion_factor=1.0,
+                    is_ref_flow_property=True)])
+        client.update.Put(rpc.ProtoDataSet(flow=co2))
 
-        # set the location
-        loc = location(client, 'Global')
-        process.location.id = loc.id
-        process.location.name = loc.name
+        # create a product flow
+        steel = rpc.ProtoFlow(
+            id=str(uuid.uuid4()),
+            name='Steel',
+            flow_type=rpc.ProtoFlowType.PRODUCT_FLOW,
+            flow_properties=[
+                rpc.ProtoFlowPropertyFactor(
+                    flow_property=rpc.ProtoRef(id=mass.id),
+                    conversion_factor=1.0,
+                    is_ref_flow_property=True)])
+        client.update.Put(rpc.ProtoDataSet(flow=steel))
 
-        # add inputs
-        inputs = [
-            ('Air Blast', rpc.FlowType.PRODUCT_FLOW, 245.8751543969349),
-            ('Combustion Air', rpc.FlowType.WASTE_FLOW, 59.764430236449158),
-            ('Hematite Pellets', rpc.FlowType.PRODUCT_FLOW, 200),
-            ('Coke', rpc.FlowType.PRODUCT_FLOW, 50),
-            ('Limestone', rpc.FlowType.PRODUCT_FLOW, 30.422441963816247),
-            ('Steel Scrap', rpc.FlowType.WASTE_FLOW, 1.8853256607049331),
-            ('Reductant', rpc.FlowType.PRODUCT_FLOW, 16),
-            ('Washing Solution', rpc.FlowType.PRODUCT_FLOW, 75),
-        ]
-        for (name, flow_type, amount) in inputs:
-            f = flow(client, name, flow_type, mass)
-            i = rpc.input_of(process, f, amount)
-            process.exchanges.append(i)
+        # create a process
+        process = rpc.ProtoProcess(
+            id=str(uuid.uuid4()),
+            name='Steel production',
+            process_type=rpc.ProtoProcessType.UNIT_PROCESS,
+            exchanges=[
+                rpc.ProtoExchange(
+                    flow=rpc.ProtoRef(id=steel.id),
+                    amount=1.0,
+                    is_input=False,
+                    is_quantitative_reference=True,
+                    flow_property=rpc.ProtoRef(id=mass.id),
+                    unit=rpc.ProtoRef(id=kg.id),
+                ),
+                rpc.ProtoExchange(
+                    flow=rpc.ProtoRef(id=co2.id),
+                    amount=2.0,
+                    is_input=False,
+                    flow_property=rpc.ProtoRef(id=mass.id),
+                    unit=rpc.ProtoRef(id=kg.id),
+                )
+            ]
+        )
+        client.update.Put(rpc.ProtoDataSet(process=process))
 
-        # add outputs
-        outputs = [
-            ('Slag', rpc.FlowType.WASTE_FLOW, 33.573534216580185),
-            ('Carbon dioxide', rpc.FlowType.ELEMENTARY_FLOW, 140.44236409682583),
-            ('Water vapour', rpc.FlowType.ELEMENTARY_FLOW, 30.591043638569072),
-            ('Sulfur dioxide', rpc.FlowType.ELEMENTARY_FLOW, 0.01134867565288134),
-            ('Air', rpc.FlowType.ELEMENTARY_FLOW, 158.58576460676247),
-            ('Pig Iron', rpc.FlowType.PRODUCT_FLOW, 138.2370620852756),
-            ('Heat Loss', rpc.FlowType.WASTE_FLOW, 32727.272727272728),
-            ('Coarse Dust', rpc.FlowType.ELEMENTARY_FLOW, 1.4340290871696806),
-            ('Scrubber Sludge', rpc.FlowType.WASTE_FLOW, 56.261517810249792),
-            ('Fine Dust', rpc.FlowType.ELEMENTARY_FLOW, 0.18398927491951844),
-        ]
-        for (name, flow_type, amount) in outputs:
-            f = flow(client, name, flow_type, mass)
-            o = rpc.output_of(process, f, amount)
-            if name == 'Pig Iron':
-                o.quantitative_reference = True
-            process.exchanges.append(o)
-
-        client.put_process(process)
-        print(process)
-
-
-def flow(client: rpc.Client, name: str,
-         flow_type: rpc.FlowType, quantity: rpc.FlowProperty) -> rpc.Flow:
-    """
-    Returns the flow with the given name or creates a new one if it does not
-    exist yet.
-    """
-    status = client.get_flow(name=name)
-    if status.ok:
-        return status.flow
-    f = rpc.flow_of(name, flow_type, quantity)
-    status = client.put_flow(f)
-    if not status.ok:
-        raise RuntimeError(status.error)
-    return f
-
-
-def location(client: rpc.Client, name: str) -> rpc.Location:
-    """
-    Returns the location with the given name or creates a new one
-    if it does not exist yet.
-    """
-    status = client.get_location(name=name)
-    if status.ok:
-        return status.location
-    loc = rpc.location_of(name)
-    status = client.put_location(loc)
-    if not status.ok:
-        raise RuntimeError(status.error)
-    return loc
+        # fetch and print the created process
+        print(client.fetch.Get(rpc.GetRequest(type=rpc.Process, id=process.id)))
 
 
 if __name__ == '__main__':
